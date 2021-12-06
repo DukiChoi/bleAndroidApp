@@ -7,6 +7,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+// 메뉴 창
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -22,5 +24,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
     }
-
+    public void onButton7Clicked(View view){
+        Intent intent = new Intent(this, MainActivity3.class);
+        startActivity(intent);
+    }
 }

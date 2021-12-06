@@ -8,9 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.ExecutionException;
 
+// 인터넷 클라이언트 & GET메소드 창
 public class MainActivity2 extends AppCompatActivity {
 
-    TextView textView2;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,20 +19,21 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
     }
 
-    public void onBackButton1Clicked(View view){
+    public void onBackButton3Clicked(View view) {
         finish();
     }
-    public void onBackButton2Clicked(View view){
+
+    public void onBackButton4Clicked(View view) {
         String resultText = "[NULL]";
-        textView2 = (TextView)findViewById(R.id.textView2);
-        try{
+        textView = (TextView) findViewById(R.id.textView);
+        try {
             resultText = new Task().execute().get();
-        } catch(InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
-        }catch(ExecutionException e){
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        textView2.setText(resultText);
+        textView.setText(resultText);
     }
 }
