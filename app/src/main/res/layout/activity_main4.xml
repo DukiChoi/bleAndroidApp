@@ -77,12 +77,13 @@
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="16dp"
         android:onClick="onButton9Clicked"
         android:text="이전으로"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -142,35 +143,22 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner2"
         app:layout_constraintVertical_bias="0.147" />
 
+
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="36dp"
-        android:layout_height="19dp"
+        android:layout_width="35dp"
+        android:layout_height="21dp"
         android:layout_marginTop="16dp"
         android:text="위험"
         app:layout_constraintEnd_toStartOf="@+id/textView13"
-        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintHorizontal_bias="0.645"
         app:layout_constraintStart_toEndOf="@+id/linearLayout5"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/textView12"
-        android:layout_width="32dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/border"
-        android:text="7m"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout5"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.111" />
-
-    <TextView
         android:id="@+id/textView13"
-        android:layout_width="37dp"
-        android:layout_height="19dp"
+        android:layout_width="35dp"
+        android:layout_height="21dp"
         android:layout_marginTop="16dp"
         android:text="경고"
         app:layout_constraintEnd_toEndOf="parent"
@@ -180,18 +168,31 @@
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="21dp"
         android:layout_marginTop="16dp"
         android:text="접근"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="35dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/border"
+        android:text="7m"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView15"
+        app:layout_constraintHorizontal_bias="0.657"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout5"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.137" />
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="33dp"
+        android:layout_width="35dp"
         android:layout_height="21dp"
         android:background="@drawable/border"
         android:text="7m"
