@@ -19,11 +19,11 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
     }
 
-    public void onBackButton3Clicked(View view) {
+    public void onButton3Clicked(View view) {
         finish();
     }
 
-    public void onBackButton4Clicked(View view) {
+    public void onButton4Clicked(View view) {
         String resultText = "[NULL]";
         textView = (TextView) findViewById(R.id.textView);
         try {
