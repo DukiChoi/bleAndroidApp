@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutionException;
 // 인터넷 클라이언트 & GET메소드 창
 public class MainActivity2 extends AppCompatActivity {
 
-    TextView textView;
+    TextView textView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
