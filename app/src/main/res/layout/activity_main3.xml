@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity3">
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="115dp"
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button8"
         android:layout_width="242dp"
@@ -13,29 +21,30 @@
         android:onClick="onButton8Clicked"
         android:text="이전으로"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="55dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="100dp"
-        android:text="client"
+        android:layout_width="173dp"
+        android:layout_height="241dp"
+        android:layout_marginTop="76dp"
+        android:text="client\n"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="56dp"
-        android:layout_height="34dp"
+        android:layout_width="178dp"
+        android:layout_height="240dp"
         android:layout_marginStart="68dp"
-        android:layout_marginTop="100dp"
-        android:text="server"
+        android:layout_marginTop="76dp"
+        android:text="server\n"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
@@ -59,10 +68,10 @@
         android:text="Client"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.106" />
 
     <Button
         android:id="@+id/button5"
@@ -72,9 +81,9 @@
         android:text="SERVER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.107" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
