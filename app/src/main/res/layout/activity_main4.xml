@@ -102,8 +102,7 @@
         android:id="@+id/spinner2"
         android:layout_width="101dp"
         android:layout_height="21dp"
-
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="76dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
@@ -129,7 +128,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout5"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.239" />
+        app:layout_constraintVertical_bias="0.202" />
 
     <TextView
         android:id="@+id/textView10"
@@ -195,6 +194,7 @@
         android:id="@+id/textView15"
         android:layout_width="35dp"
         android:layout_height="21dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/border"
         android:text="7m"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -202,18 +202,19 @@
         app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toEndOf="@+id/linearLayout5"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.206" />
+        app:layout_constraintVertical_bias="0.134" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="35dp"
         android:layout_height="21dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/border"
         android:text="12m"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.202" />
+        app:layout_constraintVertical_bias="0.134" />
 </androidx.constraintlayout.widget.ConstraintLayout>

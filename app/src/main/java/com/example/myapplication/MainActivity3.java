@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -19,7 +20,9 @@ import java.net.Socket;
 public class MainActivity3 extends AppCompatActivity {
     TextView textView2;
     TextView textView3;
+    TextView textView4;
     EditText editText;
+    String data_from_server;
     Handler handler = new Handler();
 
 
@@ -53,24 +56,27 @@ public class MainActivity3 extends AppCompatActivity {
     //Client 버튼
     public void onButton6Clicked(View view){
         editText = (EditText) findViewById(R.id.editText);
+        textView4 = (TextView) findViewById(R.id.textView4);
         String data = editText.getText().toString();
+
         //ClientThread thread = new ClientThread();
         //thread.start();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                send(data);
+                get(data);
             }
         }).start();
+
+
     }
 
 
 
-    public void send(String data) {
+    public void get(String data) {
         try {
             int portNumber = 5050;
             String host = "192.168.0.9";
-            String localhost = "localhost";
             Socket sock = new Socket(host, portNumber); // 소켓 객체 만들기
             printClientLog("소켓 연결함.");
 
@@ -82,11 +88,74 @@ public class MainActivity3 extends AppCompatActivity {
             */
 
             ObjectInputStream instream = new ObjectInputStream(sock.getInputStream());
-            printClientLog("데이터를 서버로부터 받음 : " + instream.readObject());
+            data_from_server = (String) instream.readObject();
+            printClientLog("데이터를 서버로부터 받음 : " + data_from_server);
+
+
+            //여기 속에다가 if문을 넣지 않고 메인에 넣으면 오류가 남...
+            if(Integer.parseInt(data_from_server) > 10){
+                textView4.setText("안전합니다");
+                textView4.setTextColor(Color.GREEN);
+            }
+            else if(Integer.parseInt(data_from_server) <= 10){
+                textView4.setText("위험합니다");
+                textView4.setTextColor(Color.RED);
+            }
+            else{
+                textView4.setText("거리값이 이상합니다");
+                textView4.setTextColor(Color.BLUE);
+            }
+
+            //소켓 닫아주기
             sock.close();
+
         } catch(Exception ex) {
             ex.printStackTrace();
         }
+
+    }
+
+    //이것은 시험삼아 만들어본 것. 안드로이드 앱 내부에서 서버 돌리는 걸 받기.
+    public void send(String data) {
+        try {
+            int portNumber = 5050;
+            String localhost = "localhost";
+            Socket sock = new Socket(localhost, portNumber); // 소켓 객체 만들기
+            printClientLog("소켓 연결함.");
+
+
+            ObjectOutputStream outstream = new ObjectOutputStream(sock.getOutputStream()); // 소켓 객체로 데이터 보내기
+            outstream.writeObject(data);
+            outstream.flush();
+            printClientLog("데이터를 서버로 보냄 :" + data);
+
+
+            ObjectInputStream instream = new ObjectInputStream(sock.getInputStream());
+            data_from_server = (String) instream.readObject();
+            printClientLog("데이터를 서버로부터 받음 : " + data_from_server);
+
+
+            //여기 속에다가 if문을 넣지 않고 메인에 넣으면 오류가 남...
+            if(Integer.parseInt(data_from_server) > 10){
+                textView4.setText("안전합니다");
+                textView4.setTextColor(Color.GREEN);
+            }
+            else if(Integer.parseInt(data_from_server) <= 10){
+                textView4.setText("위험합니다");
+                textView4.setTextColor(Color.RED);
+            }
+            else{
+                textView4.setText("거리값이 이상합니다");
+                textView4.setTextColor(Color.BLUE);
+            }
+
+            //소켓 닫아주기
+            sock.close();
+
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     public void startServer() {
