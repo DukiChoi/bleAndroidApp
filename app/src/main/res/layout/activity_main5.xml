@@ -172,5 +172,45 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.042" />
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="123dp"
+        android:layout_height="112dp"
+        app:srcCompat="@drawable/포크레인"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="164dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="65dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/작업자"
+        tools:layout_editor_absoluteX="229dp"
+        tools:layout_editor_absoluteY="127dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="65dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/작업자"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="276dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="65dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/작업자"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="102dp" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="65dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/작업자"
+        tools:layout_editor_absoluteX="211dp"
+        tools:layout_editor_absoluteY="259dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
