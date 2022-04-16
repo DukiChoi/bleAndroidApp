@@ -173,44 +173,44 @@
         app:layout_constraintVertical_bias="0.042" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="123dp"
-        android:layout_height="112dp"
-        app:srcCompat="@drawable/포크레인"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="164dp" />
+        android:id="@+id/imageView10"
+        android:layout_width="133dp"
+        android:layout_height="99dp"
+        app:srcCompat="@drawable/forkcrane"
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="173dp" />
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="65dp"
-        android:layout_height="70dp"
-        app:srcCompat="@drawable/작업자"
-        tools:layout_editor_absoluteX="229dp"
-        tools:layout_editor_absoluteY="127dp" />
+        android:id="@+id/imageView11"
+        android:layout_width="63dp"
+        android:layout_height="61dp"
+        app:srcCompat="@drawable/worker"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="293dp" />
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="65dp"
-        android:layout_height="70dp"
-        app:srcCompat="@drawable/작업자"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="276dp" />
+        android:id="@+id/imageView12"
+        android:layout_width="63dp"
+        android:layout_height="61dp"
+        app:srcCompat="@drawable/worker"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="128dp" />
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="65dp"
-        android:layout_height="70dp"
-        app:srcCompat="@drawable/작업자"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="102dp" />
+        android:id="@+id/imageView13"
+        android:layout_width="63dp"
+        android:layout_height="61dp"
+        app:srcCompat="@drawable/worker"
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="265dp" />
 
     <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="65dp"
-        android:layout_height="70dp"
-        app:srcCompat="@drawable/작업자"
-        tools:layout_editor_absoluteX="211dp"
-        tools:layout_editor_absoluteY="259dp" />
+        android:id="@+id/imageView14"
+        android:layout_width="63dp"
+        android:layout_height="61dp"
+        app:srcCompat="@drawable/worker"
+        tools:layout_editor_absoluteX="199dp"
+        tools:layout_editor_absoluteY="144dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
