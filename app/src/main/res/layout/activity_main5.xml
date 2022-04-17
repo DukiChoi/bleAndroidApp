@@ -176,41 +176,56 @@
         android:id="@+id/imageView10"
         android:layout_width="133dp"
         android:layout_height="99dp"
-        app:srcCompat="@drawable/forkcrane"
-        tools:layout_editor_absoluteX="108dp"
-        tools:layout_editor_absoluteY="173dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:srcCompat="@drawable/forkcrane" />
 
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="63dp"
         android:layout_height="61dp"
-        app:srcCompat="@drawable/worker"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="293dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView13"
+        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:layout_constraintVertical_bias="0.097"
+        app:srcCompat="@drawable/worker" />
 
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="63dp"
         android:layout_height="61dp"
-        app:srcCompat="@drawable/worker"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="128dp" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView10"
+        app:layout_constraintEnd_toStartOf="@+id/imageView14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.458"
+        app:srcCompat="@drawable/worker" />
 
     <ImageView
         android:id="@+id/imageView13"
         android:layout_width="63dp"
         android:layout_height="61dp"
-        app:srcCompat="@drawable/worker"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="265dp" />
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:layout_constraintVertical_bias="0.338"
+        app:srcCompat="@drawable/worker" />
 
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="63dp"
         android:layout_height="61dp"
-        app:srcCompat="@drawable/worker"
-        tools:layout_editor_absoluteX="199dp"
-        tools:layout_editor_absoluteY="144dp" />
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView10"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+        app:srcCompat="@drawable/worker" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
