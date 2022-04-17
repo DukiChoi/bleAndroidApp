@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.ExecutionException;
 
-// 인터넷 클라이언트 & GET메소드 창
+// 인터넷 클라이언트 & GET메소드창
 public class MainActivity2 extends AppCompatActivity {
 
     TextView textView ;
