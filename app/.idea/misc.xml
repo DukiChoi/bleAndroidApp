@@ -14,7 +14,12 @@
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/androidapp/app/src/main/res/layout/activity_main2.xml" value="0.1375" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/androidapp/app/src/main/res/layout/activity_main3.xml" value="0.264" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/androidapp/app/src/main/res/layout/activity_main4.xml" value="0.264" />
-        <entry key="src/main/res/layout/activity_main5.xml" value="0.2563323974609375" />
+        <entry key="src/main/res/layout/activity_main.xml" value="0.5635416666666667" />
+        <entry key="src/main/res/layout/activity_main2.xml" value="0.5635416666666667" />
+        <entry key="src/main/res/layout/activity_main3.xml" value="0.22056159420289856" />
+        <entry key="src/main/res/layout/activity_main4.xml" value="0.33" />
+        <entry key="src/main/res/layout/activity_main5.xml" value="0.33" />
+        <entry key="src/main/res/layout/activity_main6.xml" value="0.5635416666666667" />
       </map>
     </option>
   </component>

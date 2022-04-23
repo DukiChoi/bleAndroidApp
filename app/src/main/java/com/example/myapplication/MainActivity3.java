@@ -72,11 +72,14 @@ public class MainActivity3 extends AppCompatActivity {
     }
 
 
+    //앱에서 가져오기
 
     public void get(String data) {
         try {
             int portNumber = 5050;
-            String host = "192.168.0.9";
+            //여기서 아이피를 로컬로하면 핸드폰 내부에서만.
+            String host = "192.168.219.116";
+            //String host = "127.0.0.1";
             Socket sock = new Socket(host, portNumber); // 소켓 객체 만들기
             printClientLog("소켓 연결함.");
 
