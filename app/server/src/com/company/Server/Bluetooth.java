@@ -39,7 +39,6 @@ public class Bluetooth{
 
         LocalDevice local = null;
         try {
-
             local = LocalDevice.getLocalDevice();
         } catch (BluetoothStateException e2) {
 
