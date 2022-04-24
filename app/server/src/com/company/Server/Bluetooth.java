@@ -176,8 +176,7 @@ class ServerRunable implements Runnable{
 
                 boolean isDisconnected = false;
 
-                Sender("에코 서버에 접속하셨습니다.");
-                Sender( "보내신 문자를 에코해드립니다.");
+                Sender("에코 서버에 접속되었습니다");
 
                 while(true){
 
@@ -209,9 +208,9 @@ class ServerRunable implements Runnable{
                     if ( isDisconnected ) break;
 
                     String recvMessage = stringBuilder.toString();
-                    log( mRemoteDeviceString + ": " + recvMessage );
+                    log(  mRemoteDeviceString + ": 클라이언트에서 " + recvMessage +"를 보냈습니다.");
 
-                    Sender(recvMessage);
+                    Sender("서버에서 "+recvMessage+ "를 되돌려 보냈습니다.");
                 }
 
             } catch (IOException e) {
@@ -230,7 +229,7 @@ class ServerRunable implements Runnable{
             printWriter.write(msg+"\n");
             printWriter.flush();
 
-            log( "Me : " + msg );
+            log( "Server : " + msg );
         }
     }
 
