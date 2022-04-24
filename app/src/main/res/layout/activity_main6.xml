@@ -47,8 +47,8 @@
 
     <TextView
         android:id="@+id/tvReceiveData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="304dp"
+        android:layout_height="378dp"
         android:layout_marginTop="10dp"
         android:text="Receive"
         app:layout_constraintStart_toStartOf="@+id/btnSendData"
@@ -68,10 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Send Data"
         app:layout_constraintStart_toEndOf="@+id/btnSendData"
         app:layout_constraintTop_toTopOf="@+id/btnSendData" />
 
