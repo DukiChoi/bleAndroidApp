@@ -1,9 +1,15 @@
 package com.example.myapplication;
 
 import android.Manifest;
+
+//여기가 블루투스 부분
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothDevice;   
 import android.bluetooth.BluetoothSocket;
+//여기가 블루투스LE 부분
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -48,13 +54,13 @@ public class MainActivity6 extends AppCompatActivity {
     ConnectedBluetoothThread mThreadConnectedBluetooth;
     BluetoothDevice mBluetoothDevice;
     BluetoothSocket mBluetoothSocket;
-    private String[] PERMISSIONS = { Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_SCAN};
+    private String[] PERMISSIONS = { Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     final static int BT_REQUEST_ENABLE = 1;
     final static int BT_MESSAGE_READ = 2;
     final static int BT_CONNECTING_STATUS = 3;
-    final static UUID BT_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    final static UUID BT_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34 FB");
 
-    //블루투스 권한 설정
+    //블루투스 권한 요청 함수
     public boolean runtimeCheckPermission(Context context, String... permissions) {
         if (context != null && permissions != null) {
             for (String permission : permissions) {
