@@ -3,13 +3,22 @@ package com.example.myapplication;
 import android.Manifest;
 
 //여기가 블루투스 부분
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;   
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothSocket;
 //여기가 블루투스LE 부분
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 
+import android.bluetooth.le.AdvertiseCallback;
+import android.bluetooth.le.AdvertiseData;
+import android.bluetooth.le.AdvertiseSettings;
+import android.bluetooth.le.AdvertisingSet;
+import android.bluetooth.le.AdvertisingSetCallback;
+import android.bluetooth.le.AdvertisingSetParameters;
+import android.bluetooth.le.BluetoothLeAdvertiser;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,14 +26,19 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.app.Service;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +51,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public class MainActivity6 extends AppCompatActivity {
+public class MainActivity6 extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     TextView mTvBluetoothStatus;
     TextView mTvReceiveData;
     TextView mTvSendData;
@@ -45,20 +59,27 @@ public class MainActivity6 extends AppCompatActivity {
     Button mBtnBluetoothOff;
     Button mBtnConnect;
     Button mBtnSendData;
-
     BluetoothAdapter mBluetoothAdapter;
     Set<BluetoothDevice> mPairedDevices;
     List<String> mListPairedDevices;
-
     Handler mBluetoothHandler;
     ConnectedBluetoothThread mThreadConnectedBluetooth;
     BluetoothDevice mBluetoothDevice;
     BluetoothSocket mBluetoothSocket;
-    private String[] PERMISSIONS = { Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+
+    private FragmentManager fragmentManager;
+    private AdvertiserFragment advertiserFragment;
+    private FragmentTransaction transaction;
+
+    private BluetoothLeAdvertiser mBTAdvertiser;
+    private static final int REQUEST_ENABLE_BT = 1;
+    private static final String LOG_TAG = "MyActivity6";
+
+    private String[] PERMISSIONS = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     final static int BT_REQUEST_ENABLE = 1;
     final static int BT_MESSAGE_READ = 2;
     final static int BT_CONNECTING_STATUS = 3;
-    final static UUID BT_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34 FB");
+    final static UUID BT_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34fb");
 
     //블루투스 권한 요청 함수
     public boolean runtimeCheckPermission(Context context, String... permissions) {
@@ -72,7 +93,7 @@ public class MainActivity6 extends AppCompatActivity {
         }
         return true;
     }
-    
+
     private static final int MULTIPLE_PERMISSION = 1004;
 
 
@@ -82,19 +103,24 @@ public class MainActivity6 extends AppCompatActivity {
         setContentView(R.layout.activity_main6);
 
         //블루투스 권한 요청
-        if (!runtimeCheckPermission(this, PERMISSIONS)) { ActivityCompat.requestPermissions(this, PERMISSIONS, MULTIPLE_PERMISSION); } else { Log.i("권한 테스트", "권한이 있네요"); }
+        if (!runtimeCheckPermission(this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, MULTIPLE_PERMISSION);
+        } else {
+            Log.i("권한 테스트", "권한이 있네요");
+        }
 
-        mTvBluetoothStatus = (TextView)findViewById(R.id.tvBluetoothStatus);
-        mTvReceiveData = (TextView)findViewById(R.id.tvReceiveData);
-        mTvSendData =  (EditText) findViewById(R.id.tvSendData);
-        mBtnBluetoothOn = (Button)findViewById(R.id.btnBluetoothOn);
-        mBtnBluetoothOff = (Button)findViewById(R.id.btnBluetoothOff);
-        mBtnConnect = (Button)findViewById(R.id.btnConnect);
-        mBtnSendData = (Button)findViewById(R.id.btnSendData);
-
+        mTvBluetoothStatus = (TextView) findViewById(R.id.tvBluetoothStatus);
+        mTvReceiveData = (TextView) findViewById(R.id.tvReceiveData);
+        mTvSendData = (EditText) findViewById(R.id.tvSendData);
+        mBtnBluetoothOn = (Button) findViewById(R.id.btnBluetoothOn);
+        mBtnBluetoothOff = (Button) findViewById(R.id.btnBluetoothOff);
+        mBtnConnect = (Button) findViewById(R.id.btnConnect);
+        mBtnSendData = (Button) findViewById(R.id.btnSendData);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-
+        fragmentManager = getSupportFragmentManager();
+        advertiserFragment = new AdvertiserFragment();
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.framelayout, advertiserFragment).commitAllowingStateLoss();
         mBtnBluetoothOn.setOnClickListener(new Button.OnClickListener() {
 
             @Override
@@ -117,16 +143,19 @@ public class MainActivity6 extends AppCompatActivity {
         mBtnSendData.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mThreadConnectedBluetooth != null) {
+                if (mThreadConnectedBluetooth != null) {
                     mThreadConnectedBluetooth.write(mTvSendData.getText().toString());
                     //Toast.makeText(getApplicationContext(), mTvSendData.getText().toString()+"눌렸음 ㅇㅇ", Toast.LENGTH_LONG).show();
                     mTvSendData.setText("");
                 }
             }
         });
-        mBluetoothHandler = new Handler(){
-            public void handleMessage(android.os.Message msg){
-                if(msg.what == BT_MESSAGE_READ){
+
+
+        mBluetoothHandler = new Handler() {
+            @SuppressLint("HandlerLeak")
+            public void handleMessage(android.os.Message msg) {
+                if (msg.what == BT_MESSAGE_READ) {
                     String readMessage = null;
                     try {
                         readMessage = new String((byte[]) msg.obj, "UTF-8");
@@ -137,51 +166,215 @@ public class MainActivity6 extends AppCompatActivity {
                 }
             }
         };
+
     }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        switch (requestCode) {
+//            case Constants.REQUEST_ENABLE_BT:
+//
+//                if (resultCode == RESULT_OK) {
+//
+//                    // Bluetooth is now Enabled, are Bluetooth Advertisements supported on
+//                    // this device?
+//                    if (mBluetoothAdapter.isMultipleAdvertisementSupported()) {
+//
+//                        // Everything is supported and enabled, load the fragments.
+//                        setupFragments();
+//
+//                    } else {
+//
+//                        // Bluetooth Advertisements are not supported.
+//                        showErrorText(R.string.bt_ads_not_supported);
+//                    }
+//                } else {
+//
+//                    // User declined to enable Bluetooth, exit the app.
+//                    Toast.makeText(this, R.string.bt_not_enabled_leaving,
+//                            Toast.LENGTH_SHORT).show();
+//                    finish();
+//                }
+//
+//            default:
+//                super.onActivityResult(requestCode, resultCode, data);
+//        }
+//    }
+    private void setupFragments() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        //ScannerFragment scannerFragment = new ScannerFragment();
+        // Fragments can't access system services directly, so pass it the BluetoothAdapter
+        //scannerFragment.setBluetoothAdapter(mBluetoothAdapter);
+        //transaction.replace(R.id.scanner_fragment_container, scannerFragment);
+
+        AdvertiserFragment advertiserFragment = new AdvertiserFragment();
+        transaction.replace(R.id.framelayout, advertiserFragment);
+
+        transaction.commit();
+    }
+
+    private void showErrorText(int messageId) {
+
+        TextView view = (TextView) findViewById(R.id.error_textview);
+        view.setText(getString(messageId));
+    }
+
+    //----------------------------------------------------------------------------------------------
+//    void bleAdvertise() {
+//        BluetoothLeAdvertiser advertiser =
+//                BluetoothAdapter.getDefaultAdapter().getBluetoothLeAdvertiser();
+//
+//        AdvertisingSetParameters parameters = (new AdvertisingSetParameters.Builder())
+//                .setLegacyMode(true) // True by default, but set here as a reminder.
+//                .setConnectable(true)
+//                .setInterval(AdvertisingSetParameters.INTERVAL_HIGH)
+//                .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MEDIUM)
+//                .build();
+//
+//        AdvertiseData data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).build();
+//        AdvertisingSet[] currentAdvertisingSet = new AdvertisingSet[1];
+//        AdvertisingSetCallback callback = new AdvertisingSetCallback() {
+//            @Override
+//            public void onAdvertisingSetStarted(AdvertisingSet advertisingSet, int txPower, int status) {
+//                Log.i(LOG_TAG, "onAdvertisingSetStarted(): txPower:" + txPower + " , status: "
+//                        + status);
+//                currentAdvertisingSet[1] = advertisingSet;
+//            }
+//
+//            @Override
+//            public void onAdvertisingDataSet(AdvertisingSet advertisingSet, int status) {
+//                Log.i(LOG_TAG, "onAdvertisingDataSet() :status:" + status);
+//            }
+//
+//            @Override
+//            public void onScanResponseDataSet(AdvertisingSet advertisingSet, int status) {
+//                Log.i(LOG_TAG, "onScanResponseDataSet(): status:" + status);
+//            }
+//
+//            @Override
+//            public void onAdvertisingSetStopped(AdvertisingSet advertisingSet) {
+//                Log.i(LOG_TAG, "onAdvertisingSetStopped():");
+//            }
+//        };
+//
+//        advertiser.startAdvertisingSet(parameters, data, null, null, null, callback);
+//
+//        // After onAdvertisingSetStarted callback is called, you can modify the
+//        // advertising data and scan response data:
+//        currentAdvertisingSet[1].setAdvertisingData(new AdvertiseData.Builder().
+//                setIncludeDeviceName(true).setIncludeTxPowerLevel(true).build());
+//        // Wait for onAdvertisingDataSet callback...
+//        currentAdvertisingSet[1].setScanResponseData(new
+//                AdvertiseData.Builder().addServiceUuid(new ParcelUuid(UUID.randomUUID())).build());
+//        // Wait for onScanResponseDataSet callback...
+//
+//        // When done with the advertising:
+//        advertiser.stopAdvertisingSet(callback);
+//    }
+
+
+    //----------------------------------------------------------------------------------------------
     void bluetoothOn() {
-        if(mBluetoothAdapter == null) {
+        if (mBluetoothAdapter == null) {
             Toast.makeText(getApplicationContext(), "블루투스를 지원하지 않는 기기입니다.", Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
             if (mBluetoothAdapter.isEnabled()) {
                 Toast.makeText(getApplicationContext(), "블루투스가 이미 활성화 되어 있습니다.", Toast.LENGTH_LONG).show();
                 mTvBluetoothStatus.setText("활성화");
-            }
-            else {
+            } else {
                 Toast.makeText(getApplicationContext(), "블루투스가 활성화 되어 있지 않습니다.", Toast.LENGTH_LONG).show();
 
                 Intent intentBluetoothEnable = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
                 startActivityForResult(intentBluetoothEnable, BT_REQUEST_ENABLE);
             }
         }
     }
+
     void bluetoothOff() {
         if (mBluetoothAdapter.isEnabled()) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             mBluetoothAdapter.disable();
             Toast.makeText(getApplicationContext(), "블루투스가 비활성화 되었습니다.", Toast.LENGTH_SHORT).show();
             mTvBluetoothStatus.setText("비활성화");
-        }
-        else {
+        } else {
             Toast.makeText(getApplicationContext(), "블루투스가 이미 비활성화 되어 있습니다.", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case BT_REQUEST_ENABLE:
-                if (resultCode == RESULT_OK) { // 블루투스 활성화를 확인을 클릭하였다면
-                    Toast.makeText(getApplicationContext(), "블루투스 활성화", Toast.LENGTH_LONG).show();
-                    mTvBluetoothStatus.setText("활성화");
-                } else if (resultCode == RESULT_CANCELED) { // 블루투스 활성화를 취소를 클릭하였다면
-                    Toast.makeText(getApplicationContext(), "취소", Toast.LENGTH_LONG).show();
-                    mTvBluetoothStatus.setText("비활성화");
+//            case BT_REQUEST_ENABLE:
+//                if (resultCode == RESULT_OK) { // 블루투스 활성화를 확인을 클릭하였다면
+//                    Toast.makeText(getApplicationContext(), "블루투스 활성화", Toast.LENGTH_LONG).show();
+//                    mTvBluetoothStatus.setText("활성화");
+//                } else if (resultCode == RESULT_CANCELED) { // 블루투스 활성화를 취소를 클릭하였다면
+//                    Toast.makeText(getApplicationContext(), "취소", Toast.LENGTH_LONG).show();
+//                    mTvBluetoothStatus.setText("비활성화");
+//                }
+//                break;
+            case Constants.REQUEST_ENABLE_BT:
+
+                if (resultCode == RESULT_OK) {
+
+                    // Bluetooth is now Enabled, are Bluetooth Advertisements supported on
+                    // this device?
+                    if (mBluetoothAdapter.isMultipleAdvertisementSupported()) {
+
+                        // Everything is supported and enabled, load the fragments.
+                        setupFragments();
+
+                    } else {
+
+                        // Bluetooth Advertisements are not supported.
+                        showErrorText(R.string.bt_ads_not_supported);
+                    }
+                } else {
+
+                    // User declined to enable Bluetooth, exit the app.
+                    Toast.makeText(this, R.string.bt_not_enabled_leaving,
+                            Toast.LENGTH_SHORT).show();
+                    finish();
                 }
-                break;
+
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     void listPairedDevices() {
         if (mBluetoothAdapter.isEnabled()) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             mPairedDevices = mBluetoothAdapter.getBondedDevices();
 
             if (mPairedDevices.size() > 0) {
@@ -207,13 +400,23 @@ public class MainActivity6 extends AppCompatActivity {
             } else {
                 Toast.makeText(getApplicationContext(), "페어링된 장치가 없습니다.", Toast.LENGTH_LONG).show();
             }
-        }
-        else {
+        } else {
             Toast.makeText(getApplicationContext(), "블루투스가 비활성화 되어 있습니다.", Toast.LENGTH_SHORT).show();
         }
     }
+
     void connectSelectedDevice(String selectedDeviceName) {
-        for(BluetoothDevice tempDevice : mPairedDevices) {
+        for (BluetoothDevice tempDevice : mPairedDevices) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             if (selectedDeviceName.equals(tempDevice.getName())) {
                 mBluetoothDevice = tempDevice;
                 break;
@@ -228,6 +431,11 @@ public class MainActivity6 extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "블루투스 연결 중 오류가 발생했습니다.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
     }
 
     private class ConnectedBluetoothThread extends Thread {

@@ -47,8 +47,8 @@
 
     <TextView
         android:id="@+id/tvReceiveData"
-        android:layout_width="304dp"
-        android:layout_height="378dp"
+        android:layout_width="298dp"
+        android:layout_height="114dp"
         android:layout_marginTop="10dp"
         android:text="Receive"
         app:layout_constraintStart_toStartOf="@+id/btnSendData"
@@ -72,5 +72,25 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/btnSendData"
         app:layout_constraintTop_toTopOf="@+id/btnSendData" />
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="409dp"
+        android:layout_height="118dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/error_textview"
+        android:layout_width="257dp"
+        android:layout_height="105dp"
+        android:text="Error message"
+        app:layout_constraintBottom_toTopOf="@+id/framelayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
