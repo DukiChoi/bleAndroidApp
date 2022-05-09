@@ -17,6 +17,11 @@
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main3.xml" value="0.33" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main4.xml" value="0.5" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main5.xml" value="0.5" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/activity_main7.xml" value="0.2535271483539974" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/fragment_bluetooth_chat.xml" value="0.2535271483539974" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/fragment_enable_bluetooth.xml" value="0.2535271483539974" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/item_local_message.xml" value="0.2535271483539974" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/item_remote_message.xml" value="0.2535271483539974" />
       </map>
     </option>
   </component>
