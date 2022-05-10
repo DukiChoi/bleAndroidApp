@@ -41,4 +41,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity6.class);
         startActivity(intent);
     }
+
+    public void onButton14Clicked(View view){
+        Intent intent = new Intent(this, MainActivity7.class);
+        startActivity(intent);
+    }
+
+    public void onButton15Clicked(View view){
+        Intent intent = new Intent(this, GattServerActivity.class);
+        startActivity(intent);
+    }
+
 }
