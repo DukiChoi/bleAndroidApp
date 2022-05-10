@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.myapplication;
-import android.app.Service;
+package com.example.myapplication.Fragments;
 import android.bluetooth.le.AdvertiseCallback;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -32,6 +31,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Services.AdvertiserService;
 
 /**
  * Allows user to start & stop Bluetooth LE Advertising of their device.

@@ -71,7 +71,7 @@
             android:exported="false" />
 
         <service
-            android:name=".UartService"
+            android:name=".Services.UartService"
             android:enabled="true" />
     </application>
 

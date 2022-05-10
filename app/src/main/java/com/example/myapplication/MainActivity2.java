@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Services.Task;
+
 import java.util.concurrent.ExecutionException;
 
 // 인터넷 클라이언트 & GET메소드창

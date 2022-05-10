@@ -42,6 +42,8 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.myapplication.Services.TimeProfile;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;

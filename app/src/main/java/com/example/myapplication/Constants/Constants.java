@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Constants;
 
 import android.os.ParcelUuid;
 
