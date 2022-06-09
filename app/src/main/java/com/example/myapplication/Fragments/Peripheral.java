@@ -35,7 +35,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+//import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,14 +44,11 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.myapplication.R;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.UUID;
-
-import io.github.webbluetoothcg.bletestperipheral.ServiceFragment.ServiceFragmentDelegate;
+import com.example.myapplication.Fragments.ServiceFragment.ServiceFragmentDelegate;
 
 public class Peripheral extends Activity implements ServiceFragmentDelegate {
 
