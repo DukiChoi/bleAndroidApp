@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onButton2Clicked(View view){
         Intent intent = new Intent(this, MainActivity2.class);
-        startActivity(intent);
+        startActivity(intent);ㅁㄴ
     }
     public void onButton7Clicked(View view){
         Intent intent = new Intent(this, MainActivity3.class);
@@ -36,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity5.class);
         startActivity(intent);
     }
-
-    public void onButton13Clicked(View view){
+ㅉ
         Intent intent = new Intent(this, MainActivity6.class);
         startActivity(intent);
     }
@@ -48,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton15Clicked(View view){
-        Intent intent = new Intent(this, GattServerActivity.class);
+        //Intent intent = new Intent(this, GattServerActivity.class);
+        Intent intent = new Intent(this, Peripheral.class);
         startActivity(intent);
     }
 

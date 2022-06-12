@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.myapplication.Fragments;
+package com.example.myapplication;
 
 import android.Manifest;
 import android.app.Activity;
@@ -44,7 +44,10 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.myapplication.R;
+
+import com.example.myapplication.Fragments.NordicUartServiceFragment;
+import com.example.myapplication.Fragments.ServiceFragment;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.UUID;
@@ -304,19 +307,7 @@ public class Peripheral extends Activity implements ServiceFragmentDelegate {
     //EXTRA_PERIPHERAL_INDEX를 가지고 어떤 서비스로 넘어갈지 판단한다.
     //If we are not being restored from a previous state then create and add the fragment.
     if (savedInstanceState == null) {
-      int peripheralIndex = getIntent().getIntExtra(Peripherals.EXTRA_PERIPHERAL_INDEX,
-          /* default */ -1);
-      if (peripheralIndex == 0) {
-        mCurrentServiceFragment = new BatteryServiceFragment();
-      } else if (peripheralIndex == 1) {
-        mCurrentServiceFragment = new HeartRateServiceFragment();
-      } else if (peripheralIndex == 2) {
-        mCurrentServiceFragment = new HealthThermometerServiceFragment();
-      } else if (peripheralIndex == 3) {
         mCurrentServiceFragment = new NordicUartServiceFragment();
-      } else {
-        Log.wtf(TAG, "Service doesn't exist");
-      }
       getFragmentManager()
           .beginTransaction()
           .add(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
