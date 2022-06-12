@@ -48,10 +48,10 @@
         android:layout_marginTop="12dp"
         android:onClick="onGethttpButtonClicked"
         android:text="GET HTTP"
-        app:layout_constraintEnd_toEndOf="@+id/button_gattserver"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="@+id/button_gattserver"
-        app:layout_constraintTop_toBottomOf="@+id/button_gattserver" />
+        app:layout_constraintEnd_toEndOf="@+id/button_TCP"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@+id/button_TCP"
+        app:layout_constraintTop_toBottomOf="@+id/button_TCP" />
 
     <Button
         android:id="@+id/button_setting"
@@ -77,12 +77,13 @@
         android:id="@+id/BluetoothButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:onClick="onBluetoothButtonClicked"
         android:text="블루투스"
-        app:layout_constraintEnd_toEndOf="@+id/button_TCP"
-        app:layout_constraintStart_toStartOf="@+id/button_TCP"
-        app:layout_constraintTop_toBottomOf="@+id/button_TCP" />
+        app:layout_constraintEnd_toEndOf="@+id/button_gethttp"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="@+id/button_gethttp"
+        app:layout_constraintTop_toBottomOf="@+id/button_gethttp" />
 
     <Button
         android:id="@+id/button_BLEScan"
@@ -100,11 +101,11 @@
         android:id="@+id/button_gattserver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:onClick="onNUSButtonClicked"
         android:text="NUS"
         app:layout_constraintEnd_toEndOf="@+id/button_BLEScan"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="@+id/button_BLEScan"
         app:layout_constraintTop_toBottomOf="@+id/button_BLEScan" />
 
