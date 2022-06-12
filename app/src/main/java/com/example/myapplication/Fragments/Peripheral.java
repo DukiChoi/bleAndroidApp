@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.myapplication;
+package com.example.myapplication.Fragments;
 
 import android.Manifest;
 import android.app.Activity;
@@ -45,13 +45,11 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.Fragments.NordicUartServiceFragment;
-import com.example.myapplication.Fragments.ServiceFragment;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.UUID;
 import com.example.myapplication.Fragments.ServiceFragment.ServiceFragmentDelegate;
+import com.example.myapplication.R;
 
 public class Peripheral extends Activity implements ServiceFragmentDelegate {
 

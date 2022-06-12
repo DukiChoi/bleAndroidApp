@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.myapplication;
+package com.example.myapplication.ExampleActivities;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -42,13 +42,14 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.myapplication.R;
 import com.example.myapplication.Services.TimeProfile;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
+//시간 표시하는 예제
 public class GattServerActivity extends Activity {
     private static final String TAG = GattServerActivity.class.getSimpleName();
 

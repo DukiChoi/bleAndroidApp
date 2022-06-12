@@ -21,7 +21,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.example.myapplication;
+package com.example.myapplication.ExampleActivities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -59,13 +59,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Fragments.AdvertiserFragment;
+import com.example.myapplication.R;
 import com.example.myapplication.Services.UartService;
 
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class MainActivity7 extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class BLEScanActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
     private FragmentManager fragmentManager;
     private AdvertiserFragment advertiserFragment;
     private FragmentTransaction transaction;
@@ -150,7 +151,7 @@ public class MainActivity7 extends AppCompatActivity implements RadioGroup.OnChe
 
                         //Connect button pressed, open DeviceListActivity class, with popup windows that scan for devices
 
-                        Intent newIntent = new Intent(MainActivity7.this, DeviceListActivity.class);
+                        Intent newIntent = new Intent(BLEScanActivity.this, DeviceListActivity.class);
                         startActivityForResult(newIntent, REQUEST_SELECT_DEVICE);
                     } else {
                         //Disconnect button pressed

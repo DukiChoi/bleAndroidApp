@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.ExampleActivities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,12 +6,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.R;
 import com.example.myapplication.Services.Task;
 
 import java.util.concurrent.ExecutionException;
 
 // 인터넷 클라이언트 & GET메소드창
-public class MainActivity2 extends AppCompatActivity {
+public class GetHttpActivity extends AppCompatActivity {
 
     TextView textView ;
 

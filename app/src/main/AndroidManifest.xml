@@ -32,32 +32,29 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Peripheral"
+            android:name=".Fragments.Peripheral"
             android:exported="false" />
         <activity
-            android:name=".MainActivity8"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity7"
+            android:name=".ExampleActivities.BLEScanActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:windowSoftInputMode="stateHidden"></activity>
         <activity
-            android:name=".MainActivity6"
+            android:name=".ExampleActivities.BluetoothActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity5"
+            android:name=".WarningActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity4"
+            android:name=".SettingActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity3"
+            android:name=".ExampleActivities.TCPActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".ExampleActivities.GetHttpActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -68,9 +65,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DeviceListActivity" />
+        <activity android:name=".ExampleActivities.DeviceListActivity" />
         <activity
-            android:name=".GattServerActivity"
+            android:name=".ExampleActivities.GattServerActivity"
             android:exported="false" />
 
         <service

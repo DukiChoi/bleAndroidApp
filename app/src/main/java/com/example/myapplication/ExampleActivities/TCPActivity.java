@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.ExampleActivities;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.R;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
@@ -17,7 +19,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 //서버 &클라이언트 창
-public class MainActivity3 extends AppCompatActivity {
+public class TCPActivity extends AppCompatActivity {
     TextView textView2;
     TextView textView3;
     TextView textView4;

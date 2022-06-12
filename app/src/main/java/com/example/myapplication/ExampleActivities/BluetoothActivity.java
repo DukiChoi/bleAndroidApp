@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.ExampleActivities;
 
 import android.Manifest;
 
@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Constants.Constants;
 import com.example.myapplication.Fragments.AdvertiserFragment;
+import com.example.myapplication.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +45,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public class MainActivity6 extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class BluetoothActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     TextView mTvBluetoothStatus;
     TextView mTvReceiveData;
     TextView mTvSendData;

@@ -7,7 +7,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity4 extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
 
     Spinner spinner;
     String[] items = {"아이템0","아이템1","아이템2","아이템3","아이템4"};
