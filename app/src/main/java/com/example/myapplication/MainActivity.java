@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onButton2Clicked(View view){
         Intent intent = new Intent(this, MainActivity2.class);
-        startActivity(intent);ㅁㄴ
+        startActivity(intent);
     }
     public void onButton7Clicked(View view){
         Intent intent = new Intent(this, MainActivity3.class);
@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity5.class);
         startActivity(intent);
     }
-ㅉ
+
+    public void onButton13Clicked(View view){
         Intent intent = new Intent(this, MainActivity6.class);
         startActivity(intent);
     }
