@@ -32,7 +32,7 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Fragments.Peripheral"
+            android:name=".ExampleActivities.Peripheral"
             android:exported="false" />
         <activity
             android:name=".ExampleActivities.BLEScanActivity"

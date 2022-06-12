@@ -7,59 +7,62 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/button_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:onClick="onButton11Clicked"
-        android:text="레이아웃2"
-        app:layout_constraintEnd_toEndOf="@+id/button10"
+        android:onClick="onWarningButtonClicked"
+        android:text="경고 레아이웃"
+        app:layout_constraintEnd_toEndOf="@+id/button_setting"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button10"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        app:layout_constraintStart_toStartOf="@+id/button_setting"
+        app:layout_constraintTop_toBottomOf="@+id/button_setting" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/button_TCP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:onClick="onButton7Clicked"
+        android:onClick="onTCPButtonClicked"
         android:text="Server and Client"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/button_internet"
+        app:layout_constraintStart_toStartOf="@+id/button_internet"
+        app:layout_constraintTop_toBottomOf="@+id/button_internet" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_internet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onButton1Clicked"
+        android:layout_marginTop="12dp"
+        android:onClick="onInternetButtonClicked"
         android:text="인터넷"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onButton2Clicked"
-        android:text="GET HTTP"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button10"
+        android:id="@+id/button_gethttp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:onClick="onButton10Clicked"
-        android:text="레이아웃1"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        android:onClick="onGethttpButtonClicked"
+        android:text="GET HTTP"
+        app:layout_constraintEnd_toEndOf="@+id/button_gattserver"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/button_gattserver"
+        app:layout_constraintTop_toBottomOf="@+id/button_gattserver" />
+
+    <Button
+        android:id="@+id/button_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="onSettingButtonClicked"
+        android:text="세팅 레이아웃"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -71,38 +74,38 @@
         app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/BluetoothButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:onClick="onButton13Clicked"
+        android:onClick="onBluetoothButtonClicked"
         android:text="블루투스"
-        app:layout_constraintEnd_toEndOf="@+id/button7"
-        app:layout_constraintStart_toStartOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintEnd_toEndOf="@+id/button_TCP"
+        app:layout_constraintStart_toStartOf="@+id/button_TCP"
+        app:layout_constraintTop_toBottomOf="@+id/button_TCP" />
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/button_BLEScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="onButton14Clicked"
+        android:onClick="onBLEScanButtonClicked"
         android:text="BLE SCAN CHAT"
-        app:layout_constraintEnd_toEndOf="@+id/button13"
+        app:layout_constraintEnd_toEndOf="@+id/BluetoothButton"
         app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="@+id/button13"
-        app:layout_constraintTop_toBottomOf="@+id/button13" />
+        app:layout_constraintStart_toStartOf="@+id/BluetoothButton"
+        app:layout_constraintTop_toBottomOf="@+id/BluetoothButton" />
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/button_gattserver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="onButton15Clicked"
-        android:text="BLE AD CHAT"
-        app:layout_constraintEnd_toEndOf="@+id/button14"
+        android:onClick="onNUSButtonClicked"
+        android:text="NUS"
+        app:layout_constraintEnd_toEndOf="@+id/button_BLEScan"
         app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/button14"
-        app:layout_constraintTop_toBottomOf="@+id/button14" />
+        app:layout_constraintStart_toStartOf="@+id/button_BLEScan"
+        app:layout_constraintTop_toBottomOf="@+id/button_BLEScan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@ public class WarningActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main5);
+        setContentView(R.layout.activity_warning);
     }
     public void onButton9Clicked(View view) {
         finish();

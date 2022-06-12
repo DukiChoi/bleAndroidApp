@@ -11,7 +11,7 @@ import com.example.myapplication.ExampleActivities.BLEScanActivity;
 import com.example.myapplication.ExampleActivities.BluetoothActivity;
 import com.example.myapplication.ExampleActivities.GetHttpActivity;
 import com.example.myapplication.ExampleActivities.TCPActivity;
-import com.example.myapplication.Fragments.Peripheral;
+import com.example.myapplication.ExampleActivities.Peripheral;
 
 
 // 메뉴 창
@@ -22,38 +22,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void onButton1Clicked(View view){
+    public void onInternetButtonClicked(View view){
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://hokeun.github.io/research/index.html"));
         startActivity(intent);
     }
-    public void onButton2Clicked(View view){
+    public void onGethttpButtonClicked(View view){
         Intent intent = new Intent(this, GetHttpActivity.class);
         startActivity(intent);
     }
-    public void onButton7Clicked(View view){
+    public void onTCPButtonClicked(View view){
         Intent intent = new Intent(this, TCPActivity.class);
         startActivity(intent);
     }
-    public void onButton10Clicked(View view){
+    public void onSettingButtonClicked(View view){
         Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
     }
-    public void onButton11Clicked(View view){
+    public void onWarningButtonClicked(View view){
         Intent intent = new Intent(this, WarningActivity.class);
         startActivity(intent);
     }
 
-    public void onButton13Clicked(View view){
+    public void onBluetoothButtonClicked(View view){
         Intent intent = new Intent(this, BluetoothActivity.class);
         startActivity(intent);
     }
 
-    public void onButton14Clicked(View view){
+    public void onBLEScanButtonClicked(View view){
         Intent intent = new Intent(this, BLEScanActivity.class);
         startActivity(intent);
     }
 
-    public void onButton15Clicked(View view){
+    public void onNUSButtonClicked(View view){
         //Intent intent = new Intent(this, GattServerActivity.class);
         Intent intent = new Intent(this, Peripheral.class);
         startActivity(intent);

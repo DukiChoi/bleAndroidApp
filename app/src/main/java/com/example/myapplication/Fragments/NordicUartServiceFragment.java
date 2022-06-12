@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.example.myapplication.ExampleActivities.Peripheral;
 import com.example.myapplication.R;
 
 import java.util.Arrays;

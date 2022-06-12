@@ -48,11 +48,12 @@
         <entry key="app/src/main/res/layout/activity_main6.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main8.xml" value="0.26734313964843753" />
         <entry key="app/src/main/res/layout/activity_peripherals.xml" value="1.0622095743815105" />
-        <entry key="app/src/main/res/layout/activity_server.xml" value="0.5760416666666667" />
+        <entry key="app/src/main/res/layout/activity_server.xml" value="0.2479517618815104" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.22642211914062504" />
         <entry key="app/src/main/res/layout/device_list.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/dis_values.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/fragment_advertiser.xml" value="0.5760416666666667" />
-        <entry key="app/src/main/res/layout/fragment_nordic_uart.xml" value="0.5760416666666667" />
+        <entry key="app/src/main/res/layout/fragment_nordic_uart.xml" value="0.31687469482421876" />
         <entry key="app/src/main/res/layout/main.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/message_detail.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/title_bar.xml" value="0.5760416666666667" />
