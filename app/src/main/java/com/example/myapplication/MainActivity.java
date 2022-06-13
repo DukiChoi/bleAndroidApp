@@ -34,14 +34,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TCPActivity.class);
         startActivity(intent);
     }
-    public void onSettingButtonClicked(View view){
-        Intent intent = new Intent(this, SettingActivity.class);
-        startActivity(intent);
-    }
-    public void onWarningButtonClicked(View view){
-        Intent intent = new Intent(this, WarningActivity.class);
-        startActivity(intent);
-    }
 
     public void onBluetoothButtonClicked(View view){
         Intent intent = new Intent(this, BluetoothActivity.class);
@@ -59,4 +51,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onSettingButtonClicked(View view){
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
+    }
+    public void onWarningButtonClicked(View view){
+        Intent intent = new Intent(this, WarningActivity.class);
+        startActivity(intent);
+    }
 }

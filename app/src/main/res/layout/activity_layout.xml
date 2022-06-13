@@ -1,0 +1,80 @@
+<!--
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context=".ExampleActivities.Peripheral">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="201dp"
+        android:layout_height="190dp"
+        android:layout_below="@id/textView_connectionStatus"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_connectionStatus" />
+
+    <TextView
+        android:id="@+id/label_advertisingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/label_advertisingStatus"
+        android:textAppearance="@style/label"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <TextView
+        android:id="@+id/textView_advertisingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_advertisingStatus"
+        android:layout_marginStart="24dp"
+        android:textAppearance="@style/text"
+        app:layout_constraintStart_toEndOf="@+id/label_advertisingStatus"
+        app:layout_constraintTop_toTopOf="@+id/label_advertisingStatus" />
+
+    <TextView
+        android:id="@+id/label_connectionStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_advertisingStatus"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_connectionStatus"
+        android:textAppearance="@style/label"
+        app:layout_constraintTop_toBottomOf="@+id/label_advertisingStatus"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <TextView
+        android:id="@+id/textView_connectionStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_connectionStatus"
+        android:layout_marginStart="24dp"
+        android:textAppearance="@style/text"
+        app:layout_constraintStart_toEndOf="@+id/label_connectionStatus"
+        app:layout_constraintTop_toTopOf="@+id/label_connectionStatus" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

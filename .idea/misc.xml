@@ -40,6 +40,7 @@
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/title_bar.xml" value="0.30483112441214194" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4185" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.4185" />
+        <entry key="app/src/main/res/layout/activity_layout.xml" value="1.5814432779947918" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2949656168619791" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.18840579710144928" />
@@ -47,13 +48,17 @@
         <entry key="app/src/main/res/layout/activity_main5.xml" value="0.18840579710144928" />
         <entry key="app/src/main/res/layout/activity_main6.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main8.xml" value="0.26734313964843753" />
-        <entry key="app/src/main/res/layout/activity_peripherals.xml" value="1.0622095743815105" />
+        <entry key="app/src/main/res/layout/activity_peripherals.xml" value="0.44752146402994797" />
         <entry key="app/src/main/res/layout/activity_server.xml" value="0.2479517618815104" />
-        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.22642211914062504" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.2783370971679688" />
+        <entry key="app/src/main/res/layout/activity_warning.xml" value="0.46422490658967397" />
+        <entry key="app/src/main/res/layout/device_element.xml" value="0.3182291666666667" />
         <entry key="app/src/main/res/layout/device_list.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/dis_values.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/fragment_advertiser.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/fragment_nordic_uart.xml" value="0.31687469482421876" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.6730997721354167" />
+        <entry key="app/src/main/res/layout/fragment_warning.xml" value="0.3869547526041667" />
         <entry key="app/src/main/res/layout/main.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/message_detail.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/title_bar.xml" value="0.5760416666666667" />

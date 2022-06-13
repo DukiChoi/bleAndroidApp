@@ -40,14 +40,14 @@
             android:layout_below="@id/label_advertisingStatus"/>
 
     <TextView
-            android:id="@+id/label_connectionStatus"
-            android:text="@string/label_connectionStatus"
-            android:textAppearance="@style/label"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_advertisingStatus"/>
+        android:id="@+id/label_connectionStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_advertisingStatus"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/label_connectionStatus"
+        android:textAppearance="@style/label" />
     <TextView
             android:id="@+id/textView_connectionStatus"
             android:textAppearance="@style/text"
