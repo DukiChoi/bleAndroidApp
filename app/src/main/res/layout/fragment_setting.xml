@@ -13,72 +13,111 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.example.myapplication.Fragments.NordicUartServiceFragment">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myapplication.Fragments.SettingServiceFragment">
+
+
+    <TextView
+        android:id="@+id/textView_serviceName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:text="앵커 세팅"
+        android:textAppearance="@style/subheader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--첫번째-->
+    <TextView
+        android:id="@+id/label_SendValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="8dp"
+        android:text="@string/label_SendValue"
+        android:textAppearance="@style/label"
+        app:layout_constraintStart_toStartOf="@+id/textView_serviceName"
+        app:layout_constraintTop_toBottomOf="@+id/textView_serviceName" />
+
+    <EditText
+        android:id="@+id/EditText_Sendvalue"
+        android:layout_width="96dp"
+        android:layout_height="54dp"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:maxLength="15"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/label_SendValue"
+        app:layout_constraintTop_toBottomOf="@+id/label_SendValue"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <Button
         android:id="@+id/button_SendDataNotify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/gridLayout_characteristicsValues"
         android:text="@string/notify"
-        android:textColor="@color/accent" />
+        android:textColor="@color/accent"
+        app:layout_constraintStart_toStartOf="@+id/EditText_Sendvalue"
+        app:layout_constraintTop_toBottomOf="@+id/EditText_Sendvalue" />
+
+    <!--두번째-->
+    <TextView
+        android:id="@+id/label_ReceiveValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/label_ReceiveValue"
+        android:textAppearance="@style/label"
+        app:layout_constraintStart_toEndOf="@+id/label_SendValue"
+        app:layout_constraintTop_toBottomOf="@+id/textView_serviceName" />
+
+    <!--세번째-->
+    <TextView
+        android:id="@+id/Textview_Recievevalue"
+        android:layout_width="96dp"
+        android:layout_height="54dp"
+        android:layout_columnWeight="1"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:maxLength="15"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/label_ReceiveValue"
+        app:layout_constraintTop_toBottomOf="@+id/label_ReceiveValue"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView_serviceName"
+        android:id="@+id/label_SendValue2"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:gravity="center_vertical"
-        android:text="앵커 세팅"
-        android:textAppearance="@style/subheader" />
-    <GridLayout
-            android:id="@+id/gridLayout_characteristicsValues"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:rowCount="2"
-            android:columnCount="2"
-            android:layout_below="@id/textView_serviceName">
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/label_SendValue"
+        android:textAppearance="@style/label"
+        app:layout_constraintStart_toEndOf="@+id/label_ReceiveValue"
+        app:layout_constraintTop_toBottomOf="@+id/textView_serviceName" />
 
-        <TextView
-                android:id="@+id/label_SendValue"
-                android:text="@string/label_SendValue"
-                android:textAppearance="@style/label"
-                android:layout_gravity="fill"
-                android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:id="@+id/label_ReceiveValue"
-                android:text="@string/label_ReceiveValue"
-                android:textAppearance="@style/label"
-                android:layout_gravity="fill"
-                android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/editText_Sendvalue2"
+        android:layout_width="96dp"
+        android:layout_height="54dp"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:maxLength="15"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/label_SendValue2"
+        app:layout_constraintTop_toBottomOf="@+id/label_SendValue2"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-        <EditText
-            android:id="@+id/EditText_Sendvalue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:minHeight="48dp"
-            android:maxLength="15"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <!--            android:inputType="numberDecimal"-->
-
-        <TextView
-            android:id="@+id/Textview_Recievevalue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:minHeight="48dp"
-            android:maxLength="15"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <!--        android:maxLength='10'-->
-    </GridLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

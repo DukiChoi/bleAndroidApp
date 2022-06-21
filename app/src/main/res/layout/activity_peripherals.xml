@@ -13,53 +13,63 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:context=".ExampleActivities.Peripheral">
+
     <TextView
-            android:id="@+id/label_advertisingStatus"
-            android:text="@string/label_advertisingStatus"
-            android:textAppearance="@style/label"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/label_advertisingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_advertisingStatus"
+        android:textAppearance="@style/label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-            android:id="@+id/textView_advertisingStatus"
-            android:textAppearance="@style/text"
-            android:layout_marginBottom="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/label_advertisingStatus"/>
+        android:id="@+id/textView_advertisingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_advertisingStatus"
+        android:textAppearance="@style/text"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@+id/label_advertisingStatus"
+        tools:layout_editor_absoluteY="-5dp" />
 
     <TextView
         android:id="@+id/label_connectionStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_advertisingStatus"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/label_connectionStatus"
-        android:textAppearance="@style/label" />
+        android:textAppearance="@style/label"
+        app:layout_constraintStart_toStartOf="@+id/label_advertisingStatus"
+        app:layout_constraintTop_toBottomOf="@+id/label_advertisingStatus" />
+
     <TextView
-            android:id="@+id/textView_connectionStatus"
-            android:textAppearance="@style/text"
-            android:layout_marginBottom="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/label_connectionStatus"/>
+        android:id="@+id/textView_connectionStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_connectionStatus"
+        android:textAppearance="@style/text"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@+id/label_connectionStatus"
+        tools:layout_editor_absoluteY="11dp" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView_connectionStatus" />
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="@+id/label_connectionStatus"
+        app:layout_constraintTop_toBottomOf="@+id/label_connectionStatus" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
