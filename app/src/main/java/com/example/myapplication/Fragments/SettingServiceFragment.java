@@ -249,11 +249,11 @@ public class SettingServiceFragment extends ServiceFragment {
 
     View view = inflater.inflate(R.layout.fragment_setting, container, false);
     mEditTextSendValue = (EditText) view
-            .findViewById(R.id.EditText_Sendvalue);
+            .findViewById(R.id.EditText_Sendvalue1);
     mEditTextSendValue
             .setOnEditorActionListener(mOnEditorActionListenerSend);
     mTextViewReceiveValue = (TextView) view
-            .findViewById(R.id.Textview_Recievevalue);
+            .findViewById(R.id.Textview_Recievevalue1);
     mTextViewReceiveValue
             .setOnEditorActionListener(mOnEditorActionListenerReceive);
 

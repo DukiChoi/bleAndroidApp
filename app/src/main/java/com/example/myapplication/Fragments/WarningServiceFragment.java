@@ -248,18 +248,18 @@ public class WarningServiceFragment extends ServiceFragment {
                            Bundle savedInstanceState) {
 
     View view = inflater.inflate(R.layout.fragment_warning, container, false);
-    mEditTextSendValue = (EditText) view
-            .findViewById(R.id.EditText_Sendvalue);
-    mEditTextSendValue
-            .setOnEditorActionListener(mOnEditorActionListenerSend);
+//    mEditTextSendValue = (EditText) view
+//            .findViewById(R.id.EditText_Sendvalue);
+//    mEditTextSendValue
+//            .setOnEditorActionListener(mOnEditorActionListenerSend);
     mTextViewReceiveValue = (TextView) view
-            .findViewById(R.id.Textview_Recievevalue);
+            .findViewById(R.id.Textview_Recievevalue_a1);
     mTextViewReceiveValue
             .setOnEditorActionListener(mOnEditorActionListenerReceive);
 
-    Button notifyButton = (Button) view.findViewById(R.id.button_poweron);
-    notifyButton.setOnClickListener(mNotifyButtonListener);
-    setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
+//    Button notifyButton = (Button) view.findViewById(R.id.button_poweron);
+//    notifyButton.setOnClickListener(mNotifyButtonListener);
+//    setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
 
 
     return view;

@@ -17,6 +17,8 @@
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main3.xml" value="0.33" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main4.xml" value="0.5" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main5.xml" value="0.5" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/drawable/circle.xml" value="0.4" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/drawable/green_circle.xml" value="0.4" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/activity_main.xml" value="0.30483112441214194" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/activity_main2.xml" value="0.43245693563009974" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/activity_main3.xml" value="0.43245693563009974" />
@@ -27,6 +29,7 @@
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/activity_main8.xml" value="0.30483112441214194" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/activity_server.xml" value="0.28875793291024476" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/activity_setting.xml" value="0.33" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/activity_warning.xml" value="0.45446772124839674" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/device_element.xml" value="0.30483112441214194" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/device_list.xml" value="0.43245693563009974" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/dis_values.xml" value="0.43245693563009974" />
@@ -34,7 +37,8 @@
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/fragment_bluetooth_chat.xml" value="0.2535271483539974" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/fragment_enable_bluetooth.xml" value="0.2535271483539974" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/fragment_nordic_uart.xml" value="0.67" />
-        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/fragment_setting.xml" value="0.25" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/fragment_setting.xml" value="0.5" />
+        <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/fragment_warning.xml" value="0.33" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/item_local_message.xml" value="0.2535271483539974" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/item_remote_message.xml" value="0.2535271483539974" />
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/main.xml" value="0.5" />
