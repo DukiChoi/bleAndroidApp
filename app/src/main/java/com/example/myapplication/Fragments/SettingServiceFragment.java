@@ -257,7 +257,7 @@ public class SettingServiceFragment extends ServiceFragment {
     mTextViewReceiveValue
             .setOnEditorActionListener(mOnEditorActionListenerReceive);
 
-    Button notifyButton = (Button) view.findViewById(R.id.button_SendDataNotify);
+    Button notifyButton = (Button) view.findViewById(R.id.button_poweron);
     notifyButton.setOnClickListener(mNotifyButtonListener);
     setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
 
