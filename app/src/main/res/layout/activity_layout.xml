@@ -27,14 +27,16 @@
 
     <FrameLayout
         android:id="@+id/fragment_container"
-        android:layout_width="201dp"
-        android:layout_height="190dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textView_connectionStatus"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_connectionStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/label_connectionStatus"
+        app:layout_constraintVertical_bias="0.072" />
 
     <TextView
         android:id="@+id/label_advertisingStatus"

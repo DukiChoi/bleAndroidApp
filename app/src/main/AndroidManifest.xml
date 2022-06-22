@@ -33,12 +33,13 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ExampleActivities.Peripheral"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ExampleActivities.BLEScanActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".ExampleActivities.BluetoothActivity"
             android:exported="false" />
