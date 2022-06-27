@@ -107,13 +107,15 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
                     statusText = R.string.status_notAdvertising;
                     Log.wtf(TAG, "Unhandled error: " + errorCode);
             }
-            mAdvStatus.setText(statusText);
+            //mAdvStatus.setText(statusText);
+            Toast.makeText(getApplicationContext(), statusText, Toast.LENGTH_SHORT).show();
         }
         @Override
         public void onStartSuccess(AdvertiseSettings settingsInEffect) {
             super.onStartSuccess(settingsInEffect);
             Log.v(TAG, "Broadcasting");
-            mAdvStatus.setText(R.string.status_advertising);
+            //mAdvStatus.setText(R.string.status_advertising);
+            Toast.makeText(getApplicationContext(), R.string.status_advertising, Toast.LENGTH_SHORT).show();
         }
     };
     private BluetoothGattServer mGattServer;
@@ -282,7 +284,7 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
             Log.i("권한 테스트", "권한이 있네요");
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        mAdvStatus = (TextView) findViewById(R.id.textView_advertisingStatus);
+        //mAdvStatus = (TextView) findViewById(R.id.textView_advertisingStatus);
         mConnectionStatus = (TextView) findViewById(R.id.textView_connectionStatus);
         mBluetoothDevices = new HashSet<>();
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -364,7 +366,8 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
             mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
             mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
         } else {
-            mAdvStatus.setText(R.string.status_noLeAdv);
+            //mAdvStatus.setText(R.string.status_noLeAdv);
+            Toast.makeText(getApplicationContext(), R.string.status_noLeAdv, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -403,7 +406,8 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
     }
 
     private void resetStatusViews() {
-        mAdvStatus.setText(R.string.status_notAdvertising);
+        //mAdvStatus.setText(R.string.status_notAdvertising);
+        Toast.makeText(getApplicationContext(), R.string.status_notAdvertising, Toast.LENGTH_SHORT).show();
         updateConnectedDevicesStatus();
     }
 
