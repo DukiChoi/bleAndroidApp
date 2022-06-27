@@ -323,7 +323,7 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_peripheral, menu);
+        inflater.inflate(R.menu.menu_setting, menu);
         return true /* show menu */;
     }
 
@@ -377,6 +377,12 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
             disconnectFromDevices();
             return true /* event_consumed */;
         }
+        else if (item.getItemId() == R.id.action_warning) {
+            finish();
+//            Intent intent = new Intent(this, WarningActivity.class);
+//            startActivity(intent);
+//            return true /* event_consumed */;
+        }
         return false /* event_consumed */;
     }
 
@@ -407,7 +413,7 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
 
     private void resetStatusViews() {
         //mAdvStatus.setText(R.string.status_notAdvertising);
-        Toast.makeText(getApplicationContext(), R.string.status_notAdvertising, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), R.string.status_notAdvertising, Toast.LENGTH_SHORT).show();
         updateConnectedDevicesStatus();
     }
 

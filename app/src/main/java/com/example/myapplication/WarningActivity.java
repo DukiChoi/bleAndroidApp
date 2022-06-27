@@ -412,7 +412,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     private void resetStatusViews() {
         //mAdvStatus.setText(R.string.status_notAdvertising);
-        Toast.makeText(getApplicationContext(), R.string.status_notAdvertising, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), R.string.status_notAdvertising, Toast.LENGTH_SHORT).show();
         updateConnectedDevicesStatus();
     }
 
