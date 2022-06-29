@@ -18,102 +18,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.myapplication.Fragments.SettingServiceFragment">
+    tools:context="com.example.myapplication.Fragments.WarningServiceFragment">
 
 
     <!--첫번째-->
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="231dp"
-        android:layout_height="78dp"
-        android:layout_marginEnd="140dp"
+        android:layout_width="283dp"
+        android:layout_height="167dp"
+        android:layout_marginEnd="64dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_warning"
-        app:layout_constraintVertical_bias="0.62"
+        app:layout_constraintVertical_bias="0.275"
         app:srcCompat="@drawable/box" />
 
     <TextView
         android:id="@+id/label_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="228dp"
+        android:layout_marginEnd="240dp"
         android:text="반경 내 작업자"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379" />
+        app:layout_constraintVertical_bias="0.228" />
 
     <TextView
         android:id="@+id/Textview_Recievevalue_a1"
-        android:layout_width="56dp"
-        android:layout_height="41dp"
+        android:layout_width="65dp"
+        android:layout_height="46dp"
         android:layout_columnWeight="1"
         android:gravity="center"
         android:inputType="number"
         android:maxLength="3"
         android:minHeight="48dp"
-        android:textSize="12dp"
+        android:text="0"
+        android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.729"
+        app:layout_constraintVertical_bias="0.628"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/Textview_Recievevalue_a2"
-        android:layout_width="56dp"
-        android:layout_height="41dp"
+        android:layout_width="65dp"
+        android:layout_height="46dp"
         android:layout_columnWeight="1"
         android:gravity="center"
         android:inputType="number"
         android:maxLength="3"
         android:minHeight="48dp"
-        android:textSize="12dp"
+        android:text="0"
+        android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.729"
+        app:layout_constraintVertical_bias="0.628"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/Textview_Recievevalue_a3"
-        android:layout_width="56dp"
-        android:layout_height="41dp"
+        android:layout_width="65dp"
+        android:layout_height="46dp"
         android:layout_columnWeight="1"
         android:gravity="center"
         android:inputType="number"
         android:maxLength="3"
         android:minHeight="48dp"
-        android:textSize="12dp"
+        android:text="0"
+        android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.903"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.729"
+        app:layout_constraintVertical_bias="0.628"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="268dp"
-        android:layout_height="222dp"
+        android:layout_width="301dp"
+        android:layout_height="245dp"
         android:src="@drawable/range"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.199"
+        app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.481" />
-
-    <!--두번째-->
-
-    <!--세번째-->
+        app:layout_constraintVertical_bias="0.198" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -122,7 +122,9 @@ public class WarningServiceFragment extends ServiceFragment {
 
   //원래있던 TemperatureMeasurement를 Send로 바꿔줌.
   private EditText mEditTextSendValue;
-  private TextView mTextViewReceiveValue;
+  private TextView mTextViewReceiveValue1;
+  private TextView mTextViewReceiveValue2;
+  private TextView mTextViewReceiveValue3;
   //이건 Text Editor에 수정을 할 시에 그걸 가지고 보낼 값(Characteristic Value)을 바꾸는 것.
   private final OnEditorActionListener mOnEditorActionListenerSend = new OnEditorActionListener() {
     @Override
@@ -172,29 +174,30 @@ public class WarningServiceFragment extends ServiceFragment {
 
 
   private static final String TAG = Peripheral.class.getCanonicalName();
-  //이건 Notify 버튼 즉 Send 버튼을 리스닝 해주는 함수
-  private final View.OnClickListener mNotifyButtonListener = new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-
-//      //첫번째 방법, String 형식을 byte 형식으로 바꿔서 보내기
-//      byte[] newSENDbytes = mEditTextSendValue.getText().toString().getBytes(StandardCharsets.US_ASCII);
-//      mSendCharacteristic.setValue(newSENDbytes);
-
-      //두번째 방법, Integer로 보내기([값]형태)
-      int integer_to_send = Integer.parseInt(mEditTextSendValue.getText().toString());
-      mSendCharacteristic.setValue(integer_to_send,
-              SEND_VALUE_FORMAT,
-              /* offset */ 0);
-
-      //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-      //정확히는 여기에서 NOTIFICATION을 SEND 해준다. (TxChar을 통해서)
-      //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-      mDelegate.sendNotificationToDevices(mSendCharacteristic);
-      //Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()) + " / that is: " + bytesToString(mSendCharacteristic.getValue()));
-      Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()));
-    }
-  };
+  //이 부분은 Send하는 부분이라 Warning에서는 주석처리함.
+//  //이건 Notify 버튼 즉 Send 버튼을 리스닝 해주는 함수
+//  private final View.OnClickListener mNotifyButtonListener = new View.OnClickListener() {
+//    @Override
+//    public void onClick(View v) {
+//
+////      //첫번째 방법, String 형식을 byte 형식으로 바꿔서 보내기
+////      byte[] newSENDbytes = mEditTextSendValue.getText().toString().getBytes(StandardCharsets.US_ASCII);
+////      mSendCharacteristic.setValue(newSENDbytes);
+//
+//      //두번째 방법, Integer로 보내기([값]형태)
+//      int integer_to_send = Integer.parseInt(mEditTextSendValue.getText().toString());
+//      mSendCharacteristic.setValue(integer_to_send,
+//              SEND_VALUE_FORMAT,
+//              /* offset */ 0);
+//
+//      //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+//      //정확히는 여기에서 NOTIFICATION을 SEND 해준다. (TxChar을 통해서)
+//      //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+//      mDelegate.sendNotificationToDevices(mSendCharacteristic);
+//      //Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()) + " / that is: " + bytesToString(mSendCharacteristic.getValue()));
+//      Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()));
+//    }
+//  };
 
 
 
@@ -252,16 +255,28 @@ public class WarningServiceFragment extends ServiceFragment {
 //            .findViewById(R.id.EditText_Sendvalue);
 //    mEditTextSendValue
 //            .setOnEditorActionListener(mOnEditorActionListenerSend);
-    mTextViewReceiveValue = (TextView) view
+    mTextViewReceiveValue1 = (TextView) view
             .findViewById(R.id.Textview_Recievevalue_a1);
-    mTextViewReceiveValue
+    mTextViewReceiveValue2 = (TextView) view
+            .findViewById(R.id.Textview_Recievevalue_a2);
+    mTextViewReceiveValue3 = (TextView) view
+            .findViewById(R.id.Textview_Recievevalue_a3);
+    mTextViewReceiveValue1
             .setOnEditorActionListener(mOnEditorActionListenerReceive);
-
 //    Button notifyButton = (Button) view.findViewById(R.id.button_poweron);
 //    notifyButton.setOnClickListener(mNotifyButtonListener);
 //    setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
+    byte[] value = {0,0};
+    int[] members = classification(value);
+    int value1 = members[0];
+    int value2 = members[1];
+    int value3 = members[2];
+    //두번째 방법, Integer로 받기([값]형태)
+    //mTextViewReceiveValue.setText(Arrays.toString(value));
 
-
+    mTextViewReceiveValue1.setText(Integer.toString(value1));
+    mTextViewReceiveValue2.setText(Integer.toString(value2));
+    mTextViewReceiveValue3.setText(Integer.toString(value3));
     return view;
   }
 
@@ -345,7 +360,7 @@ public class WarningServiceFragment extends ServiceFragment {
             /* offset */ 1);
     // Characteristic Value: [flags, heart rate value, 0, 0]
     mEditTextSendValue.setText(Integer.toString(SendValue));
-    mTextViewReceiveValue.setText(Integer.toString(ReceiveValue));
+    mTextViewReceiveValue1.setText(Integer.toString(ReceiveValue));
     //여기서 보낼 값으로 에딧 텍스트 값도 변경해줌
   }
 
@@ -371,9 +386,18 @@ public class WarningServiceFragment extends ServiceFragment {
 //        mTextViewReceiveValue.setText(bytesToString(value));
 //        //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
 //        Log.v(TAG, "Received: " + Arrays.toString(value) + " / converted into:" + bytesToString(value));
-
+        //여기서 이제 Value를 [태그, 거리, 태그, 거리, 태그, 거리, 태그, 거리] 로 받기로 했으므로,
+        int[] members = classification(value);
+        int value1 = members[0];
+        int value2 = members[1];
+        int value3 = members[2];
         //두번째 방법, Integer로 받기([값]형태)
-        mTextViewReceiveValue.setText(Arrays.toString(value));
+        //mTextViewReceiveValue.setText(Arrays.toString(value));
+
+        mTextViewReceiveValue1.setText(value1);
+        mTextViewReceiveValue2.setText(value2);
+        mTextViewReceiveValue3.setText(value3);
+
         //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
         Log.v(TAG, "Received: " + Arrays.toString(value));
       }
@@ -463,4 +487,24 @@ public class WarningServiceFragment extends ServiceFragment {
     return converted;
   }
 
+  public int[] classification(byte[] value){
+    //테스트값: 4, 9, 16, 18
+    byte[] test_value = {0x00, 0x04, 0x01, 0x09, 0x02, 0x10, 0x03, 0x12};
+    int[] member_for_distances = {0, 0, 0};
+    for(int i = 0; i < 4; i++){
+      //위험반경 : 5미만
+      if(test_value[2*i+1] < 0x05){
+        member_for_distances[0]++;
+      }
+      //경고반경 : 5이상 10미만
+      else if(0x0A > test_value[2*i+1] && test_value[2*i+1]>= 0x05){
+        member_for_distances[1]++;
+      }
+      //접근반경 : 10 이상;
+      else if(test_value[2*i+1] >= 0x0A){
+        member_for_distances[2]++;
+      }
+    }
+    return member_for_distances;
+  }
 }

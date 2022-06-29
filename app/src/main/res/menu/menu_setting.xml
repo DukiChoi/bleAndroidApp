@@ -5,4 +5,8 @@
         android:id="@+id/action_disconnect_devices"
         android:title="연결 끊기"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_warning"
+        android:icon = "@drawable/worker"
+        app:showAsAction= 'always'/>
 </menu>

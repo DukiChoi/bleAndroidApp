@@ -23,26 +23,6 @@
 
     <!--첫번째-->
 
-    <Button
-        android:id="@+id/button_poweroff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="POWER OFF"
-        android:textColor="@color/accent"
-        app:layout_constraintBottom_toBottomOf="@+id/button_poweron"
-        app:layout_constraintStart_toEndOf="@+id/button_poweron" />
-
-    <TextView
-        android:id="@+id/label_작업환경"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="24dp"
-        android:text="작업 환경"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_작업환경"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
@@ -58,6 +38,118 @@
         app:layout_constraintTop_toBottomOf="@+id/label_장비종류"
         app:layout_constraintVertical_bias="0.459" />
 
+    <EditText
+        android:id="@+id/EditText_Sendvalue1"
+        android:layout_width="56dp"
+        android:layout_height="41dp"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="3"
+        android:minHeight="48dp"
+        android:text="0"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/label_위험"
+        app:layout_constraintTop_toBottomOf="@+id/label_위험"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/label_위험"
+        android:layout_width="35dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        android:text="위험"
+        app:layout_constraintStart_toStartOf="@+id/label_장비종류"
+        app:layout_constraintTop_toBottomOf="@+id/label_장비종류" />
+
+    <TextView
+        android:id="@+id/label_경고"
+        android:layout_width="35dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="40dp"
+        android:text="경고"
+        app:layout_constraintBottom_toBottomOf="@+id/label_위험"
+        app:layout_constraintStart_toEndOf="@+id/label_위험"
+        app:layout_constraintTop_toTopOf="@+id/label_위험"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/label_접근"
+        android:layout_width="35dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="40dp"
+        android:text="접근"
+        app:layout_constraintBottom_toBottomOf="@+id/label_경고"
+        app:layout_constraintStart_toEndOf="@+id/label_경고"
+        app:layout_constraintTop_toTopOf="@+id/label_경고"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/EditText_Sendvalue3"
+        android:layout_width="56dp"
+        android:layout_height="41dp"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="3"
+        android:minHeight="48dp"
+        android:text="0"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/label_접근"
+        app:layout_constraintTop_toBottomOf="@+id/label_접근"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/button_SendDataNotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="반경 설정"
+        android:textColor="@color/accent"
+        app:layout_constraintBottom_toBottomOf="@+id/EditText_Sendvalue3"
+        app:layout_constraintStart_toEndOf="@+id/EditText_Sendvalue3" />
+
+    <TextView
+        android:id="@+id/label_장비종류"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:text="장비 종류"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_장비종류"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/label_작업환경"
+        app:layout_constraintTop_toBottomOf="@+id/label_작업환경" />
+
+    <TextView
+        android:id="@+id/label_작업환경"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="작업 환경"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_작업환경"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintStart_toEndOf="@+id/button_poweroff"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_장비종류"
+        android:layout_width="101dp"
+        android:layout_height="22dp"
+
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="160dp"
+        app:layout_constraintBottom_toBottomOf="@+id/label_장비종류"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/spinner_작업환경"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_작업환경"
+        app:layout_constraintVertical_bias="1.0" />
+
     <Spinner
         android:id="@+id/spinner_작업환경"
         android:layout_width="101dp"
@@ -70,155 +162,71 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Spinner
-        android:id="@+id/spinner_장비종류"
-        android:layout_width="101dp"
-        android:layout_height="22dp"
-
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="160dp"
-        app:layout_constraintBottom_toBottomOf="@+id/label_장비종류"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/spinner_작업환경"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_작업환경"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/label_위험"
-        android:layout_width="35dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="24dp"
-        android:text="위험"
-        app:layout_constraintStart_toStartOf="@+id/label_장비종류"
-        app:layout_constraintTop_toBottomOf="@+id/label_장비종류" />
-
-    <EditText
-        android:id="@+id/EditText_Sendvalue3"
-        android:layout_width="56dp"
-        android:layout_height="41dp"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:inputType="number"
-        android:maxLength="3"
-        android:minHeight="48dp"
-        android:textSize="12dp"
-        app:layout_constraintStart_toStartOf="@+id/label_접근"
-        app:layout_constraintTop_toBottomOf="@+id/label_접근"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/EditText_Sendvalue1"
-        android:layout_width="56dp"
-        android:layout_height="41dp"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:inputType="number"
-        android:maxLength="3"
-        android:minHeight="48dp"
-        android:textSize="12dp"
-        app:layout_constraintStart_toStartOf="@+id/label_위험"
-        app:layout_constraintTop_toBottomOf="@+id/label_위험"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <EditText
         android:id="@+id/EditText_Sendvalue2"
         android:layout_width="56dp"
         android:layout_height="41dp"
         android:layout_columnWeight="1"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:gravity="center"
         android:inputType="number"
         android:maxLength="3"
         android:minHeight="48dp"
-        android:textSize="12dp"
+        android:text="0"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="@+id/label_경고"
         app:layout_constraintTop_toBottomOf="@+id/label_경고"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/button_SendDataNotify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="반경 설정"
-        android:textColor="@color/accent"
-        app:layout_constraintBottom_toBottomOf="@+id/EditText_Sendvalue3"
-        app:layout_constraintStart_toEndOf="@+id/EditText_Sendvalue3" />
-
-    <TextView
-        android:id="@+id/label_경고"
-        android:layout_width="35dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="44dp"
-        android:text="경고"
-        app:layout_constraintBottom_toBottomOf="@+id/label_위험"
-        app:layout_constraintStart_toEndOf="@+id/label_위험"
-        app:layout_constraintTop_toTopOf="@+id/label_위험"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/label_접근"
-        android:layout_width="35dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="52dp"
-        android:text="접근"
-        app:layout_constraintBottom_toBottomOf="@+id/label_경고"
-        app:layout_constraintStart_toEndOf="@+id/label_경고"
-        app:layout_constraintTop_toTopOf="@+id/label_경고"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/label_장비종류"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:text="장비 종류"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_장비종류"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_작업환경"
-        app:layout_constraintTop_toBottomOf="@+id/label_작업환경"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/button_poweron"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:text="POWER ON"
         android:textColor="@color/accent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/Textview_Recievevalue1"
-        android:layout_width="257dp"
-        android:layout_height="33dp"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:maxLength="15"
-        android:minHeight="48dp"
-        android:textSize="12dp"
-        app:layout_constraintStart_toStartOf="@+id/label_ReceiveValue1"
-        app:layout_constraintTop_toBottomOf="@+id/label_ReceiveValue1"
-        tools:ignore="SpeakableTextPresentCheck" />
+    <Button
+        android:id="@+id/button_poweroff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="POWER OFF"
+        android:textColor="@color/accent"
+        app:layout_constraintBottom_toBottomOf="@+id/button_poweron"
+        app:layout_constraintStart_toEndOf="@+id/button_poweron"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
     <TextView
         android:id="@+id/label_ReceiveValue1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:text="앵커에서 받은 값"
         android:textAppearance="@style/label"
         app:layout_constraintStart_toStartOf="@+id/button_poweron"
         app:layout_constraintTop_toBottomOf="@+id/button_poweron" />
+
+    <TextView
+        android:id="@+id/Textview_Recievevalue1"
+        android:layout_width="257dp"
+        android:layout_height="33dp"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:maxLength="15"
+        android:minHeight="48dp"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/label_ReceiveValue1"
+        app:layout_constraintTop_toBottomOf="@+id/label_ReceiveValue1"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <!--두번째-->
 

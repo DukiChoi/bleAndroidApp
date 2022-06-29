@@ -69,7 +69,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         }
         return true;
     }
-    private TextView mAdvStatus;
+    //private TextView mAdvStatus;
     private TextView mConnectionStatus;
     private ServiceFragment mCurrentServiceFragment;
     private BluetoothGattService mBluetoothGattService;
@@ -107,13 +107,15 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                     statusText = R.string.status_notAdvertising;
                     Log.wtf(TAG, "Unhandled error: " + errorCode);
             }
-            mAdvStatus.setText(statusText);
+            //mAdvStatus.setText(statusText);
+            Toast.makeText(getApplicationContext(), statusText, Toast.LENGTH_SHORT).show();
         }
         @Override
         public void onStartSuccess(AdvertiseSettings settingsInEffect) {
             super.onStartSuccess(settingsInEffect);
             Log.v(TAG, "Broadcasting");
-            mAdvStatus.setText(R.string.status_advertising);
+            //mAdvStatus.setText(R.string.status_advertising);
+            Toast.makeText(getApplicationContext(), R.string.status_advertising, Toast.LENGTH_SHORT).show();
         }
     };
     private BluetoothGattServer mGattServer;
@@ -282,7 +284,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             Log.i("권한 테스트", "권한이 있네요");
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        mAdvStatus = (TextView) findViewById(R.id.textView_advertisingStatus);
+        //mAdvStatus = (TextView) findViewById(R.id.textView_advertisingStatus);
         mConnectionStatus = (TextView) findViewById(R.id.textView_connectionStatus);
         mBluetoothDevices = new HashSet<>();
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -321,7 +323,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_peripheral, menu);
+        inflater.inflate(R.menu.menu_warning, menu);
         return true /* show menu */;
     }
 
@@ -364,7 +366,8 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
             mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
         } else {
-            mAdvStatus.setText(R.string.status_noLeAdv);
+            //mAdvStatus.setText(R.string.status_noLeAdv);
+            Toast.makeText(getApplicationContext(), R.string.status_noLeAdv, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -372,6 +375,11 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_disconnect_devices) {
             disconnectFromDevices();
+            return true /* event_consumed */;
+        }
+        else if (item.getItemId() == R.id.action_setting) {
+            Intent intent = new Intent(this, SettingActivity.class);
+            startActivity(intent);
             return true /* event_consumed */;
         }
         return false /* event_consumed */;
@@ -403,7 +411,8 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     }
 
     private void resetStatusViews() {
-        mAdvStatus.setText(R.string.status_notAdvertising);
+        //mAdvStatus.setText(R.string.status_notAdvertising);
+        //Toast.makeText(getApplicationContext(), R.string.status_notAdvertising, Toast.LENGTH_SHORT).show();
         updateConnectedDevicesStatus();
     }
 

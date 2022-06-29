@@ -121,7 +121,9 @@ public class SettingServiceFragment extends ServiceFragment {
   private ServiceFragmentDelegate mDelegate;
 
   //원래있던 TemperatureMeasurement를 Send로 바꿔줌.
-  private EditText mEditTextSendValue;
+  private EditText mEditTextSendValue1;
+  private EditText mEditTextSendValue2;
+  private EditText mEditTextSendValue3;
   private TextView mTextViewReceiveValue;
   //이건 Text Editor에 수정을 할 시에 그걸 가지고 보낼 값(Characteristic Value)을 바꾸는 것.
   private final OnEditorActionListener mOnEditorActionListenerSend = new OnEditorActionListener() {
@@ -181,12 +183,17 @@ public class SettingServiceFragment extends ServiceFragment {
 //      byte[] newSENDbytes = mEditTextSendValue.getText().toString().getBytes(StandardCharsets.US_ASCII);
 //      mSendCharacteristic.setValue(newSENDbytes);
 
-      //두번째 방법, Integer로 보내기([값]형태)
-      int integer_to_send = Integer.parseInt(mEditTextSendValue.getText().toString());
-      mSendCharacteristic.setValue(integer_to_send,
-              SEND_VALUE_FORMAT,
-              /* offset */ 0);
-
+//      //두번째 방법, Integer로 보내기([값]형태)
+//      int integer_to_send = Integer.parseInt(mEditTextSendValue.getText().toString());
+//      mSendCharacteristic.setValue(integer_to_send,
+//              SEND_VALUE_FORMAT,
+//              /* offset */ 0);
+        //세번째 방법 세 integer 묶어서 보내기
+        int integer_to_send1 = Integer.parseInt(mEditTextSendValue1.getText().toString());
+        int integer_to_send2 = Integer.parseInt(mEditTextSendValue2.getText().toString());
+        int integer_to_send3 = Integer.parseInt(mEditTextSendValue3.getText().toString());
+        byte[] newSENDbytes = {0x10, (byte)integer_to_send1, (byte)integer_to_send2, (byte)integer_to_send3};
+        mSendCharacteristic.setValue(newSENDbytes);
       //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
       //정확히는 여기에서 NOTIFICATION을 SEND 해준다. (TxChar을 통해서)
       //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
@@ -248,18 +255,28 @@ public class SettingServiceFragment extends ServiceFragment {
                            Bundle savedInstanceState) {
 
     View view = inflater.inflate(R.layout.fragment_setting, container, false);
-    mEditTextSendValue = (EditText) view
+    mEditTextSendValue1 = (EditText) view
             .findViewById(R.id.EditText_Sendvalue1);
-    mEditTextSendValue
+    mEditTextSendValue2 = (EditText) view
+            .findViewById(R.id.EditText_Sendvalue2);
+    mEditTextSendValue3 = (EditText) view
+            .findViewById(R.id.EditText_Sendvalue3);
+    mEditTextSendValue1
             .setOnEditorActionListener(mOnEditorActionListenerSend);
+    mEditTextSendValue2
+            .setOnEditorActionListener(mOnEditorActionListenerSend);
+    mEditTextSendValue3
+            .setOnEditorActionListener(mOnEditorActionListenerSend);
+
+    //여기는 받은 값 저장하는 텍스트뷰인데 아직 세팅엑티비티에서는 쓸모가 없다
     mTextViewReceiveValue = (TextView) view
             .findViewById(R.id.Textview_Recievevalue1);
     mTextViewReceiveValue
             .setOnEditorActionListener(mOnEditorActionListenerReceive);
 
-    Button notifyButton = (Button) view.findViewById(R.id.button_poweron);
+    Button notifyButton = (Button) view.findViewById(R.id.button_SendDataNotify);
     notifyButton.setOnClickListener(mNotifyButtonListener);
-    setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
+    //setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
 
 
     return view;
@@ -344,7 +361,7 @@ public class SettingServiceFragment extends ServiceFragment {
             RECEIVE_VALUE_FORMAT,
             /* offset */ 1);
     // Characteristic Value: [flags, heart rate value, 0, 0]
-    mEditTextSendValue.setText(Integer.toString(SendValue));
+    mEditTextSendValue1.setText(Integer.toString(SendValue));
     mTextViewReceiveValue.setText(Integer.toString(ReceiveValue));
     //여기서 보낼 값으로 에딧 텍스트 값도 변경해줌
   }
