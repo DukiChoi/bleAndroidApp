@@ -58,6 +58,8 @@
         <entry key="app/src/main/res/layout/device_list.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/dis_values.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/fragment_advertiser.xml" value="0.5760416666666667" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.10283687943262411" />
+        <entry key="app/src/main/res/layout/fragment_warning.xml" value="0.3092882954482491" />
         <entry key="app/src/main/res/layout/main.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/message_detail.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/title_bar.xml" value="0.5760416666666667" />

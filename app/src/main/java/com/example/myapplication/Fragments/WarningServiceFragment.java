@@ -261,12 +261,13 @@ public class WarningServiceFragment extends ServiceFragment {
             .findViewById(R.id.Textview_Recievevalue_a2);
     mTextViewReceiveValue3 = (TextView) view
             .findViewById(R.id.Textview_Recievevalue_a3);
-    mTextViewReceiveValue1
-            .setOnEditorActionListener(mOnEditorActionListenerReceive);
+    //여기서 Editor 리스너를 써줬기는 한데 여기선 사실상 필요가 없다.(EditText 대신 TextView 써줘서 ㅇㅇ)
+//    mTextViewReceiveValue1
+//            .setOnEditorActionListener(mOnEditorActionListenerReceive);
 //    Button notifyButton = (Button) view.findViewById(R.id.button_poweron);
 //    notifyButton.setOnClickListener(mNotifyButtonListener);
 //    setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
-    byte[] value = {0,0};
+    byte[] value = {0,0,0,0,0,0,0,0};
     int[] members = classification(value);
     int value1 = members[0];
     int value2 = members[1];
@@ -493,15 +494,15 @@ public class WarningServiceFragment extends ServiceFragment {
     int[] member_for_distances = {0, 0, 0};
     for(int i = 0; i < 4; i++){
       //위험반경 : 5미만
-      if(test_value[2*i+1] < 0x05){
+      if(value[2*i+1] == 0x01){
         member_for_distances[0]++;
       }
       //경고반경 : 5이상 10미만
-      else if(0x0A > test_value[2*i+1] && test_value[2*i+1]>= 0x05){
+      else if(value[2*i+1] == 0x02){
         member_for_distances[1]++;
       }
       //접근반경 : 10 이상;
-      else if(test_value[2*i+1] >= 0x0A){
+      else if(value[2*i+1] == 0x03){
         member_for_distances[2]++;
       }
     }
