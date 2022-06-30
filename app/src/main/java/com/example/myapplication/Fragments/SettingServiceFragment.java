@@ -192,7 +192,7 @@ public class SettingServiceFragment extends ServiceFragment {
         int integer_to_send1 = Integer.parseInt(mEditTextSendValue1.getText().toString());
         int integer_to_send2 = Integer.parseInt(mEditTextSendValue2.getText().toString());
         int integer_to_send3 = Integer.parseInt(mEditTextSendValue3.getText().toString());
-        byte[] newSENDbytes = {0x01, (byte)integer_to_send1, (byte)integer_to_send2, (byte)integer_to_send3};
+        byte[] newSENDbytes = {0x10, (byte)integer_to_send1, (byte)integer_to_send2, (byte)integer_to_send3};
         mSendCharacteristic.setValue(newSENDbytes);
       //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
       //정확히는 여기에서 NOTIFICATION을 SEND 해준다. (TxChar을 통해서)

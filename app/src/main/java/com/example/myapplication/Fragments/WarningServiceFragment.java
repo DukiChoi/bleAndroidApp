@@ -395,9 +395,9 @@ public class WarningServiceFragment extends ServiceFragment {
         //두번째 방법, Integer로 받기([값]형태)
         //mTextViewReceiveValue.setText(Arrays.toString(value));
 
-        mTextViewReceiveValue1.setText(value1);
-        mTextViewReceiveValue2.setText(value2);
-        mTextViewReceiveValue3.setText(value3);
+        mTextViewReceiveValue1.setText(String.valueOf(value1));
+        mTextViewReceiveValue2.setText(String.valueOf(value2));
+        mTextViewReceiveValue3.setText(String.valueOf(value3));
 
         //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
         Log.v(TAG, "Received: " + Arrays.toString(value));
