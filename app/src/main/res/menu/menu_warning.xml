@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/action_disconnect_devices"
-        android:title="연결 끊기"
+        android:title="연결 on/off"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_warning"

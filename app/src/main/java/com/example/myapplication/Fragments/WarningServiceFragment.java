@@ -491,6 +491,7 @@ public class WarningServiceFragment extends ServiceFragment {
 
   public int[] classification(byte[] value){
     //테스트값: 4, 9, 16, 18
+    //0001010202030303
     byte[] test_value = {0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x03};
     int[] member_for_distances = {0, 0, 0};
     for(int i = 0; i < 4; i++){

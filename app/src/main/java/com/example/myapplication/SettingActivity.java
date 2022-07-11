@@ -137,6 +137,11 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
                     Log.v(TAG, "Disconnected from device");
                     //추가코드 : 컨넥션 해제되었을 떄 advertisement 다시 시작.
                     mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
+                    //추가코드 : 컨넥션 해제되었을 때 fragment 초기화(다시 시작).
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
+                            .commit();
                 }
             } else {
                 mBluetoothDevices.remove(device);

@@ -127,7 +127,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 if (newState == BluetoothGatt.STATE_CONNECTED) {
                     mBluetoothDevices.add(device);
-                    //추가코드 : 컨넥션 연결되었을 떄 advertisement 멈춤.
+                    //추가코드 : 컨넥션 연결되었을 때 advertisement 멈춤.
                     mAdvertiser.stopAdvertising(mAdvCallback);
                     updateConnectedDevicesStatus();
                     Log.v(TAG, "Connected to device: " + device.getAddress());
@@ -136,7 +136,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                     updateConnectedDevicesStatus();
 
                     Log.v(TAG, "Disconnected from device");
-                    //추가코드 : 컨넥션 해제되었을 떄 advertisement 다시 시작.
+                    //추가코드 : 컨넥션 해제되었을 때 advertisement 다시 시작.
                     mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
                 }
             } else {
@@ -375,7 +375,16 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_disconnect_devices) {
-            disconnectFromDevices();
+
+            if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
+                disconnectFromDevices();
+            } else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
+//                mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
+//                mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
+//                resetStatusViews();
+                onStart();
+            }
+
             return true /* event_consumed */;
         }
         else if (item.getItemId() == R.id.action_warning) {
@@ -489,6 +498,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             Log.d(TAG, "Devices: " + device.getAddress() + " " + device.getName());
             mGattServer.cancelConnection(device);
         }
+        //추가코드 : 아예 ble서버 확실하게 꺼버리게끔 바꿈.
         if (mGattServer != null) {
             mGattServer.close();
         }
@@ -496,8 +506,16 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             // If stopAdvertising() gets called before close() a null
             // pointer exception is raised.
             mAdvertiser.stopAdvertising(mAdvCallback);
+            mAdvertiser = null;
         }
         resetStatusViews();
+
+        //추가코드 : 컨넥션 해제되었을 때 fragment 초기화(다시 시작).
+        mCurrentServiceFragment = new WarningServiceFragment();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
+                .commit();
     }
 
     //이건 개인적으로 추가해준 byte array(Ascii array)에서 string으로 변환 함수.
