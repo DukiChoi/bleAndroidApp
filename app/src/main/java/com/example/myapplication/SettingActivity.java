@@ -375,6 +375,15 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_disconnect_devices) {
             disconnectFromDevices();
+            if (mGattServer != null) {
+                mGattServer.close();
+            }
+            if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
+                // If stopAdvertising() gets called before close() a null
+                // pointer exception is raised.
+                mAdvertiser.stopAdvertising(mAdvCallback);
+            }
+            resetStatusViews();
             return true /* event_consumed */;
         }
         else if (item.getItemId() == R.id.action_warning) {
