@@ -378,10 +378,9 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
             return true /* event_consumed */;
         }
         else if (item.getItemId() == R.id.action_warning) {
-            finish();
-//            Intent intent = new Intent(this, WarningActivity.class);
-//            startActivity(intent);
-//            return true /* event_consumed */;
+            Intent intent = new Intent(this, WarningActivity.class);
+            startActivity(intent);
+            return true /* event_consumed */;
         }
         return false /* event_consumed */;
     }

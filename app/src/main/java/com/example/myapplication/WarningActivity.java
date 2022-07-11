@@ -34,6 +34,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.myapplication.ExampleActivities.Peripheral;
 import com.example.myapplication.Fragments.WarningServiceFragment;
+import com.example.myapplication.Fragments.SettingServiceFragment;
 import com.example.myapplication.Fragments.ServiceFragment;
 
 import java.util.Arrays;
@@ -375,13 +376,41 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_disconnect_devices) {
             disconnectFromDevices();
+            if (mGattServer != null) {
+                mGattServer.close();
+            }
+            if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
+                // If stopAdvertising() gets called before close() a null
+                // pointer exception is raised.
+                mAdvertiser.stopAdvertising(mAdvCallback);
+            }
+            resetStatusViews();
             return true /* event_consumed */;
         }
+        else if (item.getItemId() == R.id.action_warning) {
+            mCurrentServiceFragment = new WarningServiceFragment();
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
+                    .commit();
+
+            return true /* event_consumed */;
+        }
+
         else if (item.getItemId() == R.id.action_setting) {
-            Intent intent = new Intent(this, SettingActivity.class);
-            startActivity(intent);
+            //원래는 이렇게 화면 자체를 새롭게 띄워줬었는데 이렇게 하면 안 될 것 같기도하고...
+//            Intent intent = new Intent(this, SettingActivity.class);
+//            startActivity(intent);
+//            아래 이거는 화면이 겹쳐버린다 ㅜㅜ 일단 아이디어는 Fragment만 바꿔주는 식으로 처리하는 것.
+            mCurrentServiceFragment = new SettingServiceFragment();
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
+                    .commit();
+
             return true /* event_consumed */;
         }
+
         return false /* event_consumed */;
     }
 

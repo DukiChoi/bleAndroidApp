@@ -392,6 +392,7 @@ public class WarningServiceFragment extends ServiceFragment {
         int value1 = members[0];
         int value2 = members[1];
         int value3 = members[2];
+        Log.v(TAG, "members are: " + value1 + ", " + value2 + ", " + value3);
         //두번째 방법, Integer로 받기([값]형태)
         //mTextViewReceiveValue.setText(Arrays.toString(value));
 
@@ -490,7 +491,7 @@ public class WarningServiceFragment extends ServiceFragment {
 
   public int[] classification(byte[] value){
     //테스트값: 4, 9, 16, 18
-    byte[] test_value = {0x00, 0x04, 0x01, 0x09, 0x02, 0x10, 0x03, 0x12};
+    byte[] test_value = {0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x03};
     int[] member_for_distances = {0, 0, 0};
     for(int i = 0; i < 4; i++){
       //위험반경 : 5미만
