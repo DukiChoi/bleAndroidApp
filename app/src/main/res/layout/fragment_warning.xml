@@ -106,7 +106,7 @@
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="275dp"
-        android:layout_height="239dp"
+        android:layout_height="275dp"
         android:src="@drawable/range"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

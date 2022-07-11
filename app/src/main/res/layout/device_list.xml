@@ -53,7 +53,9 @@
     </RelativeLayout>
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:background="#404040">
+
         <ListView
             android:id="@+id/new_devices"
             android:layout_width="fill_parent"
