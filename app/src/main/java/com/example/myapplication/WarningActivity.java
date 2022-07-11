@@ -376,15 +376,6 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_disconnect_devices) {
             disconnectFromDevices();
-            if (mGattServer != null) {
-                mGattServer.close();
-            }
-            if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
-                // If stopAdvertising() gets called before close() a null
-                // pointer exception is raised.
-                mAdvertiser.stopAdvertising(mAdvCallback);
-            }
-            resetStatusViews();
             return true /* event_consumed */;
         }
         else if (item.getItemId() == R.id.action_warning) {
@@ -498,6 +489,15 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             Log.d(TAG, "Devices: " + device.getAddress() + " " + device.getName());
             mGattServer.cancelConnection(device);
         }
+        if (mGattServer != null) {
+            mGattServer.close();
+        }
+        if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
+            // If stopAdvertising() gets called before close() a null
+            // pointer exception is raised.
+            mAdvertiser.stopAdvertising(mAdvCallback);
+        }
+        resetStatusViews();
     }
 
     //이건 개인적으로 추가해준 byte array(Ascii array)에서 string으로 변환 함수.
