@@ -480,4 +480,9 @@ public class SettingServiceFragment extends ServiceFragment {
     return converted;
   }
 
+  @Override
+  public void SendDisconnection(){
+    byte[] disconnectionValue = {99};
+    mSendCharacteristic.setValue(disconnectionValue);
+  }
 }

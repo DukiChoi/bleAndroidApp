@@ -510,4 +510,9 @@ public class WarningServiceFragment extends ServiceFragment {
     }
     return member_for_distances;
   }
+  @Override
+  public void SendDisconnection(){
+    byte[] disconnectionValue = {99};
+    mSendCharacteristic.setValue(disconnectionValue);
+  }
 }

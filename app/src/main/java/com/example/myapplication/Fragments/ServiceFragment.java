@@ -70,4 +70,8 @@ public abstract class ServiceFragment extends Fragment{
   public interface ServiceFragmentDelegate {
     void sendNotificationToDevices(BluetoothGattCharacteristic characteristic);
   }
+
+  public void SendDisconnection(){
+    //오버라이드 될 것.
+  }
 }

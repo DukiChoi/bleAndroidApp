@@ -46,7 +46,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     Spinner spinner;
     String[] items = {"아이템0","아이템1","아이템2","아이템3","아이템4"};
 
-
+    byte[] disconnection_value = {99};
     private static final int REQUEST_ENABLE_BT = 1;
     private static final String TAG = Peripheral.class.getCanonicalName();
     private static final String CURRENT_FRAGMENT_TAG = "CURRENT_FRAGMENT";
@@ -493,6 +493,10 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     }
     private void disconnectFromDevices() {
         Log.d(TAG, "Disconnecting devices...");
+
+        //추가코드: 여기가 앵커에 끊는 신호인 {99}값 보내는 곳.
+        mCurrentServiceFragment.SendDisconnection();
+
         for (BluetoothDevice device : mBluetoothManager.getConnectedDevices(
                 BluetoothGattServer.GATT)) {
             Log.d(TAG, "Devices: " + device.getAddress() + " " + device.getName());
@@ -517,6 +521,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                 .replace(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
                 .commit();
     }
+
 
     //이건 개인적으로 추가해준 byte array(Ascii array)에서 string으로 변환 함수.
     public String bytesToString(byte[] value) {
