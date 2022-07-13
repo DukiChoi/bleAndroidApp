@@ -46,8 +46,14 @@
         <activity
             android:name=".WarningActivity"
             android:label="주변 작업자"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+            android:exported="true"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SettingActivity"
             android:label="앵커 세팅"
@@ -62,11 +68,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
+            <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter!-->
         </activity>
         <activity android:name=".ExampleActivities.DeviceListActivity" />
         <activity

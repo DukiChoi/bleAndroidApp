@@ -15,6 +15,7 @@ import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertiseSettings;
 import android.bluetooth.le.BluetoothLeAdvertiser;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -29,6 +30,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -375,15 +377,40 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_disconnect_devices) {
-
+            //여기서 AlertDialog를 사용해서 온오프시에 확인창 팝업
+            AlertDialog.Builder builder = new AlertDialog.Builder(WarningActivity.this);
+            builder.setTitle("경고");
             if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
-                disconnectFromDevices();
-            } else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
-//                mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
-//                mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
-//                resetStatusViews();
-                onStart();
+                builder.setMessage("연결을 끊을까요?");
             }
+            else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
+                builder.setMessage("연결을 시작할까요?");
+            }
+            builder.setPositiveButton("예",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // on/off작업
+                            if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
+                                disconnectFromDevices();
+                            } else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
+//                                mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
+//                                mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
+//                                resetStatusViews();
+                                onStart();
+                            }
+                        }
+                    });
+            builder.setNegativeButton("아니오",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    });
+
+            builder.show();
+
+
+
 
             return true /* event_consumed */;
         }
