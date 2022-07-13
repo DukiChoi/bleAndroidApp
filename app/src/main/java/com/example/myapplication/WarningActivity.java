@@ -56,7 +56,6 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     Spinner spinner;
     String[] items = {"아이템0","아이템1","아이템2","아이템3","아이템4"};
-    byte[] disconnection_value = {99};
     private static final int REQUEST_ENABLE_BT = 1;
     private static final String TAG = WarningActivity.class.getCanonicalName();
     private static final String CURRENT_FRAGMENT_TAG = "CURRENT_FRAGMENT";
@@ -496,10 +495,12 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // on/off작업
+                            //Off
                             if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
-                                mSettingServiceFragment = new SettingServiceFragment();
                                 disconnectFromDevices();
-                            } else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
+                            }
+                            //On
+                            else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
 //                                mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
 //                                mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
 //                                resetStatusViews();

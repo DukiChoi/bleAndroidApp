@@ -496,6 +496,7 @@ public class SettingServiceFragment extends ServiceFragment {
   public void SendDisconnection(){
     byte[] disconnectionValue = {99};
     WarningActivity.mSendCharacteristic.setValue(disconnectionValue);
+    mDelegate.sendNotificationToDevices(WarningActivity.mSendCharacteristic);
     Log.v(TAG, "sent disconnetionValue: " + Arrays.toString(disconnectionValue));
   }
 }
