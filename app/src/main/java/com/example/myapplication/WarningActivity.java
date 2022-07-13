@@ -497,6 +497,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                         public void onClick(DialogInterface dialog, int which) {
                             // on/off작업
                             if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
+                                mSettingServiceFragment = new SettingServiceFragment();
                                 disconnectFromDevices();
                             } else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
 //                                mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
