@@ -514,6 +514,6 @@ public class WarningServiceFragment extends ServiceFragment {
   public void SendDisconnection(){
     byte[] disconnectionValue = {99};
     mSendCharacteristic.setValue(disconnectionValue);
-    Log.v(TAG, "sent: " + Arrays.toString(disconnectionValue));
+    Log.v(TAG, "sent disconnetionValue: " + Arrays.toString(disconnectionValue));
   }
 }
