@@ -34,7 +34,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.myapplication.ExampleActivities.Peripheral;
 import com.example.myapplication.Fragments.WarningServiceFragment;
 import com.example.myapplication.Fragments.SettingServiceFragment;
 import com.example.myapplication.Fragments.ServiceFragment;
@@ -44,13 +43,14 @@ import java.util.HashSet;
 import java.util.UUID;
 
 public class WarningActivity extends AppCompatActivity implements ServiceFragment.ServiceFragmentDelegate {
-
+    //추가코드: 여기서 servicefragment 먼저 생성
+    WarningServiceFragment mWarningServiceFragment = new WarningServiceFragment();
+    SettingServiceFragment mSettingServiceFragment = new SettingServiceFragment();
     Spinner spinner;
     String[] items = {"아이템0","아이템1","아이템2","아이템3","아이템4"};
-
     byte[] disconnection_value = {99};
     private static final int REQUEST_ENABLE_BT = 1;
-    private static final String TAG = Peripheral.class.getCanonicalName();
+    private static final String TAG = WarningActivity.class.getCanonicalName();
     private static final String CURRENT_FRAGMENT_TAG = "CURRENT_FRAGMENT";
 
     private static final UUID CHARACTERISTIC_USER_DESCRIPTION_UUID = UUID
@@ -150,7 +150,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(WarningActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                        Toast.makeText(WarningActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
                 Log.e(TAG, "Error when connecting: " + status);
@@ -298,7 +298,9 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         //EXTRA_PERIPHERAL_INDEX를 가지고 어떤 서비스로 넘어갈지 판단한다.
         //If we are not being restored from a previous state then create and add the fragment.
         if (savedInstanceState == null) {
-            mCurrentServiceFragment = new WarningServiceFragment();
+
+            mCurrentServiceFragment = mWarningServiceFragment;
+
             getFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
@@ -336,13 +338,13 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         if (requestCode == REQUEST_ENABLE_BT) {
             if (resultCode == RESULT_OK) {
                 if (!mBluetoothAdapter.isMultipleAdvertisementSupported()) {
-                    Toast.makeText(this, R.string.bluetoothAdvertisingNotSupported, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.bluetoothAdvertisingNotSupported, Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Advertising not supported");
                 }
                 onStart();
             } else {
                 //TODO(g-ortuno): UX for asking the user to activate bt
-                Toast.makeText(this, R.string.bluetoothNotEnabled, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.bluetoothNotEnabled, Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Bluetooth not enabled");
                 finish();
             }
@@ -396,6 +398,8 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 //                                mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
 //                                mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
 //                                resetStatusViews();
+                                //SettingServiceFrag 직접 초기화 시켜주는 것.
+                                mSettingServiceFragment = new SettingServiceFragment();
                                 onStart();
                             }
                         }
@@ -415,7 +419,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             return true /* event_consumed */;
         }
         else if (item.getItemId() == R.id.action_warning) {
-            mCurrentServiceFragment = new WarningServiceFragment();
+            mCurrentServiceFragment = mWarningServiceFragment;
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
@@ -429,7 +433,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 //            Intent intent = new Intent(this, SettingActivity.class);
 //            startActivity(intent);
 //            아래 이거는 화면이 겹쳐버린다 ㅜㅜ 일단 아이디어는 Fragment만 바꿔주는 식으로 처리하는 것.
-            mCurrentServiceFragment = new SettingServiceFragment();
+            mCurrentServiceFragment = mSettingServiceFragment;
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
@@ -509,7 +513,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     private void ensureBleFeaturesAvailable() {
         if (mBluetoothAdapter == null) {
-            Toast.makeText(this, R.string.bluetoothNotSupported, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.bluetoothNotSupported, Toast.LENGTH_SHORT).show();
             Log.e(TAG, "Bluetooth not supported");
             finish();
         } else if (!mBluetoothAdapter.isEnabled()) {
@@ -552,11 +556,16 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     //이건 개인적으로 추가해준 byte array(Ascii array)에서 string으로 변환 함수.
     public String bytesToString(byte[] value) {
-        String converted = "";
-        for (int i : value) {
-            converted = converted.concat(Character.toString((char) i));
+//        String converted = "";
+//        for (int i : value) {
+//            converted = converted.concat(Character.toString((char) i));
+//        }
+//        return converted;
+        StringBuilder builder = new StringBuilder();
+        for (byte data : value) {
+            builder.append(String.format("%02X ", data));
         }
-        return converted;
+        return builder.toString();
     }
 
     public void onButton9Clicked(View view) {

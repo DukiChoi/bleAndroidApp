@@ -338,13 +338,13 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
         if (requestCode == REQUEST_ENABLE_BT) {
             if (resultCode == RESULT_OK) {
                 if (!mBluetoothAdapter.isMultipleAdvertisementSupported()) {
-                    Toast.makeText(this, R.string.bluetoothAdvertisingNotSupported, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.bluetoothAdvertisingNotSupported, Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Advertising not supported");
                 }
                 onStart();
             } else {
                 //TODO(g-ortuno): UX for asking the user to activate bt
-                Toast.makeText(this, R.string.bluetoothNotEnabled, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.bluetoothNotEnabled, Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Bluetooth not enabled");
                 finish();
             }
@@ -457,7 +457,7 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
 
     private void ensureBleFeaturesAvailable() {
         if (mBluetoothAdapter == null) {
-            Toast.makeText(this, R.string.bluetoothNotSupported, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.bluetoothNotSupported, Toast.LENGTH_SHORT).show();
             Log.e(TAG, "Bluetooth not supported");
             finish();
         } else if (!mBluetoothAdapter.isEnabled()) {

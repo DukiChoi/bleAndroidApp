@@ -35,8 +35,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.example.myapplication.SettingActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.WarningActivity;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -173,7 +173,7 @@ public class SettingServiceFragment extends ServiceFragment {
   };
 
 
-  private static final String TAG = SettingActivity.class.getCanonicalName();
+  private static final String TAG = WarningActivity.class.getCanonicalName();
   //이건 Notify 버튼 즉 Send 버튼을 리스닝 해주는 함수
   private final View.OnClickListener mNotifyButtonListener = new View.OnClickListener() {
     @Override
@@ -189,17 +189,29 @@ public class SettingServiceFragment extends ServiceFragment {
 //              SEND_VALUE_FORMAT,
 //              /* offset */ 0);
         //세번째 방법 세 integer 묶어서 보내기
+      if(Integer.parseInt(mEditTextSendValue1.getText().toString()) > 0 && Integer.parseInt(mEditTextSendValue2.getText().toString()) > 0 && Integer.parseInt(mEditTextSendValue3.getText().toString()) > 0){
+        //보내는 값이 각각 0 이상일시에만 send해준다.
         int integer_to_send1 = Integer.parseInt(mEditTextSendValue1.getText().toString());
         int integer_to_send2 = Integer.parseInt(mEditTextSendValue2.getText().toString());
         int integer_to_send3 = Integer.parseInt(mEditTextSendValue3.getText().toString());
         byte[] newSENDbytes = {0x10, (byte)integer_to_send1, (byte)integer_to_send2, (byte)integer_to_send3};
         mSendCharacteristic.setValue(newSENDbytes);
-      //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-      //정확히는 여기에서 NOTIFICATION을 SEND 해준다. (TxChar을 통해서)
-      //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-      mDelegate.sendNotificationToDevices(mSendCharacteristic);
-      //Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()) + " / that is: " + bytesToString(mSendCharacteristic.getValue()));
-      Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()));
+        //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        //정확히는 여기에서 NOTIFICATION을 SEND 해준다. (TxChar을 통해서)
+        //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        mDelegate.sendNotificationToDevices(mSendCharacteristic);
+        //Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()) + " / that is: " + bytesToString(mSendCharacteristic.getValue()));
+        Toast.makeText(getActivity(), "거리 값을 세팅하였습니다.",
+                Toast.LENGTH_SHORT).show();
+        Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()));
+
+      }
+      else{
+        //만약 입력 거리값이 0이면 값을 보내지 않음.
+        Toast.makeText(getActivity(), "거리 값을 제대로 입력해주세요",
+                Toast.LENGTH_SHORT).show();
+        Log.v(TAG, "Can not send the distance values");
+      }
     }
   };
 
@@ -221,10 +233,10 @@ public class SettingServiceFragment extends ServiceFragment {
                     /* No permissions */ BluetoothGattCharacteristic.PERMISSION_READ);
 
     mSendCharacteristic.addDescriptor(
-            SettingActivity.getClientCharacteristicConfigurationDescriptor());
+            WarningActivity.getClientCharacteristicConfigurationDescriptor());
 
     mSendCharacteristic.addDescriptor(
-            SettingActivity.getCharacteristicUserDescriptionDescriptor(SEND_DESCRIPTION));
+            WarningActivity.getCharacteristicUserDescriptionDescriptor(SEND_DESCRIPTION));
 
     //이거는 Receive
     mReceiveCharacteristic =
@@ -233,10 +245,10 @@ public class SettingServiceFragment extends ServiceFragment {
                     BluetoothGattCharacteristic.PROPERTY_WRITE,
                     BluetoothGattCharacteristic.PERMISSION_WRITE);
 
-    mReceiveCharacteristic.addDescriptor(SettingActivity.getClientCharacteristicConfigurationDescriptor());
+    mReceiveCharacteristic.addDescriptor(WarningActivity.getClientCharacteristicConfigurationDescriptor());
 
     mReceiveCharacteristic.addDescriptor(
-            SettingActivity.getCharacteristicUserDescriptionDescriptor(RECEIVE_DESCRIPTION));
+            WarningActivity.getCharacteristicUserDescriptionDescriptor(RECEIVE_DESCRIPTION));
 
     mNordicUartService = new BluetoothGattService(UART_SERVICE_UUID,
             BluetoothGattService.SERVICE_TYPE_PRIMARY);

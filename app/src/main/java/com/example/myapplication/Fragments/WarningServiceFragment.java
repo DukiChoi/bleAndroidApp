@@ -35,8 +35,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.example.myapplication.ExampleActivities.Peripheral;
 import com.example.myapplication.R;
+import com.example.myapplication.WarningActivity;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -173,7 +173,7 @@ public class WarningServiceFragment extends ServiceFragment {
   };
 
 
-  private static final String TAG = Peripheral.class.getCanonicalName();
+  private static final String TAG = WarningActivity.class.getCanonicalName();
   //이 부분은 Send하는 부분이라 Warning에서는 주석처리함.
 //  //이건 Notify 버튼 즉 Send 버튼을 리스닝 해주는 함수
 //  private final View.OnClickListener mNotifyButtonListener = new View.OnClickListener() {
@@ -217,10 +217,10 @@ public class WarningServiceFragment extends ServiceFragment {
                     /* No permissions */ BluetoothGattCharacteristic.PERMISSION_READ);
 
     mSendCharacteristic.addDescriptor(
-            Peripheral.getClientCharacteristicConfigurationDescriptor());
+            WarningActivity.getClientCharacteristicConfigurationDescriptor());
 
     mSendCharacteristic.addDescriptor(
-            Peripheral.getCharacteristicUserDescriptionDescriptor(SEND_DESCRIPTION));
+            WarningActivity.getCharacteristicUserDescriptionDescriptor(SEND_DESCRIPTION));
 
     //이거는 Receive
     mReceiveCharacteristic =
@@ -229,10 +229,10 @@ public class WarningServiceFragment extends ServiceFragment {
                     BluetoothGattCharacteristic.PROPERTY_WRITE,
                     BluetoothGattCharacteristic.PERMISSION_WRITE);
 
-    mReceiveCharacteristic.addDescriptor(Peripheral.getClientCharacteristicConfigurationDescriptor());
+    mReceiveCharacteristic.addDescriptor(WarningActivity.getClientCharacteristicConfigurationDescriptor());
 
     mReceiveCharacteristic.addDescriptor(
-            Peripheral.getCharacteristicUserDescriptionDescriptor(RECEIVE_DESCRIPTION));
+            WarningActivity.getCharacteristicUserDescriptionDescriptor(RECEIVE_DESCRIPTION));
 
     mNordicUartService = new BluetoothGattService(UART_SERVICE_UUID,
             BluetoothGattService.SERVICE_TYPE_PRIMARY);

@@ -42,30 +42,30 @@
 
     <TextView
         android:id="@+id/label_위험"
-        android:layout_width="35dp"
-        android:layout_height="21dp"
+        android:layout_width="54dp"
+        android:layout_height="24dp"
         android:layout_marginTop="20dp"
-        android:text="위험"
+        android:text="위험(m)"
         app:layout_constraintStart_toStartOf="@+id/label_장비종류"
         app:layout_constraintTop_toBottomOf="@+id/label_장비종류" />
 
     <TextView
         android:id="@+id/label_경고"
-        android:layout_width="35dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="40dp"
-        android:text="경고"
+        android:layout_width="54dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="30dp"
+        android:text="경고(m)"
         app:layout_constraintBottom_toBottomOf="@+id/label_위험"
         app:layout_constraintStart_toEndOf="@+id/label_위험"
         app:layout_constraintTop_toTopOf="@+id/label_위험"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/label_접근"
-        android:layout_width="35dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="40dp"
-        android:text="접근"
+        android:layout_width="54dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="30dp"
+        android:text="접근(m)"
         app:layout_constraintBottom_toBottomOf="@+id/label_경고"
         app:layout_constraintStart_toEndOf="@+id/label_경고"
         app:layout_constraintTop_toTopOf="@+id/label_경고"
