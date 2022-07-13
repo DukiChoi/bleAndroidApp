@@ -43,9 +43,17 @@ import java.util.HashSet;
 import java.util.UUID;
 
 public class WarningActivity extends AppCompatActivity implements ServiceFragment.ServiceFragmentDelegate {
-    //추가코드: 여기서 servicefragment 먼저 생성
+
+
+
+    //여기서 servicefragment 먼저 생성
     WarningServiceFragment mWarningServiceFragment = new WarningServiceFragment();
     SettingServiceFragment mSettingServiceFragment = new SettingServiceFragment();
+    //여기서 Gattservice 변수 선언.
+    public static BluetoothGattCharacteristic mSendCharacteristic;
+    public static BluetoothGattCharacteristic mReceiveCharacteristic;
+
+
     Spinner spinner;
     String[] items = {"아이템0","아이템1","아이템2","아이템3","아이템4"};
     byte[] disconnection_value = {99};
@@ -58,6 +66,72 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     //이게 CCCD UUID이다.
     private static final UUID CLIENT_CHARACTERISTIC_CONFIGURATION_UUID = UUID
             .fromString("00002902-0000-1000-8000-00805f9b34fb");
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //        변수 선언
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private static final int MIN_UINT = 0;
+    private static final int MAX_UINT8 = (int) Math.pow(2, 8) - 1;
+    private static final int MAX_UINT16 = (int) Math.pow(2, 16) - 1;
+    /**
+     * See <a href="https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.health_thermometer.xml">
+     * Health Thermometer Service</a>
+     * This service exposes two characteristics with descriptors:
+     * - Measurement Interval Characteristic:
+     * - Listen to notifications to from which you can subscribe to notifications
+     * - CCCD Descriptor:
+     * - Read/Write to get/set notifications.
+     * - User Description Descriptor:
+     * - Read/Write to get/set the description of the Characteristic.
+     * - Temperature Measurement Characteristic:
+     * - Read value to get the current interval of the temperature measurement timer.
+     * - Write value resets the temperature measurement timer with the new value. This timer
+     * is responsible for triggering value changed events every "Measurement Interval" value.
+     * - CCCD Descriptor:
+     * - Read/Write to get/set notifications.
+     * - User Description Descriptor:
+     * - Read/Write to get/set the description of the Characteristic.
+     */
+    private static final int INITIAL_SEND = 0;
+    private static final int INITIAL_RECEIVE = 0;
+    //이게 프라이머리 서비스
+    private static final UUID UART_SERVICE_UUID = UUID
+            .fromString("6e400001-b5a3-f393-e0a9-e50e24dcca9e");
+
+    /**
+     * See <a href="https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.temperature_measurement.xml">
+     * Temperature Measurement</a>
+     */
+
+    //이건 TxChar UUID 설정 부분 (보내는 Char)
+    private static final UUID SEND_UUID = UUID
+            .fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e");  //RxChar UUID
+    private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
+    private static final String SEND_DESCRIPTION = "This characteristic is used " +
+            "as TxChar Nordic Uart device";
+
+
+    //이건 RxChar UUID 설정 부분 (받아오는 Char)
+    /**
+     * See <a href="https://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.measurement_interval.xml">
+     * Measurement Interval</a>
+     */
+    private static final UUID RECIEVE_UUID = UUID
+            .fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e");  //TxChar UUID
+    private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
+
+
+    private static final String RECEIVE_DESCRIPTION = "This characteristic is used " +
+            "as RxChar of Nordic Uart device";
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //        변수 선언 끝
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 
     private static final int MULTIPLE_PERMISSION = 1004;
     private String[] PERMISSIONS = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -75,7 +149,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     //private TextView mAdvStatus;
     private TextView mConnectionStatus;
     private ServiceFragment mCurrentServiceFragment;
-    private BluetoothGattService mBluetoothGattService;
+    public static BluetoothGattService mBluetoothGattService;
     private HashSet<BluetoothDevice> mBluetoothDevices;
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
@@ -323,6 +397,36 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         mAdvScanResponse = new AdvertiseData.Builder()
                 .setIncludeDeviceName(true)
                 .build();
+
+        //Fragment에 있던 부분 가져옴.
+        //이거는 Send
+        mSendCharacteristic =
+                new BluetoothGattCharacteristic(SEND_UUID,
+                        BluetoothGattCharacteristic.PROPERTY_NOTIFY|BluetoothGattCharacteristic.PROPERTY_READ,
+                        /* No permissions */ BluetoothGattCharacteristic.PERMISSION_READ);
+
+        mSendCharacteristic.addDescriptor(
+                WarningActivity.getClientCharacteristicConfigurationDescriptor());
+
+        mSendCharacteristic.addDescriptor(
+                WarningActivity.getCharacteristicUserDescriptionDescriptor(SEND_DESCRIPTION));
+
+        //이거는 Receive
+        mReceiveCharacteristic =
+                new BluetoothGattCharacteristic(
+                        RECIEVE_UUID,
+                        BluetoothGattCharacteristic.PROPERTY_WRITE,
+                        BluetoothGattCharacteristic.PERMISSION_WRITE);
+
+        mReceiveCharacteristic.addDescriptor(WarningActivity.getClientCharacteristicConfigurationDescriptor());
+
+        mReceiveCharacteristic.addDescriptor(
+                WarningActivity.getCharacteristicUserDescriptionDescriptor(RECEIVE_DESCRIPTION));
+
+        mBluetoothGattService = new BluetoothGattService(UART_SERVICE_UUID,
+                BluetoothGattService.SERVICE_TYPE_PRIMARY);
+        mBluetoothGattService.addCharacteristic(mSendCharacteristic);
+        mBluetoothGattService.addCharacteristic(mReceiveCharacteristic);
     }
 
     @Override

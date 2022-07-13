@@ -112,10 +112,10 @@ public class SettingServiceFragment extends ServiceFragment {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  private BluetoothGattService mNordicUartService;
-  private BluetoothGattCharacteristic mSendCharacteristic;
-  private BluetoothGattCharacteristic mReceiveCharacteristic;
-  private BluetoothGattDescriptor mReceiveCCCDescriptor;
+//  private BluetoothGattService mfNordicUartService;
+//  private BluetoothGattCharacteristic mSendCharacteristic;
+//  private BluetoothGattCharacteristic mReceiveCharacteristic;
+//  private BluetoothGattDescriptor mReceiveCCCDescriptor;
 
 
   private ServiceFragmentDelegate mDelegate;
@@ -139,7 +139,7 @@ public class SettingServiceFragment extends ServiceFragment {
           //두번째. int로 바꾸기
           int newSendValue = Integer.parseInt(newSENDValueString);
 
-          mSendCharacteristic.setValue(newSendValue,
+          WarningActivity.mSendCharacteristic.setValue(newSendValue,
                   SEND_VALUE_FORMAT,
                   /* offset */ 0);
         } else {
@@ -160,7 +160,7 @@ public class SettingServiceFragment extends ServiceFragment {
         if (isValidCharacteristicValue(newReceiveValueString,
                 RECEIVE_VALUE_FORMAT)) {
           int newReceiveValue = Integer.parseInt(newReceiveValueString);
-          mReceiveCharacteristic.setValue(newReceiveValue,
+          WarningActivity.mReceiveCharacteristic.setValue(newReceiveValue,
                   RECEIVE_VALUE_FORMAT,
                   /* offset */ 1);
         } else {
@@ -195,15 +195,16 @@ public class SettingServiceFragment extends ServiceFragment {
         int integer_to_send2 = Integer.parseInt(mEditTextSendValue2.getText().toString());
         int integer_to_send3 = Integer.parseInt(mEditTextSendValue3.getText().toString());
         byte[] newSENDbytes = {0x10, (byte)integer_to_send1, (byte)integer_to_send2, (byte)integer_to_send3};
-        mSendCharacteristic.setValue(newSENDbytes);
+        WarningActivity.mSendCharacteristic.setValue(newSENDbytes);
+
         //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
         //정확히는 여기에서 NOTIFICATION을 SEND 해준다. (TxChar을 통해서)
         //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-        mDelegate.sendNotificationToDevices(mSendCharacteristic);
+        mDelegate.sendNotificationToDevices(WarningActivity.mSendCharacteristic);
         //Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()) + " / that is: " + bytesToString(mSendCharacteristic.getValue()));
         Toast.makeText(getActivity(), "거리 값을 세팅하였습니다.",
                 Toast.LENGTH_SHORT).show();
-        Log.v(TAG, "sent: " + Arrays.toString(mSendCharacteristic.getValue()));
+        Log.v(TAG, "sent: " + Arrays.toString(WarningActivity.mSendCharacteristic.getValue()));
 
       }
       else{
@@ -227,33 +228,33 @@ public class SettingServiceFragment extends ServiceFragment {
   public SettingServiceFragment() {
 
     //이거는 Send
-    mSendCharacteristic =
+    WarningActivity.mSendCharacteristic =
             new BluetoothGattCharacteristic(SEND_UUID,
                     BluetoothGattCharacteristic.PROPERTY_NOTIFY|BluetoothGattCharacteristic.PROPERTY_READ,
                     /* No permissions */ BluetoothGattCharacteristic.PERMISSION_READ);
 
-    mSendCharacteristic.addDescriptor(
+    WarningActivity.mSendCharacteristic.addDescriptor(
             WarningActivity.getClientCharacteristicConfigurationDescriptor());
 
-    mSendCharacteristic.addDescriptor(
+    WarningActivity.mSendCharacteristic.addDescriptor(
             WarningActivity.getCharacteristicUserDescriptionDescriptor(SEND_DESCRIPTION));
 
     //이거는 Receive
-    mReceiveCharacteristic =
+    WarningActivity.mReceiveCharacteristic =
             new BluetoothGattCharacteristic(
                     RECIEVE_UUID,
                     BluetoothGattCharacteristic.PROPERTY_WRITE,
                     BluetoothGattCharacteristic.PERMISSION_WRITE);
 
-    mReceiveCharacteristic.addDescriptor(WarningActivity.getClientCharacteristicConfigurationDescriptor());
+    WarningActivity.mReceiveCharacteristic.addDescriptor(WarningActivity.getClientCharacteristicConfigurationDescriptor());
 
-    mReceiveCharacteristic.addDescriptor(
+    WarningActivity.mReceiveCharacteristic.addDescriptor(
             WarningActivity.getCharacteristicUserDescriptionDescriptor(RECEIVE_DESCRIPTION));
 
-    mNordicUartService = new BluetoothGattService(UART_SERVICE_UUID,
+    WarningActivity.mBluetoothGattService = new BluetoothGattService(UART_SERVICE_UUID,
             BluetoothGattService.SERVICE_TYPE_PRIMARY);
-    mNordicUartService.addCharacteristic(mSendCharacteristic);
-    mNordicUartService.addCharacteristic(mReceiveCharacteristic);
+    WarningActivity.mBluetoothGattService.addCharacteristic(WarningActivity.mSendCharacteristic);
+    WarningActivity.mBluetoothGattService.addCharacteristic(WarningActivity.mReceiveCharacteristic);
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -288,7 +289,7 @@ public class SettingServiceFragment extends ServiceFragment {
 
     Button notifyButton = (Button) view.findViewById(R.id.button_SendDataNotify);
     notifyButton.setOnClickListener(mNotifyButtonListener);
-    //setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
+    setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
 
 
     return view;
@@ -330,8 +331,7 @@ public class SettingServiceFragment extends ServiceFragment {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
   @Override
-  public BluetoothGattService getBluetoothGattService() {
-    return mNordicUartService;
+  public BluetoothGattService getBluetoothGattService() { return WarningActivity.mBluetoothGattService;
   }
 
   @Override
@@ -358,18 +358,18 @@ public class SettingServiceFragment extends ServiceFragment {
     //보낼 값이니까 Send Characteristic(TxChar)의 value 값을 변경해주는데 byte array형식으로 집어넣는다.
     //이건 앞으로 (uint8형식으로 넣는다는 뜻) flag를 8(uint8)로 맞춰주는 것.
     //mSendCharacteristic.setValue(new byte[]{0b00001000, 0, 0, 0});
-    mSendCharacteristic.setValue(new byte[]{0});
+    WarningActivity.mSendCharacteristic.setValue(new byte[]{0});
     //mReceiveCharacteristic.setValue(new byte[]{0b00001000, 0, 0, 0});
-    mReceiveCharacteristic.setValue(new byte[]{0});
+    WarningActivity.mReceiveCharacteristic.setValue(new byte[]{0});
 
     // Characteristic Value: [flags, 0, 0, 0]
 
 
-    mSendCharacteristic.setValue(SendValue,
+    WarningActivity.mSendCharacteristic.setValue(SendValue,
             SEND_VALUE_FORMAT,
             /* offset */ 1);
 
-    mReceiveCharacteristic.setValue(ReceiveValue,
+    WarningActivity.mReceiveCharacteristic.setValue(ReceiveValue,
             RECEIVE_VALUE_FORMAT,
             /* offset */ 1);
     // Characteristic Value: [flags, heart rate value, 0, 0]
@@ -495,7 +495,7 @@ public class SettingServiceFragment extends ServiceFragment {
   @Override
   public void SendDisconnection(){
     byte[] disconnectionValue = {99};
-    mSendCharacteristic.setValue(disconnectionValue);
+    WarningActivity.mSendCharacteristic.setValue(disconnectionValue);
     Log.v(TAG, "sent disconnetionValue: " + Arrays.toString(disconnectionValue));
   }
 }

@@ -112,10 +112,10 @@ public class WarningServiceFragment extends ServiceFragment {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  private BluetoothGattService mNordicUartService;
-  private BluetoothGattCharacteristic mSendCharacteristic;
-  private BluetoothGattCharacteristic mReceiveCharacteristic;
-  private BluetoothGattDescriptor mReceiveCCCDescriptor;
+//  private BluetoothGattService mNordicUartService;
+//  private BluetoothGattCharacteristic mSendCharacteristic;
+//  private BluetoothGattCharacteristic mReceiveCharacteristic;
+//  private BluetoothGattDescriptor mReceiveCCCDescriptor;
 
 
   private ServiceFragmentDelegate mDelegate;
@@ -139,7 +139,7 @@ public class WarningServiceFragment extends ServiceFragment {
           //두번째. int로 바꾸기
           int newSendValue = Integer.parseInt(newSENDValueString);
 
-          mSendCharacteristic.setValue(newSendValue,
+          WarningActivity.mSendCharacteristic.setValue(newSendValue,
                   SEND_VALUE_FORMAT,
                   /* offset */ 0);
         } else {
@@ -160,7 +160,7 @@ public class WarningServiceFragment extends ServiceFragment {
         if (isValidCharacteristicValue(newReceiveValueString,
                 RECEIVE_VALUE_FORMAT)) {
           int newReceiveValue = Integer.parseInt(newReceiveValueString);
-          mReceiveCharacteristic.setValue(newReceiveValue,
+          WarningActivity.mReceiveCharacteristic.setValue(newReceiveValue,
                   RECEIVE_VALUE_FORMAT,
                   /* offset */ 1);
         } else {
@@ -210,34 +210,34 @@ public class WarningServiceFragment extends ServiceFragment {
 
   public WarningServiceFragment() {
 
-    //이거는 Send
-    mSendCharacteristic =
-            new BluetoothGattCharacteristic(SEND_UUID,
-                    BluetoothGattCharacteristic.PROPERTY_NOTIFY|BluetoothGattCharacteristic.PROPERTY_READ,
-                    /* No permissions */ BluetoothGattCharacteristic.PERMISSION_READ);
-
-    mSendCharacteristic.addDescriptor(
-            WarningActivity.getClientCharacteristicConfigurationDescriptor());
-
-    mSendCharacteristic.addDescriptor(
-            WarningActivity.getCharacteristicUserDescriptionDescriptor(SEND_DESCRIPTION));
-
-    //이거는 Receive
-    mReceiveCharacteristic =
-            new BluetoothGattCharacteristic(
-                    RECIEVE_UUID,
-                    BluetoothGattCharacteristic.PROPERTY_WRITE,
-                    BluetoothGattCharacteristic.PERMISSION_WRITE);
-
-    mReceiveCharacteristic.addDescriptor(WarningActivity.getClientCharacteristicConfigurationDescriptor());
-
-    mReceiveCharacteristic.addDescriptor(
-            WarningActivity.getCharacteristicUserDescriptionDescriptor(RECEIVE_DESCRIPTION));
-
-    mNordicUartService = new BluetoothGattService(UART_SERVICE_UUID,
-            BluetoothGattService.SERVICE_TYPE_PRIMARY);
-    mNordicUartService.addCharacteristic(mSendCharacteristic);
-    mNordicUartService.addCharacteristic(mReceiveCharacteristic);
+//    //이거는 Send
+//    mSendCharacteristic =
+//            new BluetoothGattCharacteristic(SEND_UUID,
+//                    BluetoothGattCharacteristic.PROPERTY_NOTIFY|BluetoothGattCharacteristic.PROPERTY_READ,
+//                    /* No permissions */ BluetoothGattCharacteristic.PERMISSION_READ);
+//
+//    mSendCharacteristic.addDescriptor(
+//            WarningActivity.getClientCharacteristicConfigurationDescriptor());
+//
+//    mSendCharacteristic.addDescriptor(
+//            WarningActivity.getCharacteristicUserDescriptionDescriptor(SEND_DESCRIPTION));
+//
+//    //이거는 Receive
+//    mReceiveCharacteristic =
+//            new BluetoothGattCharacteristic(
+//                    RECIEVE_UUID,
+//                    BluetoothGattCharacteristic.PROPERTY_WRITE,
+//                    BluetoothGattCharacteristic.PERMISSION_WRITE);
+//
+//    mReceiveCharacteristic.addDescriptor(WarningActivity.getClientCharacteristicConfigurationDescriptor());
+//
+//    mReceiveCharacteristic.addDescriptor(
+//            WarningActivity.getCharacteristicUserDescriptionDescriptor(RECEIVE_DESCRIPTION));
+//
+//    mNordicUartService = new BluetoothGattService(UART_SERVICE_UUID,
+//            BluetoothGattService.SERVICE_TYPE_PRIMARY);
+//    mNordicUartService.addCharacteristic(mSendCharacteristic);
+//    mNordicUartService.addCharacteristic(mReceiveCharacteristic);
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -318,7 +318,7 @@ public class WarningServiceFragment extends ServiceFragment {
 
   @Override
   public BluetoothGattService getBluetoothGattService() {
-    return mNordicUartService;
+    return WarningActivity.mBluetoothGattService;
   }
 
   @Override
@@ -345,18 +345,18 @@ public class WarningServiceFragment extends ServiceFragment {
     //보낼 값이니까 Send Characteristic(TxChar)의 value 값을 변경해주는데 byte array형식으로 집어넣는다.
     //이건 앞으로 (uint8형식으로 넣는다는 뜻) flag를 8(uint8)로 맞춰주는 것.
     //mSendCharacteristic.setValue(new byte[]{0b00001000, 0, 0, 0});
-    mSendCharacteristic.setValue(new byte[]{0});
+    WarningActivity.mSendCharacteristic.setValue(new byte[]{0});
     //mReceiveCharacteristic.setValue(new byte[]{0b00001000, 0, 0, 0});
-    mReceiveCharacteristic.setValue(new byte[]{0});
+    WarningActivity.mReceiveCharacteristic.setValue(new byte[]{0});
 
     // Characteristic Value: [flags, 0, 0, 0]
 
 
-    mSendCharacteristic.setValue(SendValue,
+    WarningActivity.mSendCharacteristic.setValue(SendValue,
             SEND_VALUE_FORMAT,
             /* offset */ 1);
 
-    mReceiveCharacteristic.setValue(ReceiveValue,
+    WarningActivity.mReceiveCharacteristic.setValue(ReceiveValue,
             RECEIVE_VALUE_FORMAT,
             /* offset */ 1);
     // Characteristic Value: [flags, heart rate value, 0, 0]
@@ -513,7 +513,7 @@ public class WarningServiceFragment extends ServiceFragment {
   @Override
   public void SendDisconnection(){
     byte[] disconnectionValue = {99};
-    mSendCharacteristic.setValue(disconnectionValue);
+    WarningActivity.mSendCharacteristic.setValue(disconnectionValue);
     Log.v(TAG, "sent disconnetionValue: " + Arrays.toString(disconnectionValue));
   }
 }

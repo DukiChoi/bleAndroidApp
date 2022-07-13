@@ -457,7 +457,7 @@ public class SettingActivity extends AppCompatActivity implements ServiceFragmen
 
     private void ensureBleFeaturesAvailable() {
         if (mBluetoothAdapter == null) {
-            Toast.makeText(this, R.string.bluetoothNotSupported, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.bluetoothNotSupported, Toast.LENGTH_LONG).show();
             Log.e(TAG, "Bluetooth not supported");
             finish();
         } else if (!mBluetoothAdapter.isEnabled()) {
