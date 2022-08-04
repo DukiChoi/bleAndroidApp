@@ -35,11 +35,15 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import androidx.core.content.res.TypedArrayUtils;
+
 import com.example.myapplication.R;
 import com.example.myapplication.WarningActivity;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.UUID;
+
 
 public class SettingServiceFragment extends ServiceFragment {
 
@@ -53,6 +57,7 @@ public class SettingServiceFragment extends ServiceFragment {
   private static final int MIN_UINT = 0;
   private static final int MAX_UINT8 = (int) Math.pow(2, 8) - 1;
   private static final int MAX_UINT16 = (int) Math.pow(2, 16) - 1;
+  private static final int MAX_UINT32 = (int) Math.pow(2, 32) - 1;
   /**
    * See <a href="https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.health_thermometer.xml">
    * Health Thermometer Service</a>
@@ -86,7 +91,7 @@ public class SettingServiceFragment extends ServiceFragment {
   //이건 TxChar UUID 설정 부분 (보내는 Char)
   private static final UUID SEND_UUID = UUID
           .fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e");  //RxChar UUID
-  private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
+  private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_FLOAT;
   private static final String SEND_DESCRIPTION = "This characteristic is used " +
           "as TxChar Nordic Uart device";
 
@@ -98,7 +103,7 @@ public class SettingServiceFragment extends ServiceFragment {
    */
   private static final UUID RECIEVE_UUID = UUID
           .fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e");  //TxChar UUID
-  private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
+  private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_FLOAT;
 
 
   private static final String RECEIVE_DESCRIPTION = "This characteristic is used " +
@@ -137,14 +142,15 @@ public class SettingServiceFragment extends ServiceFragment {
 //          byte[] newSENDbytes = mEditTextSendValue.getText().toString().getBytes(StandardCharsets.US_ASCII);
 //          mSendCharacteristic.setValue(newSENDbytes);
           //두번째. int로 바꾸기
-          int newSendValue = Integer.parseInt(newSENDValueString);
+          float newSendValue = Float.parseFloat(newSENDValueString);
 
-          WarningActivity.mSendCharacteristic.setValue(newSendValue,
+          WarningActivity.mSendCharacteristic.setValue(Mantissa(newSendValue),Exponent(newSendValue),
                   SEND_VALUE_FORMAT,
                   /* offset */ 0);
         } else {
           Toast.makeText(getActivity(), "Chracteristic 형식이 틀립니다.",
                   Toast.LENGTH_SHORT).show();
+          Log.v(TAG, "Charicteristic 형식 변경 필요: " + newSENDValueString);
         }
       }
       return false;
@@ -159,8 +165,8 @@ public class SettingServiceFragment extends ServiceFragment {
         String newReceiveValueString = textView.getText().toString();
         if (isValidCharacteristicValue(newReceiveValueString,
                 RECEIVE_VALUE_FORMAT)) {
-          int newReceiveValue = Integer.parseInt(newReceiveValueString);
-          WarningActivity.mReceiveCharacteristic.setValue(newReceiveValue,
+          float newReceiveValue = Float.parseFloat(newReceiveValueString);
+          WarningActivity.mReceiveCharacteristic.setValue(Mantissa(newReceiveValue),Exponent(newReceiveValue),
                   RECEIVE_VALUE_FORMAT,
                   /* offset */ 1);
         } else {
@@ -189,12 +195,18 @@ public class SettingServiceFragment extends ServiceFragment {
 //              SEND_VALUE_FORMAT,
 //              /* offset */ 0);
         //세번째 방법 세 integer 묶어서 보내기
-      if(Integer.parseInt(mEditTextSendValue1.getText().toString()) > 0 && Integer.parseInt(mEditTextSendValue2.getText().toString()) > 0 && Integer.parseInt(mEditTextSendValue3.getText().toString()) > 0){
+      if(Float.parseFloat(mEditTextSendValue1.getText().toString()) > 0 && Float.parseFloat(mEditTextSendValue2.getText().toString()) > 0 && Float.parseFloat(mEditTextSendValue3.getText().toString()) > 0){
         //보내는 값이 각각 0 이상일시에만 send해준다.
-        int integer_to_send1 = Integer.parseInt(mEditTextSendValue1.getText().toString());
-        int integer_to_send2 = Integer.parseInt(mEditTextSendValue2.getText().toString());
-        int integer_to_send3 = Integer.parseInt(mEditTextSendValue3.getText().toString());
-        byte[] newSENDbytes = {0x10, (byte)integer_to_send1, (byte)integer_to_send2, (byte)integer_to_send3};
+        float float_to_send1 = Float.parseFloat(mEditTextSendValue1.getText().toString());
+        float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
+        float float_to_send3 = Float.parseFloat(mEditTextSendValue3.getText().toString());
+        WarningActivity.distance_setting_value1 = float_to_send1;
+        WarningActivity.distance_setting_value2 = float_to_send1;
+        WarningActivity.distance_setting_value3 = float_to_send1;
+
+        byte[] firstByteArray = new byte[]{0x10};
+        byte[] newSENDbytes =  joinArrays( firstByteArray, floatToByteArray(float_to_send1), floatToByteArray(float_to_send2), floatToByteArray(float_to_send3));
+        //byte[] newSENDbytes = {0x10, (byte)float_to_send1, (byte)float_to_send2, (byte)float_to_send3};
         WarningActivity.mSendCharacteristic.setValue(newSENDbytes);
 
         //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
@@ -455,11 +467,13 @@ public class SettingServiceFragment extends ServiceFragment {
   // 그게 하나하나 파싱 했을 때 저 비트 안에 들어가는지 ㅇㅇ
   private boolean isValidCharacteristicValue(String s, int format) {
     try {
-      int value = Integer.parseInt(s);
+      float value = Float.parseFloat(s);
       if (format == BluetoothGattCharacteristic.FORMAT_UINT8) {
         return (value >= MIN_UINT) && (value <= MAX_UINT8);
       } else if (format == BluetoothGattCharacteristic.FORMAT_UINT16) {
         return (value >= MIN_UINT) && (value <= MAX_UINT16);
+      } else if (format == BluetoothGattCharacteristic.FORMAT_FLOAT) {
+        return(value >=MIN_UINT) && (value <= MAX_UINT32);
       } else {
         throw new IllegalArgumentException(format + " is not a valid argument");
       }
@@ -499,4 +513,41 @@ public class SettingServiceFragment extends ServiceFragment {
     mDelegate.sendNotificationToDevices(WarningActivity.mSendCharacteristic);
     Log.v(TAG, "sent disconnetionValue: " + Arrays.toString(disconnectionValue));
   }
+  //float에서 가수값 추출
+  public int Mantissa(float value){
+    int mant = (int) (value * Math.pow(10.0, -Exponent(value)));
+    return mant;
+  }
+
+  //float에서 지수값 추출
+  public int Exponent(float value){
+    int expo = (int)Math.log10(value) + 1;
+    return expo;
+  }
+
+  //float에서 byte로 변환
+  public static byte[] floatToByteArray(float value) {
+    int intBits =  Float.floatToIntBits(value);
+    return new byte[] {
+            (byte) (intBits >> 24), (byte) (intBits >> 16), (byte) (intBits >> 8), (byte) (intBits) };
+  }
+
+  //배열 합치는 함수
+  public static byte[] joinArrays(byte[]... arrays) {
+    int len = 0;
+    for (byte[] array : arrays) {
+      len += array.length;
+    }
+
+    byte[] result = (byte[]) Array.newInstance(Byte.class, len);
+
+    int offset = 0;
+    for (byte[] array : arrays) {
+      System.arraycopy(array, 0, result, offset, array.length);
+      offset += array.length;
+    }
+
+    return result;
+  }
+
 }

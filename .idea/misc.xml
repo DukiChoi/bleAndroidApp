@@ -48,7 +48,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4185" />
         <entry key="app/src/main/res/drawable/green_circle.xml" value="0.286" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.4185" />
-        <entry key="app/src/main/res/layout/activity_layout.xml" value="0.1453804347826087" />
+        <entry key="app/src/main/res/layout/activity_layout.xml" value="0.23924560546875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.1743659420289855" />
@@ -60,9 +60,10 @@
         <entry key="app/src/main/res/layout/activity_warning.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/device_list.xml" value="0.27957916259765625" />
         <entry key="app/src/main/res/layout/dis_values.xml" value="0.5760416666666667" />
-        <entry key="app/src/main/res/layout/fragment_advertiser.xml" value="0.5760416666666667" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.5342364155654367" />
-        <entry key="app/src/main/res/layout/fragment_warning.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_advertiser.xml" value="0.2501673380533854" />
+        <entry key="app/src/main/res/layout/fragment_nordic_uart.xml" value="0.35651346842447906" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.27872314453125" />
+        <entry key="app/src/main/res/layout/fragment_warning.xml" value="0.4915356445312501" />
         <entry key="app/src/main/res/layout/main.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/message_detail.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/title_bar.xml" value="0.5760416666666667" />

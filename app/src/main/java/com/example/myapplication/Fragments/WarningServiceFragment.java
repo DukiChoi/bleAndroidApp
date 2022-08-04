@@ -53,6 +53,7 @@ public class WarningServiceFragment extends ServiceFragment {
   private static final int MIN_UINT = 0;
   private static final int MAX_UINT8 = (int) Math.pow(2, 8) - 1;
   private static final int MAX_UINT16 = (int) Math.pow(2, 16) - 1;
+  private static final int MAX_UINT32 = (int) Math.pow(2, 32) - 1;
   /**
    * See <a href="https://developer.bluetooth.org/gatt/services/Pages/ServiceViewer.aspx?u=org.bluetooth.service.health_thermometer.xml">
    * Health Thermometer Service</a>
@@ -86,7 +87,7 @@ public class WarningServiceFragment extends ServiceFragment {
   //이건 TxChar UUID 설정 부분 (보내는 Char)
   private static final UUID SEND_UUID = UUID
           .fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e");  //RxChar UUID
-  private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
+  private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_FLOAT;
   private static final String SEND_DESCRIPTION = "This characteristic is used " +
           "as TxChar Nordic Uart device";
 
@@ -98,7 +99,7 @@ public class WarningServiceFragment extends ServiceFragment {
    */
   private static final UUID RECIEVE_UUID = UUID
           .fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e");  //TxChar UUID
-  private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
+  private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_FLOAT;
 
 
   private static final String RECEIVE_DESCRIPTION = "This characteristic is used " +
@@ -125,6 +126,9 @@ public class WarningServiceFragment extends ServiceFragment {
   private TextView mTextViewReceiveValue1;
   private TextView mTextViewReceiveValue2;
   private TextView mTextViewReceiveValue3;
+  private TextView mTextViewDistanceValue1;
+  private TextView mTextViewDistanceValue2;
+  private TextView mTextViewDistanceValue3;
   //이건 Text Editor에 수정을 할 시에 그걸 가지고 보낼 값(Characteristic Value)을 바꾸는 것.
   private final OnEditorActionListener mOnEditorActionListenerSend = new OnEditorActionListener() {
     @Override
@@ -145,6 +149,7 @@ public class WarningServiceFragment extends ServiceFragment {
         } else {
           Toast.makeText(getActivity(), "Chracteristic 형식이 틀립니다.",
                   Toast.LENGTH_SHORT).show();
+          Log.v(TAG, "Charicteristic 형식 변경 필요: " + newSENDValueString);
         }
       }
       return false;
@@ -261,6 +266,12 @@ public class WarningServiceFragment extends ServiceFragment {
             .findViewById(R.id.Textview_Recievevalue_a2);
     mTextViewReceiveValue3 = (TextView) view
             .findViewById(R.id.Textview_Recievevalue_a3);
+    mTextViewDistanceValue1 = (TextView) view
+            .findViewById(R.id.Textview_distance_danger);
+    mTextViewDistanceValue2 = (TextView) view
+            .findViewById(R.id.Textview_distance_warning);
+    mTextViewDistanceValue3 = (TextView) view
+            .findViewById(R.id.Textview_distance_safe);
     //여기서 Editor 리스너를 써줬기는 한데 여기선 사실상 필요가 없다.(EditText 대신 TextView 써줘서 ㅇㅇ)
 //    mTextViewReceiveValue1
 //            .setOnEditorActionListener(mOnEditorActionListenerReceive);
@@ -278,6 +289,9 @@ public class WarningServiceFragment extends ServiceFragment {
     mTextViewReceiveValue1.setText(Integer.toString(value1));
     mTextViewReceiveValue2.setText(Integer.toString(value2));
     mTextViewReceiveValue3.setText(Integer.toString(value3));
+    mTextViewDistanceValue1.setText(Float.toString(WarningActivity.distance_setting_value1));
+    mTextViewDistanceValue2.setText(Float.toString(WarningActivity.distance_setting_value2));
+    mTextViewDistanceValue3.setText(Float.toString(WarningActivity.distance_setting_value3));
     return view;
   }
 
@@ -457,6 +471,8 @@ public class WarningServiceFragment extends ServiceFragment {
         return (value >= MIN_UINT) && (value <= MAX_UINT8);
       } else if (format == BluetoothGattCharacteristic.FORMAT_UINT16) {
         return (value >= MIN_UINT) && (value <= MAX_UINT16);
+      } else if (format == BluetoothGattCharacteristic.FORMAT_FLOAT) {
+          return(value >=MIN_UINT) && (value <= MAX_UINT32);
       } else {
         throw new IllegalArgumentException(format + " is not a valid argument");
       }

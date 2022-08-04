@@ -52,7 +52,14 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     //여기서 Gattservice 변수 선언.
     public static BluetoothGattCharacteristic mSendCharacteristic;
     public static BluetoothGattCharacteristic mReceiveCharacteristic;
-
+    public static float distance_setting_value1;
+    public static float distance_setting_value2;
+    public static float distance_setting_value3;
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //        변수 선언
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 
     Spinner spinner;
     String[] items = {"아이템0","아이템1","아이템2","아이템3","아이템4"};
@@ -66,11 +73,6 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     private static final UUID CLIENT_CHARACTERISTIC_CONFIGURATION_UUID = UUID
             .fromString("00002902-0000-1000-8000-00805f9b34fb");
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    //        변수 선언
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////
 
     private static final int MIN_UINT = 0;
     private static final int MAX_UINT8 = (int) Math.pow(2, 8) - 1;
@@ -343,11 +345,6 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-        //여기서부터 스피너 시작
-
-
 
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
