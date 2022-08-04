@@ -87,7 +87,7 @@ public class WarningServiceFragment extends ServiceFragment {
   //이건 TxChar UUID 설정 부분 (보내는 Char)
   private static final UUID SEND_UUID = UUID
           .fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e");  //RxChar UUID
-  private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_FLOAT;
+  private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
   private static final String SEND_DESCRIPTION = "This characteristic is used " +
           "as TxChar Nordic Uart device";
 
@@ -99,7 +99,7 @@ public class WarningServiceFragment extends ServiceFragment {
    */
   private static final UUID RECIEVE_UUID = UUID
           .fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e");  //TxChar UUID
-  private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_FLOAT;
+  private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
 
 
   private static final String RECEIVE_DESCRIPTION = "This characteristic is used " +
