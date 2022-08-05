@@ -427,7 +427,7 @@ public class WarningServiceFragment extends ServiceFragment {
         if(value1 < WarningActivity.distance_setting_value1){
           //진동
           Vibrator vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
-          vibrator.vibrate(200); // 0.2초간 진동
+          vibrator.vibrate(2000); // 2초간 진동 딱 한번
           //벨소리
           MediaPlayer player = MediaPlayer.create(WarningActivity.context, R.raw.alert);
           player.start();

@@ -132,7 +132,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     private final long finishtime = 1000;
     private long presstime = 0;
-
+    public static int alert_mode = 0;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -487,7 +487,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_disconnect_devices) {
+        if (item.getItemId() == R.id.action_disconnect_devices && alert_mode==0) {
             //여기서 AlertDialog를 사용해서 온오프시에 확인창 팝업
             AlertDialog.Builder builder = new AlertDialog.Builder(WarningActivity.this);
             builder.setTitle("경고");
@@ -530,7 +530,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
             return true /* event_consumed */;
         }
-        else if (item.getItemId() == R.id.action_warning) {
+        else if (item.getItemId() == R.id.action_warning && alert_mode==0) {
             mCurrentServiceFragment = mWarningServiceFragment;
             getFragmentManager()
                     .beginTransaction()
@@ -540,7 +540,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             return true /* event_consumed */;
         }
 
-        else if (item.getItemId() == R.id.action_setting) {
+        else if (item.getItemId() == R.id.action_setting && alert_mode==0) {
             //원래는 이렇게 화면 자체를 새롭게 띄워줬었는데 이렇게 하면 안 될 것 같기도하고...
 //            Intent intent = new Intent(this, SettingActivity.class);
 //            startActivity(intent);

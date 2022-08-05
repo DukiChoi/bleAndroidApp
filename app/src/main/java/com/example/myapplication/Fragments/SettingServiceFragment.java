@@ -117,7 +117,10 @@ public class SettingServiceFragment extends ServiceFragment {
 
   private static final String RECEIVE_DESCRIPTION = "This characteristic is used " +
           "as RxChar of Nordic Uart device";
-
+  Vibrator vibrator = null;
+  MediaPlayer player = null;
+  public Thread triggerService = null;
+  Animation anim = null;
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -225,7 +228,7 @@ public class SettingServiceFragment extends ServiceFragment {
 //              SEND_VALUE_FORMAT,
 //              /* offset */ 0);
         //세번째 방법 세 integer 묶어서 보내기
-      if(Float.parseFloat(mEditTextSendValue1.getText().toString()) > 0 && Float.parseFloat(mEditTextSendValue2.getText().toString()) > 0 && Float.parseFloat(mEditTextSendValue3.getText().toString()) > 0){
+      if(Float.parseFloat(mEditTextSendValue1.getText().toString()) > 0 && Float.parseFloat(mEditTextSendValue2.getText().toString()) > 0 && Float.parseFloat(mEditTextSendValue3.getText().toString()) > 0 && WarningActivity.alert_mode ==0){
         //보내는 값이 각각 0 이상일시에만 send해준다.
         float float_to_send1 = Float.parseFloat(mEditTextSendValue1.getText().toString());
         float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
@@ -249,23 +252,23 @@ public class SettingServiceFragment extends ServiceFragment {
         Log.v(TAG, "sent: " + Arrays.toString(WarningActivity.mSendCharacteristic.getValue()));
         setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
 
-        //실험삼아 진동 + 소리 + 깜빡이게 해놓음
+        //경고임을 알려주는 변수 1로 만들고
+        WarningActivity.alert_mode = 1;
         //진동
-        Vibrator vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(200); // 0.2초간 진동
-        //벨소리
-        MediaPlayer player = MediaPlayer.create(WarningActivity.context, R.raw.alert);
-        player.start();
-        //배경 빨갛게 하얗게
-        getView().setBackgroundColor(Color.RED);
-        Animation anim = new AlphaAnimation(0.0f,1.0f);
-        anim.setDuration(100);
-        anim.setStartOffset(50);
-        anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(Animation.INFINITE);
-        getView().startAnimation(anim);
+        Alert();
+
       }
-      else{
+      else if (WarningActivity.alert_mode == 1){
+//        alert_mode = false;
+//        if(triggerService!= null) {
+//          triggerService.interrupt();
+//          Log.v(TAG, "진동 thread interrupt");
+//        }
+        //일시정지 상태엔 버튼 못 누르게 해야해서 2로 설정
+        WarningActivity.alert_mode = 2;
+        alert_sleep();
+      }
+      else {
         //만약 입력 거리값이 0이면 값을 보내지 않음.
         Toast.makeText(getActivity(), "거리 값을 제대로 입력해주세요",
                 Toast.LENGTH_SHORT).show();
@@ -347,7 +350,6 @@ public class SettingServiceFragment extends ServiceFragment {
 
     Button notifyButton = (Button) view.findViewById(R.id.button_SendDataNotify);
     notifyButton.setOnClickListener(mNotifyButtonListener);
-
     return view;
   }
 
@@ -428,10 +430,10 @@ public class SettingServiceFragment extends ServiceFragment {
     WarningActivity.mReceiveCharacteristic.setValue(ReceiveValue,
             RECEIVE_VALUE_FORMAT,
             /* offset */ 1);
-    // Characteristic Value: [flags, heart rate value, 0, 0]
-    mEditTextSendValue1.setText(Integer.toString(SendValue));
-    mTextViewReceiveValue.setText(Integer.toString(ReceiveValue));
-    //여기서 보낼 값으로 에딧 텍스트 값도 변경해줌
+
+    //mEditTextSendValue1.setText(Integer.toString(SendValue));
+    //mTextViewReceiveValue.setText(Integer.toString(ReceiveValue));
+    //여기서 보낼 값으로 에딧 텍스트 값도 변경해줬었는데 할 이유가 없다.
   }
 
 
@@ -594,4 +596,67 @@ public class SettingServiceFragment extends ServiceFragment {
     return result;
   }
 
+  public void Alert(){
+    player_and_anim();
+    vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
+
+    //진동은 따로 쓰레드 써서 계속 울리게 해야함
+    triggerService = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        while(!triggerService.isInterrupted())
+        {
+          try {
+            Log.v(TAG, "진동 시작합니다");
+		    vibrator.vibrate(1000);
+            Thread.sleep(2000);
+          } catch (InterruptedException e){
+              //이건 아예 스탑
+//            if (player!=null){
+//              player.stop();
+//              Log.v(TAG, "경고음 stop");
+//            }
+//            anim.cancel();
+//            getView().setBackgroundColor(Color.WHITE);
+//            Log.v(TAG, "화면 깜박임 stop");
+//            Thread.currentThread().interrupt();
+//            e.printStackTrace();
+            //이건 일시정지
+            try {
+              anim.cancel();
+              player.stop();
+              Thread.sleep(3000);
+              //플레이어랑 애니메 다시 세팅 후 시작, 잔동 Thread는 스스로 시작함
+              WarningActivity.alert_mode = 1;
+              player_and_anim();
+            } catch (InterruptedException ex) {
+              ex.printStackTrace();
+            }
+          }
+        }
+        // 한번 울리고 종료할려면
+        // Done with our work... stop the service!
+        //AlarmService_Service.this.stopSelf();
+      }
+    }
+    );
+    triggerService.start();
+  }
+  public void player_and_anim(){
+    //벨소리
+    player =  MediaPlayer.create(WarningActivity.context, R.raw.alert);
+    player.start();
+    //배경 빨갛게 하얗게
+    getView().setBackgroundColor(Color.RED);
+    anim = new AlphaAnimation(0.0f,1.0f);
+    anim.setDuration(100);
+    anim.setStartOffset(50);
+    anim.setRepeatMode(Animation.REVERSE);
+    anim.setRepeatCount(Animation.INFINITE);
+    getView().startAnimation(anim);
+  }
+  public void alert_sleep(){
+    triggerService.interrupt();
+
+  }
 }
