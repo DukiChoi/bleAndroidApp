@@ -143,10 +143,31 @@ public class SettingServiceFragment extends ServiceFragment {
 //          mSendCharacteristic.setValue(newSENDbytes);
           //두번째. int로 바꾸기
           float newSendValue = Float.parseFloat(newSENDValueString);
-
-          WarningActivity.mSendCharacteristic.setValue(Mantissa(newSendValue),Exponent(newSendValue),
-                  SEND_VALUE_FORMAT,
-                  /* offset */ 0);
+          if (textView == mEditTextSendValue1) {
+            newSendValue = newSendValue + 2;
+            mEditTextSendValue2.setText(Float.toString(newSendValue));
+            newSendValue = newSendValue + 2;
+            mEditTextSendValue3.setText(Float.toString(newSendValue));
+          }else if (textView == mEditTextSendValue2) {
+            newSendValue = newSendValue - 2;
+            mEditTextSendValue1.setText(Float.toString(newSendValue));
+            newSendValue = newSendValue + 4;
+            mEditTextSendValue3.setText(Float.toString(newSendValue));
+          }else if (textView == mEditTextSendValue3) {
+            newSendValue = newSendValue - 4;
+            mEditTextSendValue1.setText(Float.toString(newSendValue));
+            newSendValue = newSendValue + 2;
+            mEditTextSendValue2.setText(Float.toString(newSendValue));
+          }
+          float float_to_send1 = Float.parseFloat(mEditTextSendValue1.getText().toString());
+          float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
+          float float_to_send3 = Float.parseFloat(mEditTextSendValue3.getText().toString());
+          WarningActivity.distance_setting_value1 = float_to_send1;
+          WarningActivity.distance_setting_value2 = float_to_send2;
+          WarningActivity.distance_setting_value3 = float_to_send3;
+//          WarningActivity.mSendCharacteristic.setValue(Mantissa(newSendValue),Exponent(newSendValue),
+//                  SEND_VALUE_FORMAT,
+//                  /* offset */ 0);
         } else {
           Toast.makeText(getActivity(), "Chracteristic 형식이 틀립니다.",
                   Toast.LENGTH_SHORT).show();
@@ -201,8 +222,8 @@ public class SettingServiceFragment extends ServiceFragment {
         float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
         float float_to_send3 = Float.parseFloat(mEditTextSendValue3.getText().toString());
         WarningActivity.distance_setting_value1 = float_to_send1;
-        WarningActivity.distance_setting_value2 = float_to_send1;
-        WarningActivity.distance_setting_value3 = float_to_send1;
+        WarningActivity.distance_setting_value2 = float_to_send2;
+        WarningActivity.distance_setting_value3 = float_to_send3;
 
         byte[] firstByteArray = new byte[]{0x10};
         byte[] newSENDbytes =  joinArrays( firstByteArray, floatToByteArray(float_to_send1), floatToByteArray(float_to_send2), floatToByteArray(float_to_send3));
@@ -539,7 +560,7 @@ public class SettingServiceFragment extends ServiceFragment {
       len += array.length;
     }
 
-    byte[] result = (byte[]) Array.newInstance(Byte.class, len);
+    byte[] result = (byte[]) Array.newInstance(byte.class, len);
 
     int offset = 0;
     for (byte[] array : arrays) {

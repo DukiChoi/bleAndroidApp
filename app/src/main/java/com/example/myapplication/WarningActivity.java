@@ -128,6 +128,11 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     private static final String RECEIVE_DESCRIPTION = "This characteristic is used " +
             "as RxChar of Nordic Uart device";
 
+
+    private final long finishtime = 1000;
+    private long presstime = 0;
+
+
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //        변수 선언 끝
@@ -423,6 +428,9 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                 BluetoothGattService.SERVICE_TYPE_PRIMARY);
         mBluetoothGattService.addCharacteristic(mSendCharacteristic);
         mBluetoothGattService.addCharacteristic(mReceiveCharacteristic);
+
+        //디바이스 네임 설정하는 부분
+        BluetoothAdapter.getDefaultAdapter().setName("unlab_device");
     }
 
     @Override
@@ -561,6 +569,23 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         }
         resetStatusViews();
     }
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - presstime;
+
+        if (0 <= intervalTime && finishtime >= intervalTime)
+        {
+            finish();
+        }
+        else
+        {
+            presstime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @Override
     public void sendNotificationToDevices(BluetoothGattCharacteristic characteristic) {
