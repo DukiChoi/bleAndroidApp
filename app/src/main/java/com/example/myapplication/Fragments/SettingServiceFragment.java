@@ -21,13 +21,22 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
+import android.content.Context;
+import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelUuid;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -238,7 +247,23 @@ public class SettingServiceFragment extends ServiceFragment {
         Toast.makeText(getActivity(), "거리 값을 세팅하였습니다.",
                 Toast.LENGTH_SHORT).show();
         Log.v(TAG, "sent: " + Arrays.toString(WarningActivity.mSendCharacteristic.getValue()));
+        setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
 
+        //실험삼아 진동 + 소리 + 깜빡이게 해놓음
+        //진동
+        Vibrator vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(200); // 0.2초간 진동
+        //벨소리
+        MediaPlayer player = MediaPlayer.create(WarningActivity.context, R.raw.alert);
+        player.start();
+        //배경 빨갛게 하얗게
+        getView().setBackgroundColor(Color.RED);
+        Animation anim = new AlphaAnimation(0.0f,1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(50);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        getView().startAnimation(anim);
       }
       else{
         //만약 입력 거리값이 0이면 값을 보내지 않음.
@@ -322,8 +347,6 @@ public class SettingServiceFragment extends ServiceFragment {
 
     Button notifyButton = (Button) view.findViewById(R.id.button_SendDataNotify);
     notifyButton.setOnClickListener(mNotifyButtonListener);
-    setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
-
 
     return view;
   }

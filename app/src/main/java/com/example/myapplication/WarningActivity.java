@@ -55,6 +55,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     public static float distance_setting_value1;
     public static float distance_setting_value2;
     public static float distance_setting_value3;
+    public static Context context;
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //        변수 선언
@@ -350,7 +351,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        context = getApplicationContext();
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_layout);

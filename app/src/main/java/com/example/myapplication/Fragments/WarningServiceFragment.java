@@ -21,13 +21,22 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
+import android.content.Context;
+import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelUuid;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,7 +46,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.WarningActivity;
-
+import android.R.raw.*;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -414,13 +423,34 @@ public class WarningServiceFragment extends ServiceFragment {
         mTextViewReceiveValue2.setText(String.valueOf(value2));
         mTextViewReceiveValue3.setText(String.valueOf(value3));
 
+        //위험반경 내부로 작업자가 들어가면 알림
+        if(value1 < WarningActivity.distance_setting_value1){
+          //진동
+          Vibrator vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
+          vibrator.vibrate(200); // 0.2초간 진동
+          //벨소리
+          MediaPlayer player = MediaPlayer.create(WarningActivity.context, R.raw.alert);
+          player.start();
+          //배경 빨갛게 하얗게
+          getView().setBackgroundColor(Color.RED);
+          Animation anim = new AlphaAnimation(0.0f,1.0f);
+          anim.setDuration(100);
+          anim.setStartOffset(50);
+          anim.setRepeatMode(Animation.REVERSE);
+          anim.setRepeatCount(Animation.INFINITE);
+          getView().startAnimation(anim);
+        }
+        else{
+          getView().setBackgroundColor(Color.WHITE);
+          getView().clearAnimation();
+        }
+
         //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
         Log.v(TAG, "Received: " + Arrays.toString(value));
       }
     });
     return BluetoothGatt.GATT_SUCCESS;
   }
-
 
   // 노티피케이션을 쓸 수 있게 되면 앱 푸시 알림
   @Override
