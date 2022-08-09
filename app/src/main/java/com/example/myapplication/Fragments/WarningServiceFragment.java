@@ -19,14 +19,10 @@ package com.example.myapplication.Fragments;
 import android.app.Activity;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.content.Context;
 import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.os.Vibrator;
@@ -46,7 +42,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.WarningActivity;
-import android.R.raw.*;
+
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -114,6 +110,10 @@ public class WarningServiceFragment extends ServiceFragment {
   private static final String RECEIVE_DESCRIPTION = "This characteristic is used " +
           "as RxChar of Nordic Uart device";
 
+  Vibrator vibrator = null;
+  MediaPlayer player = null;
+  public Thread triggerService = null;
+  Animation anim = null;
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,6 +214,16 @@ public class WarningServiceFragment extends ServiceFragment {
 //  };
 
 
+  private final View.OnClickListener mAlertStopButtonListener = new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      //알람 일시정지
+      if (WarningActivity.alert_mode == 1){
+        alert_sleep();
+      }
+    }
+  };
+
 
   /*
   원래있던 MeasurementInterval을 ReceiveValue로 바꿔줌
@@ -285,6 +295,8 @@ public class WarningServiceFragment extends ServiceFragment {
 //    mTextViewReceiveValue1
 //            .setOnEditorActionListener(mOnEditorActionListenerReceive);
 //    Button notifyButton = (Button) view.findViewById(R.id.button_poweron);
+    Button alertStopButton = (Button) view.findViewById(R.id.button_AlertSTOP);
+    alertStopButton.setOnClickListener(mAlertStopButtonListener);
 //    notifyButton.setOnClickListener(mNotifyButtonListener);
 //    setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
     byte[] value = {0,0,0,0,0,0,0,0};
@@ -410,7 +422,7 @@ public class WarningServiceFragment extends ServiceFragment {
 //        mTextViewReceiveValue.setText(bytesToString(value));
 //        //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
 //        Log.v(TAG, "Received: " + Arrays.toString(value) + " / converted into:" + bytesToString(value));
-        //여기서 이제 Value를 [태그, 거리, 태그, 거리, 태그, 거리, 태그, 거리] 로 받기로 했으므로,
+        //여기서 이제 Value를 [태그, 멤버, 태그, 멤버, 태그, 멤버, 태그, 멤버] 로 받기로 했으므로,
         int[] members = classification(value);
         int value1 = members[0];
         int value2 = members[1];
@@ -423,26 +435,14 @@ public class WarningServiceFragment extends ServiceFragment {
         mTextViewReceiveValue2.setText(String.valueOf(value2));
         mTextViewReceiveValue3.setText(String.valueOf(value3));
 
-        //위험반경 내부로 작업자가 들어가면 알림
-        if(value1 < WarningActivity.distance_setting_value1){
-          //진동
-          Vibrator vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
-          vibrator.vibrate(2000); // 2초간 진동 딱 한번
-          //벨소리
-          MediaPlayer player = MediaPlayer.create(WarningActivity.context, R.raw.alert);
-          player.start();
-          //배경 빨갛게 하얗게
-          getView().setBackgroundColor(Color.RED);
-          Animation anim = new AlphaAnimation(0.0f,1.0f);
-          anim.setDuration(100);
-          anim.setStartOffset(50);
-          anim.setRepeatMode(Animation.REVERSE);
-          anim.setRepeatCount(Animation.INFINITE);
-          getView().startAnimation(anim);
+        //위험반경 내부로 들어간 작업자기 생기면 알림
+        if(value1 > 0  && WarningActivity.alert_mode == 0){
+          //진동 및 알림
+          alert();
         }
-        else{
-          getView().setBackgroundColor(Color.WHITE);
-          getView().clearAnimation();
+        //위험반경 내부에 있지 않게 되면 알람을 정지
+        else if (value1 == 0 && WarningActivity.alert_mode == 1){
+          alert_stop();
         }
 
         //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
@@ -563,4 +563,83 @@ public class WarningServiceFragment extends ServiceFragment {
     mDelegate.sendNotificationToDevices(WarningActivity.mSendCharacteristic);
     Log.v(TAG, "sent disconnetionValue: " + Arrays.toString(disconnectionValue));
   }
+
+  public void alert(){
+    //경고임을 알려주는 변수 1로 만들음
+    WarningActivity.alert_mode = 1;
+    player_and_anim();
+    vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
+
+    //진동은 따로 쓰레드 써서 계속 울리게 해야함
+    triggerService = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        while(!triggerService.isInterrupted())
+        {
+          try {
+            Log.v(TAG, "진동 시작합니다");
+            vibrator.vibrate(1000);
+            Thread.sleep(2000);
+          } catch (InterruptedException e){
+            //이건 아예 스탑
+            if(WarningActivity.alert_mode ==0) {
+              if (player != null) {
+                player.stop();
+                Log.v(TAG, "경고음 stop");
+              }
+              anim.cancel();
+              getView().setBackgroundColor(Color.WHITE);
+              Log.v(TAG, "화면 깜박임 stop");
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            //이건 일시정지
+            else if(WarningActivity.alert_mode == 2) {
+              try {
+                anim.cancel();
+                player.stop();
+                Thread.sleep(3000);
+                //플레이어랑 애니메 다시 세팅 후 시작, 잔동 Thread는 스스로 시작함
+                WarningActivity.alert_mode = 1;
+                player_and_anim();
+              } catch (InterruptedException ex) {
+                ex.printStackTrace();
+              }
+            }
+          }
+        }
+        // 한번 울리고 종료할려면
+        // Done with our work... stop the service!
+        //AlarmService_Service.this.stopSelf();
+      }
+    }
+    );
+    triggerService.start();
+  }
+  public void player_and_anim(){
+    //벨소리
+    player =  MediaPlayer.create(WarningActivity.context, R.raw.alert);
+    player.start();
+    //배경 빨갛게 하얗게
+    getView().setBackgroundColor(Color.RED);
+    anim = new AlphaAnimation(0.0f,1.0f);
+    anim.setDuration(100);
+    anim.setStartOffset(50);
+    anim.setRepeatMode(Animation.REVERSE);
+    anim.setRepeatCount(Animation.INFINITE);
+    getView().startAnimation(anim);
+  }
+  public void alert_stop(){
+    WarningActivity.alert_mode = 0;
+    if(triggerService!= null) {
+      triggerService.interrupt();
+      Log.v(TAG, "진동 thread interrupt");
+    }
+  }
+  public void alert_sleep(){
+    //일시정지 상태엔 버튼 잠시 누르게 해야해서 2로 설정
+    WarningActivity.alert_mode = 2;
+    triggerService.interrupt();
+  }
+
 }

@@ -252,21 +252,13 @@ public class SettingServiceFragment extends ServiceFragment {
         Log.v(TAG, "sent: " + Arrays.toString(WarningActivity.mSendCharacteristic.getValue()));
         setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
 
-        //경고임을 알려주는 변수 1로 만들고
-        WarningActivity.alert_mode = 1;
-        //진동
-        Alert();
+        //진동 및 알림
+        alert();
 
       }
       else if (WarningActivity.alert_mode == 1){
-//        alert_mode = false;
-//        if(triggerService!= null) {
-//          triggerService.interrupt();
-//          Log.v(TAG, "진동 thread interrupt");
-//        }
-        //일시정지 상태엔 버튼 못 누르게 해야해서 2로 설정
-        WarningActivity.alert_mode = 2;
-        alert_sleep();
+        alert_stop();
+        //alert_sleep();
       }
       else {
         //만약 입력 거리값이 0이면 값을 보내지 않음.
@@ -596,7 +588,9 @@ public class SettingServiceFragment extends ServiceFragment {
     return result;
   }
 
-  public void Alert(){
+  public void alert(){
+    //경고임을 알려주는 변수 1로 만들음
+    WarningActivity.alert_mode = 1;
     player_and_anim();
     vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -608,29 +602,33 @@ public class SettingServiceFragment extends ServiceFragment {
         {
           try {
             Log.v(TAG, "진동 시작합니다");
-		    vibrator.vibrate(1000);
+            vibrator.vibrate(1000);
             Thread.sleep(2000);
           } catch (InterruptedException e){
-              //이건 아예 스탑
-//            if (player!=null){
-//              player.stop();
-//              Log.v(TAG, "경고음 stop");
-//            }
-//            anim.cancel();
-//            getView().setBackgroundColor(Color.WHITE);
-//            Log.v(TAG, "화면 깜박임 stop");
-//            Thread.currentThread().interrupt();
-//            e.printStackTrace();
-            //이건 일시정지
-            try {
+            //이건 아예 스탑
+            if(WarningActivity.alert_mode ==0) {
+              if (player != null) {
+                player.stop();
+                Log.v(TAG, "경고음 stop");
+              }
               anim.cancel();
-              player.stop();
-              Thread.sleep(3000);
-              //플레이어랑 애니메 다시 세팅 후 시작, 잔동 Thread는 스스로 시작함
-              WarningActivity.alert_mode = 1;
-              player_and_anim();
-            } catch (InterruptedException ex) {
-              ex.printStackTrace();
+              getView().setBackgroundColor(Color.WHITE);
+              Log.v(TAG, "화면 깜박임 stop");
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            //이건 일시정지
+            else if(WarningActivity.alert_mode == 2) {
+              try {
+                anim.cancel();
+                player.stop();
+                Thread.sleep(3000);
+                //플레이어랑 애니메 다시 세팅 후 시작, 잔동 Thread는 스스로 시작함
+                WarningActivity.alert_mode = 1;
+                player_and_anim();
+              } catch (InterruptedException ex) {
+                ex.printStackTrace();
+              }
             }
           }
         }
@@ -655,8 +653,17 @@ public class SettingServiceFragment extends ServiceFragment {
     anim.setRepeatCount(Animation.INFINITE);
     getView().startAnimation(anim);
   }
-  public void alert_sleep(){
-    triggerService.interrupt();
 
+  public void alert_stop(){
+    WarningActivity.alert_mode = 0;
+    if(triggerService!= null) {
+      triggerService.interrupt();
+      Log.v(TAG, "진동 thread interrupt");
+    }
+  }
+  public void alert_sleep(){
+    //일시정지 상태엔 버튼 못 누르게 해야해서 2로 설정
+    WarningActivity.alert_mode = 2;
+    triggerService.interrupt();
   }
 }
