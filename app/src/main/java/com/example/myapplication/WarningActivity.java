@@ -21,11 +21,14 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -133,7 +136,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     private final long finishtime = 1000;
     private long presstime = 0;
     public static int alert_mode = 0;
-
+    public static String device_name = "unlab_device";
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //        변수 선언 끝
@@ -155,6 +158,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     }
     //private TextView mAdvStatus;
     private TextView mConnectionStatus;
+    private EditText mdeviceName;
     private ServiceFragment mCurrentServiceFragment;
     public static BluetoothGattService mBluetoothGattService;
     private HashSet<BluetoothDevice> mBluetoothDevices;
@@ -349,6 +353,18 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private final TextView.OnEditorActionListener mOnEditorActionListenerSend = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView editText, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                device_name = editText.getText().toString();
+
+                }
+            return false;
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         context = getApplicationContext();
@@ -365,10 +381,12 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         //mAdvStatus = (TextView) findViewById(R.id.textView_advertisingStatus);
         mConnectionStatus = (TextView) findViewById(R.id.textView_connectionStatus);
+        mdeviceName = (EditText) findViewById(R.id.editText_deviceName);
         mBluetoothDevices = new HashSet<>();
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = mBluetoothManager.getAdapter();
-
+        mdeviceName
+                .setOnEditorActionListener(mOnEditorActionListenerSend);
 
         //정확히 여기서 4가지 서비스 중 한개로 넘어가는 것 ㅇㅇ Peripherals에서 받아온 리스트 인덱스 번호
         //EXTRA_PERIPHERAL_INDEX를 가지고 어떤 서비스로 넘어갈지 판단한다.
@@ -431,7 +449,8 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         mBluetoothGattService.addCharacteristic(mReceiveCharacteristic);
 
         //디바이스 네임 설정하는 부분
-        BluetoothAdapter.getDefaultAdapter().setName("unlab_device");
+        mdeviceName.setText(device_name);
+        BluetoothAdapter.getDefaultAdapter().setName(device_name);
     }
 
     @Override

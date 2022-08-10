@@ -49,16 +49,17 @@
         <entry key="app/src/main/res/drawable/border.xml" value="0.202" />
         <entry key="app/src/main/res/drawable/green_circle.xml" value="0.286" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.4185" />
-        <entry key="app/src/main/res/layout/activity_layout.xml" value="0.23924560546875" />
+        <entry key="app/src/main/res/layout/activity_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.1743659420289855" />
         <entry key="app/src/main/res/layout/activity_main4.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main6.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_main8.xml" value="0.5760416666666667" />
-        <entry key="app/src/main/res/layout/activity_peripherals.xml" value="0.1453804347826087" />
+        <entry key="app/src/main/res/layout/activity_peripherals.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_server.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/activity_warning.xml" value="0.28177083333333336" />
+        <entry key="app/src/main/res/layout/device_element.xml" value="0.321875" />
         <entry key="app/src/main/res/layout/device_list.xml" value="0.27957916259765625" />
         <entry key="app/src/main/res/layout/dis_values.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/fragment_advertiser.xml" value="0.2501673380533854" />
