@@ -622,7 +622,7 @@ public class SettingServiceFragment extends ServiceFragment {
               try {
                 anim.cancel();
                 player.stop();
-                Thread.sleep(3000);
+                Thread.sleep(5000);
                 //플레이어랑 애니메 다시 세팅 후 시작, 잔동 Thread는 스스로 시작함
                 WarningActivity.alert_mode = 1;
                 player_and_anim();

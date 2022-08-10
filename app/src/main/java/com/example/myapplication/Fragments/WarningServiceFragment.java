@@ -538,6 +538,7 @@ public class WarningServiceFragment extends ServiceFragment {
   public int[] classification(byte[] value){
     //테스트값: 4, 9, 16, 18
     //0001010202030303
+    //0002010202030303
     byte[] test_value = {0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x03};
     int[] member_for_distances = {0, 0, 0};
     for(int i = 0; i < 4; i++){
@@ -598,7 +599,7 @@ public class WarningServiceFragment extends ServiceFragment {
               try {
                 anim.cancel();
                 player.stop();
-                Thread.sleep(3000);
+                Thread.sleep(5000);
                 //플레이어랑 애니메 다시 세팅 후 시작, 잔동 Thread는 스스로 시작함
                 WarningActivity.alert_mode = 1;
                 player_and_anim();
