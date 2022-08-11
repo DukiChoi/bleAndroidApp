@@ -47,6 +47,7 @@
         <entry key="..\:/Users/cbcc1/AndroidStudioProjects/bleAndroidApp/app/src/main/res/layout/title_bar.xml" value="0.30483112441214194" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4185" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.202" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/green_circle.xml" value="0.286" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.4185" />
         <entry key="app/src/main/res/layout/activity_layout.xml" value="0.1" />
@@ -64,7 +65,7 @@
         <entry key="app/src/main/res/layout/dis_values.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/fragment_advertiser.xml" value="0.2501673380533854" />
         <entry key="app/src/main/res/layout/fragment_nordic_uart.xml" value="0.35651346842447906" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.27872314453125" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_warning.xml" value="0.32054794520547947" />
         <entry key="app/src/main/res/layout/main.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/message_detail.xml" value="0.5760416666666667" />

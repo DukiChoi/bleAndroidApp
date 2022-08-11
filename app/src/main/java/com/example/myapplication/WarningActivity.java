@@ -158,7 +158,6 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     }
     //private TextView mAdvStatus;
     private TextView mConnectionStatus;
-    private EditText mdeviceName;
     private ServiceFragment mCurrentServiceFragment;
     public static BluetoothGattService mBluetoothGattService;
     private HashSet<BluetoothDevice> mBluetoothDevices;
@@ -353,7 +352,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private final TextView.OnEditorActionListener mOnEditorActionListenerSend = new TextView.OnEditorActionListener() {
+    private final TextView.OnEditorActionListener mOnDeviceNameEditorActionListenerSend = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView editText, int actionId, KeyEvent event) {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -381,12 +380,9 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         //mAdvStatus = (TextView) findViewById(R.id.textView_advertisingStatus);
         mConnectionStatus = (TextView) findViewById(R.id.textView_connectionStatus);
-        mdeviceName = (EditText) findViewById(R.id.editText_deviceName);
         mBluetoothDevices = new HashSet<>();
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = mBluetoothManager.getAdapter();
-        mdeviceName
-                .setOnEditorActionListener(mOnEditorActionListenerSend);
 
         //정확히 여기서 4가지 서비스 중 한개로 넘어가는 것 ㅇㅇ Peripherals에서 받아온 리스트 인덱스 번호
         //EXTRA_PERIPHERAL_INDEX를 가지고 어떤 서비스로 넘어갈지 판단한다.
@@ -447,9 +443,6 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                 BluetoothGattService.SERVICE_TYPE_PRIMARY);
         mBluetoothGattService.addCharacteristic(mSendCharacteristic);
         mBluetoothGattService.addCharacteristic(mReceiveCharacteristic);
-
-        //디바이스 네임 설정하는 부분
-        mdeviceName.setText(device_name);
         BluetoothAdapter.getDefaultAdapter().setName(device_name);
     }
 
@@ -484,24 +477,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     protected void onStart() {
         super.onStart();
         resetStatusViews();
-        // If the user disabled Bluetooth when the app was in the background,
-        // openGattServer() will return null.
-        mGattServer = mBluetoothManager.openGattServer(this, mGattServerCallback);
-        if (mGattServer == null) {
-            ensureBleFeaturesAvailable();
-            return;
-        }
-        // Add a service for a total of three services (Generic Attribute and Generic Access
-        // are present by default).
-        mGattServer.addService(mBluetoothGattService);
-
-        if (mBluetoothAdapter.isMultipleAdvertisementSupported()) {
-            mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
-            mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
-        } else {
-            //mAdvStatus.setText(R.string.status_noLeAdv);
-            Toast.makeText(getApplicationContext(), R.string.status_noLeAdv, Toast.LENGTH_SHORT).show();
-        }
+        //startConnection();
     }
 
     @Override
@@ -509,13 +485,16 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         if (item.getItemId() == R.id.action_disconnect_devices && alert_mode==0) {
             //여기서 AlertDialog를 사용해서 온오프시에 확인창 팝업
             AlertDialog.Builder builder = new AlertDialog.Builder(WarningActivity.this);
-            builder.setTitle("경고");
+            builder.setTitle("연결 세팅");
             if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
                 builder.setMessage("연결을 끊을까요?");
             }
             else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
-                builder.setMessage("연결을 시작할까요?");
+                builder.setMessage("연결을 시작할까요? (디바이스 이름을 적어주세요)");
             }
+            final EditText et = new EditText(WarningActivity.context);
+            et.setOnEditorActionListener(mOnDeviceNameEditorActionListenerSend);
+            builder.setIcon(R.drawable.gear).setView(et);
             builder.setPositiveButton("예",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -532,6 +511,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                                 //SettingServiceFrag 직접 초기화 시켜주는 것.
                                 mSettingServiceFragment = new SettingServiceFragment();
                                 onStart();
+                                startConnection();
                             }
                         }
                     });
@@ -718,5 +698,26 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     public void onButton9Clicked(View view) {
         finish();
+    }
+
+    public void startConnection(){
+        // If the user disabled Bluetooth when the app was in the background,
+        // openGattServer() will return null.
+        mGattServer = mBluetoothManager.openGattServer(this, mGattServerCallback);
+        if (mGattServer == null) {
+            ensureBleFeaturesAvailable();
+            return;
+        }
+        // Add a service for a total of three services (Generic Attribute and Generic Access
+        // are present by default).
+        mGattServer.addService(mBluetoothGattService);
+
+        if (mBluetoothAdapter.isMultipleAdvertisementSupported()) {
+            mAdvertiser = mBluetoothAdapter.getBluetoothLeAdvertiser();
+            mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
+        } else {
+            //mAdvStatus.setText(R.string.status_noLeAdv);
+            Toast.makeText(getApplicationContext(), R.string.status_noLeAdv, Toast.LENGTH_SHORT).show();
+        }
     }
 }

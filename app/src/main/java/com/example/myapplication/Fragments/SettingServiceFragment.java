@@ -327,6 +327,9 @@ public class SettingServiceFragment extends ServiceFragment {
             .findViewById(R.id.EditText_Sendvalue2);
     mEditTextSendValue3 = (EditText) view
             .findViewById(R.id.EditText_Sendvalue3);
+    mEditTextSendValue1.setImeOptions(EditorInfo.IME_ACTION_DONE);
+    mEditTextSendValue2.setImeOptions(EditorInfo.IME_ACTION_DONE);
+    mEditTextSendValue3.setImeOptions(EditorInfo.IME_ACTION_DONE);
     mEditTextSendValue1
             .setOnEditorActionListener(mOnEditorActionListenerSend);
     mEditTextSendValue2
