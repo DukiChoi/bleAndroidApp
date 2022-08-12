@@ -253,7 +253,7 @@ public class SettingServiceFragment extends ServiceFragment {
         setSendValue(INITIAL_SEND, INITIAL_RECEIVE);
 
         //진동 및 알림
-        alert();
+        //alert();
 
       }
       else if (WarningActivity.alert_mode == 1){

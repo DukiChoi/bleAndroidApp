@@ -219,7 +219,7 @@ public class WarningServiceFragment extends ServiceFragment {
     public void onClick(View v) {
       //알람 일시정지
       if (WarningActivity.alert_mode == 1){
-        alert_sleep();
+        alert_stop();
       }
     }
   };
