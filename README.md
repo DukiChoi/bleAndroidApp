@@ -9,7 +9,7 @@
 
 ![Warning menu](app_menu1.png)
 
-
+![Setting device name as which to advertise](app_menu1-1.png)
 
 
 ![Setting menu](app_menu2.png)
