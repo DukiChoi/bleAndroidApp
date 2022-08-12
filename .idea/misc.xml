@@ -66,7 +66,7 @@
         <entry key="app/src/main/res/layout/fragment_advertiser.xml" value="0.2501673380533854" />
         <entry key="app/src/main/res/layout/fragment_nordic_uart.xml" value="0.35651346842447906" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_warning.xml" value="0.32054794520547947" />
+        <entry key="app/src/main/res/layout/fragment_warning.xml" value="0.5" />
         <entry key="app/src/main/res/layout/main.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/message_detail.xml" value="0.5760416666666667" />
         <entry key="app/src/main/res/layout/title_bar.xml" value="0.5760416666666667" />

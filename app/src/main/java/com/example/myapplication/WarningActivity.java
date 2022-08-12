@@ -55,9 +55,9 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     //여기서 Gattservice 변수 선언.
     public static BluetoothGattCharacteristic mSendCharacteristic;
     public static BluetoothGattCharacteristic mReceiveCharacteristic;
-    public static float distance_setting_value1;
-    public static float distance_setting_value2;
-    public static float distance_setting_value3;
+    public static String distance_setting_value1;
+    public static String distance_setting_value2;
+    public static String distance_setting_value3;
     public static Context context;
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -486,15 +486,21 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             //여기서 AlertDialog를 사용해서 온오프시에 확인창 팝업
             AlertDialog.Builder builder = new AlertDialog.Builder(WarningActivity.this);
             builder.setTitle("연결 세팅");
-            if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
+            if (mBluetoothAdapter.isEnabled() && mAdvertiser != null && mBluetoothManager.getConnectedDevices(BluetoothGattServer.GATT).size()>0) {
                 builder.setMessage("연결을 끊을까요?");
             }
+            else if(mBluetoothAdapter.isEnabled() && mAdvertiser != null && mBluetoothManager.getConnectedDevices(BluetoothGattServer.GATT).size()==0){
+                builder.setMessage("연결 시도를 중지할까요?");
+            }
             else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
+                //여기서 EditText를 넣어준다.
+                final EditText et = new EditText(WarningActivity.context);
+                et.setOnEditorActionListener(mOnDeviceNameEditorActionListenerSend);
+                builder.setIcon(R.drawable.gear).setView(et);
                 builder.setMessage("연결을 시작할까요? (디바이스 이름을 적어주세요)");
             }
-            final EditText et = new EditText(WarningActivity.context);
-            et.setOnEditorActionListener(mOnDeviceNameEditorActionListenerSend);
-            builder.setIcon(R.drawable.gear).setView(et);
+
+
             builder.setPositiveButton("예",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -510,6 +516,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 //                                resetStatusViews();
                                 //SettingServiceFrag 직접 초기화 시켜주는 것.
                                 mSettingServiceFragment = new SettingServiceFragment();
+                                BluetoothAdapter.getDefaultAdapter().setName(device_name);
                                 onStart();
                                 startConnection();
                             }

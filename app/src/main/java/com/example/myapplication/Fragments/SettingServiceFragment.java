@@ -174,9 +174,9 @@ public class SettingServiceFragment extends ServiceFragment {
           float float_to_send1 = Float.parseFloat(mEditTextSendValue1.getText().toString());
           float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
           float float_to_send3 = Float.parseFloat(mEditTextSendValue3.getText().toString());
-          WarningActivity.distance_setting_value1 = float_to_send1;
-          WarningActivity.distance_setting_value2 = float_to_send2;
-          WarningActivity.distance_setting_value3 = float_to_send3;
+          WarningActivity.distance_setting_value1 = Float.toString(float_to_send1) + "m";
+          WarningActivity.distance_setting_value2 = Float.toString(float_to_send2) + "m";
+          WarningActivity.distance_setting_value3 = Float.toString(float_to_send3) + "m";
 //          WarningActivity.mSendCharacteristic.setValue(Mantissa(newSendValue),Exponent(newSendValue),
 //                  SEND_VALUE_FORMAT,
 //                  /* offset */ 0);
@@ -233,9 +233,9 @@ public class SettingServiceFragment extends ServiceFragment {
         float float_to_send1 = Float.parseFloat(mEditTextSendValue1.getText().toString());
         float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
         float float_to_send3 = Float.parseFloat(mEditTextSendValue3.getText().toString());
-        WarningActivity.distance_setting_value1 = float_to_send1;
-        WarningActivity.distance_setting_value2 = float_to_send2;
-        WarningActivity.distance_setting_value3 = float_to_send3;
+        WarningActivity.distance_setting_value1 = Float.toString(float_to_send1) + "m";
+        WarningActivity.distance_setting_value2 = Float.toString(float_to_send2) + "m";
+        WarningActivity.distance_setting_value3 = Float.toString(float_to_send3) + "m";
 
         byte[] firstByteArray = new byte[]{0x10};
         byte[] newSENDbytes =  joinArrays( firstByteArray, floatToByteArray(float_to_send1), floatToByteArray(float_to_send2), floatToByteArray(float_to_send3));

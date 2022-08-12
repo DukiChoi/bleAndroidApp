@@ -310,9 +310,9 @@ public class WarningServiceFragment extends ServiceFragment {
     mTextViewReceiveValue1.setText(Integer.toString(value1));
     mTextViewReceiveValue2.setText(Integer.toString(value2));
     mTextViewReceiveValue3.setText(Integer.toString(value3));
-    mTextViewDistanceValue1.setText(Float.toString(WarningActivity.distance_setting_value1));
-    mTextViewDistanceValue2.setText(Float.toString(WarningActivity.distance_setting_value2));
-    mTextViewDistanceValue3.setText(Float.toString(WarningActivity.distance_setting_value3));
+    mTextViewDistanceValue1.setText(WarningActivity.distance_setting_value1);
+    mTextViewDistanceValue2.setText(WarningActivity.distance_setting_value2);
+    mTextViewDistanceValue3.setText(WarningActivity.distance_setting_value3);
     return view;
   }
 
