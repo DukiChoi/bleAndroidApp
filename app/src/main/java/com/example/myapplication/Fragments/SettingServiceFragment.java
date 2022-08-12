@@ -100,7 +100,7 @@ public class SettingServiceFragment extends ServiceFragment {
   //이건 TxChar UUID 설정 부분 (보내는 Char)
   private static final UUID SEND_UUID = UUID
           .fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e");  //RxChar UUID
-  private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_FLOAT;
+  private static final int SEND_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
   private static final String SEND_DESCRIPTION = "This characteristic is used " +
           "as TxChar Nordic Uart device";
 
@@ -112,7 +112,7 @@ public class SettingServiceFragment extends ServiceFragment {
    */
   private static final UUID RECIEVE_UUID = UUID
           .fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e");  //TxChar UUID
-  private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_FLOAT;
+  private static final int RECEIVE_VALUE_FORMAT = BluetoothGattCharacteristic.FORMAT_UINT8;
 
 
   private static final String RECEIVE_DESCRIPTION = "This characteristic is used " +
@@ -154,32 +154,44 @@ public class SettingServiceFragment extends ServiceFragment {
 //          byte[] newSENDbytes = mEditTextSendValue.getText().toString().getBytes(StandardCharsets.US_ASCII);
 //          mSendCharacteristic.setValue(newSENDbytes);
           //두번째. int로 바꾸기
-          float newSendValue = Float.parseFloat(newSENDValueString);
+          int newSendValue = Integer.parseInt(newSENDValueString);
           if (textView == mEditTextSendValue1) {
             newSendValue = newSendValue + 2;
-            mEditTextSendValue2.setText(Float.toString(newSendValue));
+            mEditTextSendValue2.setText(Integer.toString(newSendValue));
             newSendValue = newSendValue + 2;
-            mEditTextSendValue3.setText(Float.toString(newSendValue));
-          }else if (textView == mEditTextSendValue2) {
-            newSendValue = newSendValue - 2;
-            mEditTextSendValue1.setText(Float.toString(newSendValue));
-            newSendValue = newSendValue + 4;
-            mEditTextSendValue3.setText(Float.toString(newSendValue));
-          }else if (textView == mEditTextSendValue3) {
-            newSendValue = newSendValue - 4;
-            mEditTextSendValue1.setText(Float.toString(newSendValue));
-            newSendValue = newSendValue + 2;
-            mEditTextSendValue2.setText(Float.toString(newSendValue));
+            mEditTextSendValue3.setText(Integer.toString(newSendValue));
           }
-          float float_to_send1 = Float.parseFloat(mEditTextSendValue1.getText().toString());
-          float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
-          float float_to_send3 = Float.parseFloat(mEditTextSendValue3.getText().toString());
-          WarningActivity.distance_setting_value1 = Float.toString(float_to_send1) + "m";
-          WarningActivity.distance_setting_value2 = Float.toString(float_to_send2) + "m";
-          WarningActivity.distance_setting_value3 = Float.toString(float_to_send3) + "m";
-//          WarningActivity.mSendCharacteristic.setValue(Mantissa(newSendValue),Exponent(newSendValue),
-//                  SEND_VALUE_FORMAT,
-//                  /* offset */ 0);
+          int int_to_send1 = Integer.parseInt(mEditTextSendValue1.getText().toString());
+          int int_to_send2 = Integer.parseInt(mEditTextSendValue2.getText().toString());
+          int int_to_send3 = Integer.parseInt(mEditTextSendValue3.getText().toString());
+          WarningActivity.distance_setting_value1 = Integer.toString(int_to_send1) + "m";
+          WarningActivity.distance_setting_value2 = Integer.toString(int_to_send2) + "m";
+          WarningActivity.distance_setting_value3 = Integer.toString(int_to_send3) + "m";
+          //세번째, float으로 바꾸기
+//          float newSendValue = Float.parseFloat(newSENDValueString);
+//          if (textView == mEditTextSendValue1) {
+//            newSendValue = newSendValue + 2;
+//            mEditTextSendValue2.setText(Float.toString(newSendValue));
+//            newSendValue = newSendValue + 2;
+//            mEditTextSendValue3.setText(Float.toString(newSendValue));
+//          }else if (textView == mEditTextSendValue2) {
+//            newSendValue = newSendValue - 2;
+//            mEditTextSendValue1.setText(Float.toString(newSendValue));
+//            newSendValue = newSendValue + 4;
+//            mEditTextSendValue3.setText(Float.toString(newSendValue));
+//          }else if (textView == mEditTextSendValue3) {
+//            newSendValue = newSendValue - 4;
+//            mEditTextSendValue1.setText(Float.toString(newSendValue));
+//            newSendValue = newSendValue + 2;
+//            mEditTextSendValue2.setText(Float.toString(newSendValue));
+//          }
+//          float float_to_send1 = Float.parseFloat(mEditTextSendValue1.getText().toString());
+//          float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
+//          float float_to_send3 = Float.parseFloat(mEditTextSendValue3.getText().toString());
+//          WarningActivity.distance_setting_value1 = Float.toString(float_to_send1) + "m";
+//          WarningActivity.distance_setting_value2 = Float.toString(float_to_send2) + "m";
+//          WarningActivity.distance_setting_value3 = Float.toString(float_to_send3) + "m";
+
         } else {
           Toast.makeText(getActivity(), "Chracteristic 형식이 틀립니다.",
                   Toast.LENGTH_SHORT).show();
@@ -198,10 +210,14 @@ public class SettingServiceFragment extends ServiceFragment {
         String newReceiveValueString = textView.getText().toString();
         if (isValidCharacteristicValue(newReceiveValueString,
                 RECEIVE_VALUE_FORMAT)) {
-          float newReceiveValue = Float.parseFloat(newReceiveValueString);
-          WarningActivity.mReceiveCharacteristic.setValue(Mantissa(newReceiveValue),Exponent(newReceiveValue),
-                  RECEIVE_VALUE_FORMAT,
-                  /* offset */ 1);
+//          float newReceiveValue = Float.parseFloat(newReceiveValueString);
+//          WarningActivity.mReceiveCharacteristic.setValue(Mantissa(newReceiveValue),Exponent(newReceiveValue),
+//                  RECEIVE_VALUE_FORMAT,
+//                  /* offset */ 1);
+          int newReceiveValue = Integer.parseInt(newReceiveValueString);
+          WarningActivity.mSendCharacteristic.setValue(newReceiveValue,
+                  SEND_VALUE_FORMAT,
+                  /* offset */ 0);
         } else {
           Toast.makeText(getActivity(), "Chracteristic 형식이 틀립니다.",
                   Toast.LENGTH_SHORT).show();
@@ -227,19 +243,20 @@ public class SettingServiceFragment extends ServiceFragment {
 //      mSendCharacteristic.setValue(integer_to_send,
 //              SEND_VALUE_FORMAT,
 //              /* offset */ 0);
-        //세번째 방법 세 integer 묶어서 보내기
-      if(Float.parseFloat(mEditTextSendValue1.getText().toString()) > 0 && Float.parseFloat(mEditTextSendValue2.getText().toString()) > 0 && Float.parseFloat(mEditTextSendValue3.getText().toString()) > 0 && WarningActivity.alert_mode ==0){
+      //세번째 방법 세 integer 묶어서 보내기
+      //네번째 방법 세 float 묶어서 보내기
+      if(Integer.parseInt(mEditTextSendValue1.getText().toString()) > 0 && Integer.parseInt(mEditTextSendValue2.getText().toString()) > 0 && Integer.parseInt(mEditTextSendValue3.getText().toString()) > 0 && WarningActivity.alert_mode ==0){
         //보내는 값이 각각 0 이상일시에만 send해준다.
-        float float_to_send1 = Float.parseFloat(mEditTextSendValue1.getText().toString());
-        float float_to_send2 = Float.parseFloat(mEditTextSendValue2.getText().toString());
-        float float_to_send3 = Float.parseFloat(mEditTextSendValue3.getText().toString());
-        WarningActivity.distance_setting_value1 = Float.toString(float_to_send1) + "m";
-        WarningActivity.distance_setting_value2 = Float.toString(float_to_send2) + "m";
-        WarningActivity.distance_setting_value3 = Float.toString(float_to_send3) + "m";
+        int int_to_send1 = Integer.parseInt(mEditTextSendValue1.getText().toString());
+        int int_to_send2 = Integer.parseInt(mEditTextSendValue2.getText().toString());
+        int int_to_send3 = Integer.parseInt(mEditTextSendValue3.getText().toString());
+        WarningActivity.distance_setting_value1 = Integer.toString(int_to_send1) + "m";
+        WarningActivity.distance_setting_value2 = Integer.toString(int_to_send2) + "m";
+        WarningActivity.distance_setting_value3 = Integer.toString(int_to_send3) + "m";
 
         byte[] firstByteArray = new byte[]{0x10};
-        byte[] newSENDbytes =  joinArrays( firstByteArray, floatToByteArray(float_to_send1), floatToByteArray(float_to_send2), floatToByteArray(float_to_send3));
-        //byte[] newSENDbytes = {0x10, (byte)float_to_send1, (byte)float_to_send2, (byte)float_to_send3};
+        //byte[] newSENDbytes =  joinArrays( firstByteArray, floatToByteArray(float_to_send1), floatToByteArray(float_to_send2), floatToByteArray(float_to_send3));
+        byte[] newSENDbytes = {0x10, (byte)int_to_send1, (byte)int_to_send2, (byte)int_to_send3};
         WarningActivity.mSendCharacteristic.setValue(newSENDbytes);
 
         //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
@@ -508,7 +525,8 @@ public class SettingServiceFragment extends ServiceFragment {
   // 그게 하나하나 파싱 했을 때 저 비트 안에 들어가는지 ㅇㅇ
   private boolean isValidCharacteristicValue(String s, int format) {
     try {
-      float value = Float.parseFloat(s);
+      //float value = Float.parseFloat(s);
+      int value = Integer.parseInt(s);
       if (format == BluetoothGattCharacteristic.FORMAT_UINT8) {
         return (value >= MIN_UINT) && (value <= MAX_UINT8);
       } else if (format == BluetoothGattCharacteristic.FORMAT_UINT16) {
