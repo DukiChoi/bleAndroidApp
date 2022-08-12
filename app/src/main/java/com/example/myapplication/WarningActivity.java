@@ -496,7 +496,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                 //여기서 EditText를 넣어준다.
                 final EditText et = new EditText(WarningActivity.context);
                 et.setOnEditorActionListener(mOnDeviceNameEditorActionListenerSend);
-                builder.setIcon(R.drawable.gear).setView(et);
+                builder.setIcon(R.drawable.black_gear).setView(et);
                 builder.setMessage("연결을 시작할까요? (디바이스 이름을 적어주세요)");
             }
 
