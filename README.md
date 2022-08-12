@@ -7,9 +7,9 @@
 
 
 
-![Warning menu](app1.png)
+![Warning menu](app_menu1.png)
 
 
 
 
-![Setting menu](app2.png)
+![Setting menu](app_menu2.png)
