@@ -19,7 +19,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -27,6 +30,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -68,7 +73,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     Spinner spinner;
     String[] items = {"아이템0","아이템1","아이템2","아이템3","아이템4"};
     private static final int REQUEST_ENABLE_BT = 1;
-    private static final String TAG = WarningActivity.class.getCanonicalName();
+    public static final String TAG = WarningActivity.class.getCanonicalName();
     private static final String CURRENT_FRAGMENT_TAG = "CURRENT_FRAGMENT";
 
     private static final UUID CHARACTERISTIC_USER_DESCRIPTION_UUID = UUID
@@ -137,6 +142,8 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     private long presstime = 0;
     public static int alert_mode = 0;
     public static String device_name = "unlab_device";
+
+
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //        변수 선언 끝
@@ -223,7 +230,9 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
                     Log.v(TAG, "Disconnected from device");
                     //추가코드 : 컨넥션 해제되었을 때 advertisement 다시 시작.
-                    mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
+                    //mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
+                    //추가코드 : 컨넥션 해제되었을 때 모든 advertisement 꺼버림.
+                    disconnectFromDevices();
                 }
             } else {
                 mBluetoothDevices.remove(device);
@@ -482,7 +491,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_disconnect_devices && alert_mode==0) {
+        if (item.getItemId() == R.id.action_disconnect_devices) {
             //여기서 AlertDialog를 사용해서 온오프시에 확인창 팝업
             AlertDialog.Builder builder = new AlertDialog.Builder(WarningActivity.this);
             builder.setTitle("연결 세팅");
@@ -536,7 +545,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
             return true /* event_consumed */;
         }
-        else if (item.getItemId() == R.id.action_warning && alert_mode==0) {
+        else if (item.getItemId() == R.id.action_warning) {
             mCurrentServiceFragment = mWarningServiceFragment;
             getFragmentManager()
                     .beginTransaction()
@@ -546,7 +555,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             return true /* event_consumed */;
         }
 
-        else if (item.getItemId() == R.id.action_setting && alert_mode==0) {
+        else if (item.getItemId() == R.id.action_setting) {
             //원래는 이렇게 화면 자체를 새롭게 띄워줬었는데 이렇게 하면 안 될 것 같기도하고...
 //            Intent intent = new Intent(this, SettingActivity.class);
 //            startActivity(intent);
@@ -727,4 +736,6 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             Toast.makeText(getApplicationContext(), R.string.status_noLeAdv, Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

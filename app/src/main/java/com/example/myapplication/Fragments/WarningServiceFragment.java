@@ -217,9 +217,10 @@ public class WarningServiceFragment extends ServiceFragment {
   private final View.OnClickListener mAlertStopButtonListener = new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-      //알람 일시정지
+      //알람 정지
       if (WarningActivity.alert_mode == 1){
         alert_stop();
+        getView().setBackgroundColor(Color.WHITE);
       }
     }
   };
@@ -443,6 +444,7 @@ public class WarningServiceFragment extends ServiceFragment {
         //위험반경 내부에 있지 않게 되면 알람을 정지
         else if (value1 == 0 && WarningActivity.alert_mode == 1){
           alert_stop();
+          getView().setBackgroundColor(Color.WHITE);
         }
 
         //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
@@ -565,82 +567,5 @@ public class WarningServiceFragment extends ServiceFragment {
     Log.v(TAG, "sent disconnetionValue: " + Arrays.toString(disconnectionValue));
   }
 
-  public void alert(){
-    //경고임을 알려주는 변수 1로 만들음
-    WarningActivity.alert_mode = 1;
-    player_and_anim();
-    vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
-
-    //진동은 따로 쓰레드 써서 계속 울리게 해야함
-    triggerService = new Thread(new Runnable() {
-      @Override
-      public void run() {
-        while(!triggerService.isInterrupted())
-        {
-          try {
-            Log.v(TAG, "진동 시작합니다");
-            vibrator.vibrate(1000);
-            Thread.sleep(2000);
-          } catch (InterruptedException e){
-            //이건 아예 스탑
-            if(WarningActivity.alert_mode ==0) {
-              if (player != null) {
-                player.stop();
-                Log.v(TAG, "경고음 stop");
-              }
-              anim.cancel();
-              getView().setBackgroundColor(Color.WHITE);
-              Log.v(TAG, "화면 깜박임 stop");
-              Thread.currentThread().interrupt();
-              e.printStackTrace();
-            }
-            //이건 일시정지
-            else if(WarningActivity.alert_mode == 2) {
-              try {
-                anim.cancel();
-                player.stop();
-                Thread.sleep(5000);
-                //플레이어랑 애니메 다시 세팅 후 시작, 잔동 Thread는 스스로 시작함
-                WarningActivity.alert_mode = 1;
-                player_and_anim();
-              } catch (InterruptedException ex) {
-                ex.printStackTrace();
-              }
-            }
-          }
-        }
-        // 한번 울리고 종료할려면
-        // Done with our work... stop the service!
-        //AlarmService_Service.this.stopSelf();
-      }
-    }
-    );
-    triggerService.start();
-  }
-  public void player_and_anim(){
-    //벨소리
-    player =  MediaPlayer.create(WarningActivity.context, R.raw.alert);
-    player.start();
-    //배경 빨갛게 하얗게
-    getView().setBackgroundColor(Color.RED);
-    anim = new AlphaAnimation(0.0f,1.0f);
-    anim.setDuration(100);
-    anim.setStartOffset(50);
-    anim.setRepeatMode(Animation.REVERSE);
-    anim.setRepeatCount(Animation.INFINITE);
-    getView().startAnimation(anim);
-  }
-  public void alert_stop(){
-    WarningActivity.alert_mode = 0;
-    if(triggerService!= null) {
-      triggerService.interrupt();
-      Log.v(TAG, "진동 thread interrupt");
-    }
-  }
-  public void alert_sleep(){
-    //일시정지 상태엔 버튼 잠시 누르게 해야해서 2로 설정
-    WarningActivity.alert_mode = 2;
-    triggerService.interrupt();
-  }
 
 }
