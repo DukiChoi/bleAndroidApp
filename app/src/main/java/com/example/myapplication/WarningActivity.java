@@ -142,7 +142,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     private long presstime = 0;
     public static int alert_mode = 0;
     public static String device_name = "unlab_device";
-
+    public int connected_count = 0;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -227,7 +227,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                 } else if (newState == BluetoothGatt.STATE_DISCONNECTED) {
                     mBluetoothDevices.remove(device);
                     updateConnectedDevicesStatus();
-
+                    Toast.makeText(getApplicationContext(), "Disconnected from device", Toast.LENGTH_SHORT).show();
                     Log.v(TAG, "Disconnected from device");
                     //추가코드 : 컨넥션 해제되었을 때 advertisement 다시 시작.
                     //mAdvertiser.startAdvertising(mAdvSettings, mAdvData, mAdvScanResponse, mAdvCallback);
@@ -486,6 +486,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     protected void onStart() {
         super.onStart();
         resetStatusViews();
+        //Advertising 하지 않는 상태로 시작하게 바꿈
         //startConnection();
     }
 
@@ -517,6 +518,8 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
                             //Off
                             if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
                                 disconnectFromDevices();
+                                mSettingServiceFragment = new SettingServiceFragment();
+                                mWarningServiceFragment = new WarningServiceFragment();
                             }
                             //On
                             else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
@@ -621,12 +624,27 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     }
 
     private void updateConnectedDevicesStatus() {
+        //추가코드: 만약 연결된 디바이스가 0이 된다면 전체 화면 초기화
+
         final String message = getString(R.string.status_devicesConnected) + " "
                 + mBluetoothManager.getConnectedDevices(BluetoothGattServer.GATT).size();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 mConnectionStatus.setText(message);
+                //디바이스 0되면 화면들 리셋하고 완전히 바꾸게끔 함
+                if(mBluetoothManager.getConnectedDevices(BluetoothGattServer.GATT).size()==0 && connected_count > 0){
+                    resetDistanceValues();
+                    mSettingServiceFragment = new SettingServiceFragment();
+                    mWarningServiceFragment = new WarningServiceFragment();
+                    //추가코드 : 컨넥션 해제되었을 때 fragment 초기화(다시 시작).
+                    mCurrentServiceFragment = mWarningServiceFragment;
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, mCurrentServiceFragment, CURRENT_FRAGMENT_TAG)
+                            .commit();
+                }
+                connected_count = mBluetoothManager.getConnectedDevices(BluetoothGattServer.GATT).size();
             }
         });
     }
@@ -667,6 +685,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         }
     }
     private void disconnectFromDevices() {
+        resetDistanceValues();
         Log.d(TAG, "Disconnecting devices...");
 
         //추가코드: 여기가 앵커에 끊는 신호인 {99}값 보내는 곳.
@@ -736,6 +755,10 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             Toast.makeText(getApplicationContext(), R.string.status_noLeAdv, Toast.LENGTH_SHORT).show();
         }
     }
-
+    public void resetDistanceValues(){
+        distance_setting_value1 = "";
+        distance_setting_value2 = "";
+        distance_setting_value3 = "";
+    }
 
 }
