@@ -115,6 +115,10 @@ public class WarningServiceFragment extends ServiceFragment {
   public Thread triggerService = null;
   Animation anim = null;
 
+  int alert_value1 = 0;
+  int alert_value2 = 0;
+  int alert_value3 = 0;
+  int alert_value1_temp = 0;
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //       텍스트 뷰, 클릭 리스너 설정 ( 사용자 상호작용 설정 )
@@ -218,8 +222,10 @@ public class WarningServiceFragment extends ServiceFragment {
     @Override
     public void onClick(View v) {
       //알람 정지
+
       if (WarningActivity.alert_mode == 1){
-        alert_stop();
+        alert_stop_special();
+        alert_value1_temp = alert_value1;
         getView().setBackgroundColor(Color.WHITE);
       }
     }
@@ -425,26 +431,33 @@ public class WarningServiceFragment extends ServiceFragment {
 //        Log.v(TAG, "Received: " + Arrays.toString(value) + " / converted into:" + bytesToString(value));
         //여기서 이제 Value를 [태그, 멤버, 태그, 멤버, 태그, 멤버, 태그, 멤버] 로 받기로 했으므로,
         int[] members = classification(value);
-        int value1 = members[0];
-        int value2 = members[1];
-        int value3 = members[2];
-        Log.v(TAG, "members are: " + value1 + ", " + value2 + ", " + value3);
+        alert_value1 = members[0];
+        alert_value2 = members[1];
+        alert_value3 = members[2];
+        Log.v(TAG, "members are: " + alert_value1 + ", " + alert_value2 + ", " + alert_value3);
         //두번째 방법, Integer로 받기([값]형태)
         //mTextViewReceiveValue.setText(Arrays.toString(value));
 
-        mTextViewReceiveValue1.setText(String.valueOf(value1));
-        mTextViewReceiveValue2.setText(String.valueOf(value2));
-        mTextViewReceiveValue3.setText(String.valueOf(value3));
+        mTextViewReceiveValue1.setText(String.valueOf(alert_value1));
+        mTextViewReceiveValue2.setText(String.valueOf(alert_value2));
+        mTextViewReceiveValue3.setText(String.valueOf(alert_value3));
 
         //위험반경 내부로 들어간 작업자기 생기면 알림
-        if(value1 > 0  && WarningActivity.alert_mode == 0){
+        if(alert_value1 > 0  && WarningActivity.alert_mode == 0){
           //진동 및 알림
           alert();
         }
         //위험반경 내부에 있지 않게 되면 알람을 정지
-        else if (value1 == 0 && WarningActivity.alert_mode == 1){
+        else if (alert_value1 == 0 && WarningActivity.alert_mode == 1){
           alert_stop();
           getView().setBackgroundColor(Color.WHITE);
+        }
+        else if(WarningActivity.alert_mode == 3){
+          if(alert_value1 > alert_value1_temp)
+            alert();
+          else if(alert_value1 < alert_value1_temp){
+            alert_value1_temp = alert_value1;
+          }
         }
 
         //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌

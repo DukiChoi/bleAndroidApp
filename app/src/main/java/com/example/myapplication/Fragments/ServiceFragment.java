@@ -138,6 +138,19 @@ public abstract class ServiceFragment extends Fragment{
                 ex.printStackTrace();
               }
             }
+            //이건 스페셜 정지(
+            if(WarningActivity.alert_mode ==3) {
+              if (player != null) {
+                player.stop();
+                Log.v(TAG, "경고음 stop");
+              }
+              anim.cancel();
+              //getView().setBackgroundColor(Color.WHITE);
+              //이거는 각각의 fragment에 넣어야 오류가 안남. view마다 쓰레드?가 달라져서 오류가 생기는 듯.
+              Log.v(TAG, "화면 깜박임 stop");
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
           }
         }
         // 한번 울리고 종료할려면
@@ -168,9 +181,22 @@ public abstract class ServiceFragment extends Fragment{
       Log.v(TAG, "진동 thread interrupt");
     }
   }
+
+
   public void alert_sleep(){
     //일시정지 상태엔 버튼 잠시 누르게 해야해서 2로 설정
     WarningActivity.alert_mode = 2;
-    triggerService.interrupt();
+    if(triggerService!= null) {
+      triggerService.interrupt();
+      Log.v(TAG, "진동 thread interrupt");
+    }
+  }
+  public void alert_stop_special(){
+    //일시정지 상태엔 버튼 잠시 누르게 해야해서 2로 설정
+    WarningActivity.alert_mode = 3;
+    if(triggerService!= null) {
+      triggerService.interrupt();
+      Log.v(TAG, "진동 thread interrupt");
+    }
   }
 }
