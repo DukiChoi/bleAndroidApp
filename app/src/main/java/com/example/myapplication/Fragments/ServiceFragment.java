@@ -161,7 +161,7 @@ public abstract class ServiceFragment extends Fragment{
     anim.setRepeatCount(Animation.INFINITE);
     getView().startAnimation(anim);
   }
-  public void alert_stop(){
+  public static void alert_stop(){
     WarningActivity.alert_mode = 0;
     if(triggerService!= null) {
       triggerService.interrupt();

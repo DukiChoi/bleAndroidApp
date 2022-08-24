@@ -141,7 +141,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     private final long finishtime = 1000;
     private long presstime = 0;
     public static int alert_mode = 0;
-    public static String device_name = "unlab_device";
+    public static String device_name = "";
     public int connected_count = 0;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -578,14 +578,14 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     @Override
     protected void onStop() {
         super.onStop();
-        if (mGattServer != null) {
-            mGattServer.close();
-        }
-        if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
-            // If stopAdvertising() gets called before close() a null
-            // pointer exception is raised.
-            mAdvertiser.stopAdvertising(mAdvCallback);
-        }
+//        if (mGattServer != null) {
+//            mGattServer.close();
+//        }
+//        if (mBluetoothAdapter.isEnabled() && mAdvertiser != null) {
+//            // If stopAdvertising() gets called before close() a null
+//            // pointer exception is raised.
+//            mAdvertiser.stopAdvertising(mAdvCallback);
+//        }
         resetStatusViews();
     }
 
@@ -596,6 +596,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
         if (0 <= intervalTime && finishtime >= intervalTime)
         {
+            mCurrentServiceFragment.SendDisconnection();
             finish();
         }
         else
@@ -685,6 +686,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         }
     }
     private void disconnectFromDevices() {
+        ServiceFragment.alert_stop();
         resetDistanceValues();
         Log.d(TAG, "Disconnecting devices...");
 
