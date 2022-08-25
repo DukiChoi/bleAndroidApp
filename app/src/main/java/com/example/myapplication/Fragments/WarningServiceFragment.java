@@ -429,11 +429,15 @@ public class WarningServiceFragment extends ServiceFragment {
 //        mTextViewReceiveValue.setText(bytesToString(value));
 //        //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
 //        Log.v(TAG, "Received: " + Arrays.toString(value) + " / converted into:" + bytesToString(value));
-        //여기서 이제 Value를 [태그, 멤버, 태그, 멤버, 태그, 멤버, 태그, 멤버] 로 받기로 했으므로,
+        //여기서 이제 Value를 [태그1, 위험정보, 태그2, 위험정보, 태그3, 위험정보, 태그4, 위험정보, 접근, 경고, 위험] 로 받기로 했으므로,
         int[] members = classification(value);
         alert_value1 = members[0];
         alert_value2 = members[1];
         alert_value3 = members[2];
+        WarningActivity.distance_setting_value1 = Integer.toString(Byte.toUnsignedInt(value[8])) + "m";;
+        WarningActivity.distance_setting_value2 = Integer.toString(Byte.toUnsignedInt(value[9])) + "m";;
+        WarningActivity.distance_setting_value3 = Integer.toString(Byte.toUnsignedInt(value[10])) + "m";;
+
         Log.v(TAG, "members are: " + alert_value1 + ", " + alert_value2 + ", " + alert_value3);
         //두번째 방법, Integer로 받기([값]형태)
         //mTextViewReceiveValue.setText(Arrays.toString(value));
@@ -441,7 +445,9 @@ public class WarningServiceFragment extends ServiceFragment {
         mTextViewReceiveValue1.setText(String.valueOf(alert_value1));
         mTextViewReceiveValue2.setText(String.valueOf(alert_value2));
         mTextViewReceiveValue3.setText(String.valueOf(alert_value3));
-
+        mTextViewDistanceValue1.setText(WarningActivity.distance_setting_value1);
+        mTextViewDistanceValue2.setText(WarningActivity.distance_setting_value2);
+        mTextViewDistanceValue3.setText(WarningActivity.distance_setting_value3);
         //위험반경 내부로 들어간 작업자기 생기면 알림
         if(alert_value1 > 0  && WarningActivity.alert_mode == 0){
           //진동 및 알림
@@ -552,20 +558,20 @@ public class WarningServiceFragment extends ServiceFragment {
 
   public int[] classification(byte[] value){
     //테스트값: 4, 9, 16, 18
-    //0001010202030303
-    //0002010202030303
+    //0001010202030303010203
+    //0002010202030303010203
     byte[] test_value = {0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x03};
     int[] member_for_distances = {0, 0, 0};
     for(int i = 0; i < 4; i++){
-      //위험반경 : 5미만
+      //위험반경인 사람 수
       if(value[2*i+1] == 0x01){
         member_for_distances[0]++;
       }
-      //경고반경 : 5이상 10미만
+      //경고반경인 사람 수
       else if(value[2*i+1] == 0x02){
         member_for_distances[1]++;
       }
-      //접근반경 : 10 이상;
+      //접근반경인 사람 수;
       else if(value[2*i+1] == 0x03){
         member_for_distances[2]++;
       }

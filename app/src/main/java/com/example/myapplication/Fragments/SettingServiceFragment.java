@@ -165,9 +165,10 @@ public class SettingServiceFragment extends ServiceFragment {
           int int_to_send1 = Integer.parseInt(mEditTextSendValue1.getText().toString());
           int int_to_send2 = Integer.parseInt(mEditTextSendValue2.getText().toString());
           int int_to_send3 = Integer.parseInt(mEditTextSendValue3.getText().toString());
-          WarningActivity.distance_setting_value1 = Integer.toString(int_to_send1) + "m";
-          WarningActivity.distance_setting_value2 = Integer.toString(int_to_send2) + "m";
-          WarningActivity.distance_setting_value3 = Integer.toString(int_to_send3) + "m";
+          //생각해보니깐 텍스트뷰를 편집한다고 이 값을 바꿔주면 안 된다. 보내기를 클릭했을 때 바꿔야 ㅇㅇ
+//          WarningActivity.distance_setting_value1 = Integer.toString(int_to_send1) + "m";
+//          WarningActivity.distance_setting_value2 = Integer.toString(int_to_send2) + "m";
+//          WarningActivity.distance_setting_value3 = Integer.toString(int_to_send3) + "m";
           //세번째, float으로 바꾸기
 //          float newSendValue = Float.parseFloat(newSENDValueString);
 //          if (textView == mEditTextSendValue1) {
