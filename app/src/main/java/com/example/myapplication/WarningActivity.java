@@ -574,7 +574,10 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
         return false /* event_consumed */;
     }
-
+    @Override
+    protected  void onPause(){
+        super.onPause();
+    }
     @Override
     protected void onStop() {
         super.onStop();
@@ -596,7 +599,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
         if (0 <= intervalTime && finishtime >= intervalTime)
         {
-            mCurrentServiceFragment.SendDisconnection();
+            disconnectFromDevices();
             finish();
         }
         else
