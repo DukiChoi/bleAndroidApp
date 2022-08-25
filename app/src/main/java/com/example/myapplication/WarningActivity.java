@@ -142,6 +142,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
     private long presstime = 0;
     public static int alert_mode = 0;
     public static String device_name = "";
+
     public int connected_count = 0;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -492,6 +493,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        final EditText et = new EditText(WarningActivity.context);
         if (item.getItemId() == R.id.action_disconnect_devices) {
             //여기서 AlertDialog를 사용해서 온오프시에 확인창 팝업
             AlertDialog.Builder builder = new AlertDialog.Builder(WarningActivity.this);
@@ -504,7 +506,9 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
             }
             else if (mBluetoothAdapter.isEnabled() && mAdvertiser == null) {
                 //여기서 EditText를 넣어준다.
-                final EditText et = new EditText(WarningActivity.context);
+
+                if(!device_name.equals(""))
+                    et.setText(device_name);
                 et.setOnEditorActionListener(mOnDeviceNameEditorActionListenerSend);
                 builder.setIcon(R.drawable.black_gear).setView(et);
                 builder.setMessage("연결을 시작할까요? (디바이스 이름을 적어주세요)");
@@ -528,6 +532,7 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
 //                                resetStatusViews();
                                 //SettingServiceFrag 직접 초기화 시켜주는 것.
                                 mSettingServiceFragment = new SettingServiceFragment();
+                                device_name = et.getText().toString();
                                 BluetoothAdapter.getDefaultAdapter().setName(device_name);
                                 onStart();
                                 startConnection();
