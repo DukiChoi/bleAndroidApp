@@ -1,0 +1,372 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+MERGED from [com.google.android.material:material:1.6.1] /Users/byungkeun/.gradle/caches/transforms-3/4948de165b5218454019e0897afa16ee/transformed/material-1.6.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/byungkeun/.gradle/caches/transforms-3/af607507a3d3d50a4db50c5cd4e7b0c6/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.4.2] /Users/byungkeun/.gradle/caches/transforms-3/846bd1e6ef12a6d68419ac9e045844bf/transformed/appcompat-1.4.2/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/fad0631b695ac311211deded6099821f/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/e9a984f11cfdd45d3f413f1476f7f21f/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/byungkeun/.gradle/caches/transforms-3/08be5f2811952d88fdbd324236b15817/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.2.4] /Users/byungkeun/.gradle/caches/transforms-3/6f3a994f88517aff94e24bcc980c84f7/transformed/jetified-activity-1.2.4/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.4.2] /Users/byungkeun/.gradle/caches/transforms-3/b6ecd316b38ad5f1ed3eb993c95115eb/transformed/jetified-appcompat-resources-1.4.2/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/b5e3385e87e4660c6c5422259887e937/transformed/jetified-emoji2-views-helper-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/ba7cefdb273346127bf361e693a2077a/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/byungkeun/.gradle/caches/transforms-3/576bbfeb8ca3116493a5dde1a08f50b1/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/fafe20f33fc1f1973a5a6b5f88e11979/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/ba064dfc1435359d35d5f2b69379c311/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /Users/byungkeun/.gradle/caches/transforms-3/e353275a5dad5cd7dd5d51284dfd5302/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/2123698e98f614592287cfca95ce0b65/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/99b67211caf75454d8db8cffaa4c204a/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/4adf412e9eb6257b08f1a55b81966117/transformed/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/21de2c5076ca3e7e4a6f46475d73654f/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/d6f048992aa4c98c57a5f34754783a6f/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/089f3a62207b4741a667b58aa013b8b6/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/0a48c48e7ac9cdb1931530cff684f072/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/5b9812e3e90bc8877a40c92e69f6797e/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/c780b57cbd0250da86c997db48a63283/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/9f821840f0946fb195a4a95a81f9631c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/417d9309e97530006593d3a748b223c5/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.7.0] /Users/byungkeun/.gradle/caches/transforms-3/d8338c189490aee58604e111af57865f/transformed/core-1.7.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/e1a62715087a89352861ae3443fed18d/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/c271bf273d11dbbc923b42cacee5f2d0/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/72bba5287bce37b61ffc9cf1fc73e195/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/e988628139fdde72599a7fb0173533f5/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/0751861119962ac0f78d2deaf3a4a68f/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/byungkeun/.gradle/caches/transforms-3/a9acd0dedf18860c026beb7159aedafc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/7289baf9a60250fc6044c748072f42fd/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/b197f1cc5e11f7b39e2871a390d021e6/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/byungkeun/.gradle/caches/transforms-3/0dff1c662625ea984670c5782fc7d571/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/ee659dbb9116c3e21ee1968a7dd70a8e/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/3f01866c3eb0b5387e0f45d19136fe35/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/byungkeun/.gradle/caches/transforms-3/0d304a484326baa263a900de069d66cb/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/515b01c1f1b6c0d007494e5098e90b5a/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/01bc8368ad5575d4d6f30c21d182f95c/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/72f1940f015bcc005a737b3aab30d906/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/bea07825b7217081cc6ac437eb5d453f/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/528f96469cb86a51f5b29376625b5ce1/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+	package
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:3:5-40
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:1-88:12
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.BLUETOOTH
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:6:5-68
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:6:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:7:5-74
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:7:22-71
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:8:5-76
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:8:22-73
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:9:5-11:58
+	android:usesPermissionFlags
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:11:9-55
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:10:9-57
+uses-permission#android.permission.BLUETOOTH_ADVERTISE
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:12:5-78
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:12:22-75
+uses-feature#android.hardware.bluetooth
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:14:5-16:35
+	android:required
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:16:9-32
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:15:9-50
+uses-feature#android.hardware.bluetooth_le
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:17:5-19:35
+	android:required
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:19:9-32
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:18:9-53
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:21:5-79
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:21:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:22:22-78
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:23:5-77
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:23:22-74
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:24:22-65
+application
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:27:5-86:19
+MERGED from [com.google.android.material:material:1.6.1] /Users/byungkeun/.gradle/caches/transforms-3/4948de165b5218454019e0897afa16ee/transformed/material-1.6.1/AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.material:material:1.6.1] /Users/byungkeun/.gradle/caches/transforms-3/4948de165b5218454019e0897afa16ee/transformed/material-1.6.1/AndroidManifest.xml:24:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/byungkeun/.gradle/caches/transforms-3/af607507a3d3d50a4db50c5cd4e7b0c6/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/byungkeun/.gradle/caches/transforms-3/af607507a3d3d50a4db50c5cd4e7b0c6/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.core:core:1.7.0] /Users/byungkeun/.gradle/caches/transforms-3/d8338c189490aee58604e111af57865f/transformed/core-1.7.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.7.0] /Users/byungkeun/.gradle/caches/transforms-3/d8338c189490aee58604e111af57865f/transformed/core-1.7.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/byungkeun/.gradle/caches/transforms-3/a9acd0dedf18860c026beb7159aedafc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/byungkeun/.gradle/caches/transforms-3/a9acd0dedf18860c026beb7159aedafc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/7289baf9a60250fc6044c748072f42fd/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/7289baf9a60250fc6044c748072f42fd/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:25:5-31:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.7.0] /Users/byungkeun/.gradle/caches/transforms-3/d8338c189490aee58604e111af57865f/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:32:9-35
+	android:label
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:30:9-41
+	android:roundIcon
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:31:9-54
+	android:icon
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:29:9-43
+	android:allowBackup
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:28:9-35
+	android:theme
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:33:9-51
+	android:usesCleartextTraffic
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:34:9-44
+activity#com.example.myapplication.ExampleActivities.Peripheral
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:35:9-38:53
+	android:screenOrientation
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:38:13-50
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:37:13-37
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:36:13-57
+activity#com.example.myapplication.ExampleActivities.BLEScanActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:39:9-43:56
+	android:windowSoftInputMode
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:43:13-54
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:42:13-36
+	android:configChanges
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:41:13-74
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:40:13-62
+activity#com.example.myapplication.ExampleActivities.BluetoothActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:44:9-46:40
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:46:13-37
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:45:13-64
+activity#com.example.myapplication.WarningActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:47:9-57:20
+	android:screenOrientation
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:51:13-50
+	android:label
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:49:13-35
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:50:13-36
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:48:13-44
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:52:13-56:29
+action#android.intent.action.MAIN
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:53:17-69
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:53:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:55:17-77
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:55:27-74
+activity#com.example.myapplication.SettingActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:58:9-62:53
+	android:screenOrientation
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:62:13-50
+	android:label
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:60:13-34
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:61:13-37
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:59:13-44
+activity#com.example.myapplication.ExampleActivities.TCPActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:63:9-65:40
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:65:13-37
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:64:13-58
+activity#com.example.myapplication.ExampleActivities.GetHttpActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:66:9-68:40
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:68:13-37
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:67:13-62
+activity#com.example.myapplication.MainActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:69:9-77:20
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:71:13-36
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:70:13-41
+activity#com.example.myapplication.ExampleActivities.DeviceListActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:78:9-74
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:78:19-71
+activity#com.example.myapplication.ExampleActivities.GattServerActivity
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:79:9-81:40
+	android:exported
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:81:13-37
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:80:13-65
+service#com.example.myapplication.Services.UartService
+ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:83:9-85:38
+	android:enabled
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:85:13-35
+	android:name
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml:84:13-49
+uses-sdk
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.6.1] /Users/byungkeun/.gradle/caches/transforms-3/4948de165b5218454019e0897afa16ee/transformed/material-1.6.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.6.1] /Users/byungkeun/.gradle/caches/transforms-3/4948de165b5218454019e0897afa16ee/transformed/material-1.6.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/byungkeun/.gradle/caches/transforms-3/af607507a3d3d50a4db50c5cd4e7b0c6/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/byungkeun/.gradle/caches/transforms-3/af607507a3d3d50a4db50c5cd4e7b0c6/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.4.2] /Users/byungkeun/.gradle/caches/transforms-3/846bd1e6ef12a6d68419ac9e045844bf/transformed/appcompat-1.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.4.2] /Users/byungkeun/.gradle/caches/transforms-3/846bd1e6ef12a6d68419ac9e045844bf/transformed/appcompat-1.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/fad0631b695ac311211deded6099821f/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/fad0631b695ac311211deded6099821f/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/e9a984f11cfdd45d3f413f1476f7f21f/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/e9a984f11cfdd45d3f413f1476f7f21f/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/byungkeun/.gradle/caches/transforms-3/08be5f2811952d88fdbd324236b15817/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/byungkeun/.gradle/caches/transforms-3/08be5f2811952d88fdbd324236b15817/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] /Users/byungkeun/.gradle/caches/transforms-3/6f3a994f88517aff94e24bcc980c84f7/transformed/jetified-activity-1.2.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] /Users/byungkeun/.gradle/caches/transforms-3/6f3a994f88517aff94e24bcc980c84f7/transformed/jetified-activity-1.2.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.4.2] /Users/byungkeun/.gradle/caches/transforms-3/b6ecd316b38ad5f1ed3eb993c95115eb/transformed/jetified-appcompat-resources-1.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.4.2] /Users/byungkeun/.gradle/caches/transforms-3/b6ecd316b38ad5f1ed3eb993c95115eb/transformed/jetified-appcompat-resources-1.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/b5e3385e87e4660c6c5422259887e937/transformed/jetified-emoji2-views-helper-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/b5e3385e87e4660c6c5422259887e937/transformed/jetified-emoji2-views-helper-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/ba7cefdb273346127bf361e693a2077a/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/ba7cefdb273346127bf361e693a2077a/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/byungkeun/.gradle/caches/transforms-3/576bbfeb8ca3116493a5dde1a08f50b1/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/byungkeun/.gradle/caches/transforms-3/576bbfeb8ca3116493a5dde1a08f50b1/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/fafe20f33fc1f1973a5a6b5f88e11979/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/fafe20f33fc1f1973a5a6b5f88e11979/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/ba064dfc1435359d35d5f2b69379c311/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/ba064dfc1435359d35d5f2b69379c311/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /Users/byungkeun/.gradle/caches/transforms-3/e353275a5dad5cd7dd5d51284dfd5302/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/byungkeun/.gradle/caches/transforms-3/e353275a5dad5cd7dd5d51284dfd5302/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/2123698e98f614592287cfca95ce0b65/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/2123698e98f614592287cfca95ce0b65/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/99b67211caf75454d8db8cffaa4c204a/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/99b67211caf75454d8db8cffaa4c204a/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/4adf412e9eb6257b08f1a55b81966117/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/4adf412e9eb6257b08f1a55b81966117/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/21de2c5076ca3e7e4a6f46475d73654f/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/21de2c5076ca3e7e4a6f46475d73654f/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/d6f048992aa4c98c57a5f34754783a6f/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/d6f048992aa4c98c57a5f34754783a6f/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/089f3a62207b4741a667b58aa013b8b6/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/089f3a62207b4741a667b58aa013b8b6/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/0a48c48e7ac9cdb1931530cff684f072/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/0a48c48e7ac9cdb1931530cff684f072/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/5b9812e3e90bc8877a40c92e69f6797e/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/5b9812e3e90bc8877a40c92e69f6797e/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/c780b57cbd0250da86c997db48a63283/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/c780b57cbd0250da86c997db48a63283/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/9f821840f0946fb195a4a95a81f9631c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/9f821840f0946fb195a4a95a81f9631c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/417d9309e97530006593d3a748b223c5/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/417d9309e97530006593d3a748b223c5/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.7.0] /Users/byungkeun/.gradle/caches/transforms-3/d8338c189490aee58604e111af57865f/transformed/core-1.7.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.7.0] /Users/byungkeun/.gradle/caches/transforms-3/d8338c189490aee58604e111af57865f/transformed/core-1.7.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/e1a62715087a89352861ae3443fed18d/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/e1a62715087a89352861ae3443fed18d/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/c271bf273d11dbbc923b42cacee5f2d0/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/c271bf273d11dbbc923b42cacee5f2d0/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/72bba5287bce37b61ffc9cf1fc73e195/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/72bba5287bce37b61ffc9cf1fc73e195/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/e988628139fdde72599a7fb0173533f5/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/e988628139fdde72599a7fb0173533f5/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/0751861119962ac0f78d2deaf3a4a68f/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/0751861119962ac0f78d2deaf3a4a68f/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/byungkeun/.gradle/caches/transforms-3/a9acd0dedf18860c026beb7159aedafc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/byungkeun/.gradle/caches/transforms-3/a9acd0dedf18860c026beb7159aedafc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/7289baf9a60250fc6044c748072f42fd/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/7289baf9a60250fc6044c748072f42fd/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/b197f1cc5e11f7b39e2871a390d021e6/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/b197f1cc5e11f7b39e2871a390d021e6/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/byungkeun/.gradle/caches/transforms-3/0dff1c662625ea984670c5782fc7d571/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/byungkeun/.gradle/caches/transforms-3/0dff1c662625ea984670c5782fc7d571/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/ee659dbb9116c3e21ee1968a7dd70a8e/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/byungkeun/.gradle/caches/transforms-3/ee659dbb9116c3e21ee1968a7dd70a8e/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/3f01866c3eb0b5387e0f45d19136fe35/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/3f01866c3eb0b5387e0f45d19136fe35/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/byungkeun/.gradle/caches/transforms-3/0d304a484326baa263a900de069d66cb/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/byungkeun/.gradle/caches/transforms-3/0d304a484326baa263a900de069d66cb/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/515b01c1f1b6c0d007494e5098e90b5a/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/515b01c1f1b6c0d007494e5098e90b5a/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/01bc8368ad5575d4d6f30c21d182f95c/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/01bc8368ad5575d4d6f30c21d182f95c/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/72f1940f015bcc005a737b3aab30d906/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/72f1940f015bcc005a737b3aab30d906/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/bea07825b7217081cc6ac437eb5d453f/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/bea07825b7217081cc6ac437eb5d453f/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/528f96469cb86a51f5b29376625b5ce1/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/byungkeun/.gradle/caches/transforms-3/528f96469cb86a51f5b29376625b5ce1/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/byungkeun/Documents/bleAndroidApp/app/src/main/AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/7289baf9a60250fc6044c748072f42fd/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/7289baf9a60250fc6044c748072f42fd/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:30:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/byungkeun/.gradle/caches/transforms-3/dafda43020c998140bb590dd363804eb/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/byungkeun/.gradle/caches/transforms-3/fb7578b74fadc6b60a379e8d199d207c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
