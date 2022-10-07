@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.ExampleActivities.BLEScanActivity;
 import com.example.myapplication.ExampleActivities.BluetoothActivity;
 import com.example.myapplication.ExampleActivities.GetHttpActivity;
+import com.example.myapplication.ExampleActivities.HTTPActivity;
 import com.example.myapplication.ExampleActivities.TCPActivity;
 import com.example.myapplication.ExampleActivities.Peripheral;
 
@@ -57,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onWarningButtonClicked(View view){
         Intent intent = new Intent(this, WarningActivity.class);
+        startActivity(intent);
+    }
+    public void onHTTPButtonClicked(View view){
+        Intent intent = new Intent(this, HTTPActivity.class);
         startActivity(intent);
     }
 }

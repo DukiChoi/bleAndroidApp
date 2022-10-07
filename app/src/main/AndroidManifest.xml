@@ -21,8 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name = "android.permission.VIBRATE"/>
-    <!--uses-permission android:name="android.permission.LOCAL_MAC_ADDRESS" /-->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -33,6 +32,9 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ExampleActivities.HTTPActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExampleActivities.Peripheral"
             android:exported="false"
             android:screenOrientation="landscape" />
@@ -40,25 +42,25 @@
             android:name=".ExampleActivities.BLEScanActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ExampleActivities.BluetoothActivity"
             android:exported="false" />
         <activity
             android:name=".WarningActivity"
-            android:label="주변 작업자"
             android:exported="true"
-            android:screenOrientation="landscape" >
-            <intent-filter>
+            android:label="주변 작업자"
+            android:screenOrientation="landscape">
+            <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter!-->
         </activity>
         <activity
             android:name=".SettingActivity"
-            android:label="앵커 세팅"
             android:exported="false"
+            android:label="앵커 세팅"
             android:screenOrientation="landscape" />
         <activity
             android:name=".ExampleActivities.TCPActivity"
@@ -69,11 +71,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <!--intent-filter>
+
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter!-->
+            </intent-filter>
         </activity>
         <activity android:name=".ExampleActivities.DeviceListActivity" />
         <activity

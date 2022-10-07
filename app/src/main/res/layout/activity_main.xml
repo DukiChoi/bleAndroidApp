@@ -109,4 +109,16 @@
         app:layout_constraintStart_toStartOf="@+id/button_BLEScan"
         app:layout_constraintTop_toBottomOf="@+id/button_BLEScan" />
 
+    <Button
+        android:id="@+id/button_http"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="onHTTPButtonClicked"
+        android:text="HTTP GET/POST"
+        app:layout_constraintEnd_toEndOf="@+id/button_warning"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="@+id/button_warning"
+        app:layout_constraintTop_toBottomOf="@+id/button_warning" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
