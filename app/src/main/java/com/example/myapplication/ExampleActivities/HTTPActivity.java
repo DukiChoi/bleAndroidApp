@@ -78,7 +78,7 @@ public class HTTPActivity extends AppCompatActivity {
     public void POSTRequest() {
         String url = "https://www.google.co.kr";
         StringRequest request = new StringRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 url,
                 new Response.Listener<String>() { //응답을 잘 받았을 때 이 메소드가 자동으로 호출
                     @Override
