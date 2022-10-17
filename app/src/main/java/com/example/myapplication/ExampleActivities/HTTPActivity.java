@@ -95,8 +95,9 @@ public class HTTPActivity extends AppCompatActivity {
         ) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String,String>();
-
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", "test1");
+                params.put("pw", "test2");
                 return params;
             }
         };
