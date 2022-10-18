@@ -56,7 +56,7 @@ public class HTTPActivity extends AppCompatActivity {
     }
 
     public void GETRequest() {
-        String url = "http://172.16.162.8:8080/?var1=newData&var2=153&var3=testdata2017";
+        String url = "http://192.168.0.9:8080/?var1=newData&var2=153&var3=testdata2017";
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -73,10 +73,11 @@ public class HTTPActivity extends AppCompatActivity {
                     }
                 }
         ) {
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> headers = new HashMap<String,String>();
-                headers.put("Client-Type", "application/json");
+                headers.put("Client-Type", "my_app");
                 return headers;
             }
         };
@@ -89,7 +90,7 @@ public class HTTPActivity extends AppCompatActivity {
 
 
     public void POSTRequest() {
-        String url = "http://172.16.162.8:8080";
+        String url = "http://192.168.0.9:8080";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -109,7 +110,7 @@ public class HTTPActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Client-Type", "application/json");
+                headers.put("Client-Type", "my_app");
                 return headers;
             }
             protected Map<String, String> getParams() throws AuthFailureError {
