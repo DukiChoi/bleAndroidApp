@@ -12,9 +12,12 @@ import com.example.myapplication.R;
 import com.example.myapplication.Services.AppHelper;
 
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,18 +25,27 @@ import java.util.Map;
 public class HTTPActivity extends AppCompatActivity {
 
     TextView textView;
-    Button button;
+    Button button1;
+    Button button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_http);
 
         textView = (TextView) findViewById(R.id.HTTP_textView);
-        button = (Button) findViewById(R.id.GET_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        button1 = (Button) findViewById(R.id.GET_button);
+        button2 = (Button) findViewById(R.id.POST_button);
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GETRequest();
+
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                POSTRequest();
 
             }
         });
@@ -44,7 +56,7 @@ public class HTTPActivity extends AppCompatActivity {
     }
 
     public void GETRequest() {
-        String url = "https://www.google.co.kr";
+        String url = "http://172.16.162.8:8080/?var1=newData&var2=153&var3=testdata2017";
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -62,10 +74,10 @@ public class HTTPActivity extends AppCompatActivity {
                 }
         ) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String,String>();
-
-                return params;
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers = new HashMap<String,String>();
+                headers.put("Client-Type", "application/json");
+                return headers;
             }
         };
         request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
@@ -75,8 +87,9 @@ public class HTTPActivity extends AppCompatActivity {
 
     }
 
+
     public void POSTRequest() {
-        String url = "https://www.google.co.kr";
+        String url = "http://172.16.162.8:8080";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -94,12 +107,19 @@ public class HTTPActivity extends AppCompatActivity {
                 }
         ) {
             @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Client-Type", "application/json");
+                return headers;
+            }
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", "test1");
-                params.put("pw", "test2");
+                params.put("var1", "test1");
+                params.put("var2", "test2");
+                params.put("var3", "test3");
                 return params;
             }
+
         };
         request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
         AppHelper.requestQueue = Volley.newRequestQueue(this); // requestQueue 초기화 필수
