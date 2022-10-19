@@ -56,7 +56,7 @@ public class HTTPActivity extends AppCompatActivity {
     }
 
     public void GETRequest() {
-        String url = "http://192.168.0.9:8080/?var1=newData&var2=153&var3=testdata2017";
+        String url = "http://172.16.162.137:8080";
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -78,6 +78,8 @@ public class HTTPActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> headers = new HashMap<String,String>();
                 headers.put("Client-Type", "my_app");
+                headers.put("system_token", "1234");
+                headers.put("session_key", "5678");
                 return headers;
             }
         };
@@ -90,7 +92,7 @@ public class HTTPActivity extends AppCompatActivity {
 
 
     public void POSTRequest() {
-        String url = "http://192.168.0.9:8080";
+        String url = "http://172.16.162.137:8080";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -111,13 +113,16 @@ public class HTTPActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Client-Type", "my_app");
+                headers.put("system_token", "1234");
+                headers.put("session_key", "5678");
                 return headers;
             }
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("var1", "test1");
-                params.put("var2", "test2");
-                params.put("var3", "test3");
+                params.put("anchor_id", "test1");
+                params.put("worker_id", "test2");
+                params.put("report_type", "test3");
+                params.put("measure_dt", "test4");
                 return params;
             }
 
