@@ -42,12 +42,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Fragments.WarningServiceFragment;
 import com.example.myapplication.Fragments.SettingServiceFragment;
 import com.example.myapplication.Fragments.ServiceFragment;
+import com.example.myapplication.Services.AppHelper;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.UUID;
 
 public class WarningActivity extends AppCompatActivity implements ServiceFragment.ServiceFragmentDelegate {
@@ -771,4 +780,85 @@ public class WarningActivity extends AppCompatActivity implements ServiceFragmen
         distance_setting_value3 = "";
     }
 
+    public void GETRequest() {
+        String url = "http://172.16.162.137:8080";
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() { //응답을 잘 받았을 때 이 메소드가 자동으로 호출
+                    @Override
+                    public void onResponse(String response) {
+                        println("응답 -> " + response);
+                    }
+                },
+                new Response.ErrorListener() { //에러 발생시 호출될 리스너 객체
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("에러 -> " + error.getMessage());
+                    }
+                }
+        ) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers = new HashMap<String,String>();
+                headers.put("Client-Type", "my_app");
+                headers.put("system_token", "1234");
+                headers.put("session_key", "5678");
+                return headers;
+            }
+        };
+        request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+        AppHelper.requestQueue = Volley.newRequestQueue(this); // requestQueue 초기화 필수
+        AppHelper.requestQueue.add(request);
+        println("요청 보냄.");
+
+    }
+
+
+    public void POSTRequest() {
+        String url = "http://172.16.162.137:8080";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() { //응답을 잘 받았을 때 이 메소드가 자동으로 호출
+                    @Override
+                    public void onResponse(String response) {
+                        println("응답 -> " + response);
+                    }
+                },
+                new Response.ErrorListener() { //에러 발생시 호출될 리스너 객체
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("에러 -> " + error.getMessage());
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Client-Type", "my_app");
+                headers.put("system_token", "1234");
+                headers.put("session_key", "5678");
+                return headers;
+            }
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("anchor_id", "test1");
+                params.put("worker_id", "test2");
+                params.put("report_type", "test3");
+                params.put("measure_dt", "test4");
+                return params;
+            }
+
+        };
+        request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+        AppHelper.requestQueue = Volley.newRequestQueue(this); // requestQueue 초기화 필수
+        AppHelper.requestQueue.add(request);
+        println("요청 보냄.");
+
+    }
+    public void println(String data) {
+        Log.d(TAG, data +"\n");
+    }
 }
