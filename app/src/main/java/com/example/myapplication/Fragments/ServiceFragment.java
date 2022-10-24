@@ -15,6 +15,10 @@
  */
 
 package com.example.myapplication.Fragments;
+import static com.example.myapplication.WarningActivity.distance_setting_value1;
+import static com.example.myapplication.WarningActivity.distance_setting_value2;
+import static com.example.myapplication.WarningActivity.distance_setting_value3;
+import static com.example.myapplication.Fragments.WarningServiceFragment.alert_value1;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -42,6 +46,7 @@ import com.example.myapplication.WarningActivity;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class ServiceFragment extends Fragment{
@@ -246,8 +251,16 @@ public abstract class ServiceFragment extends Fragment{
   }
 
 
-  public void POSTRequest() {
+  public void POSTRequest(String report_type) {
     String url = "http://127.0.0.1:8080";
+    String report_data ="";
+    if(Objects.equals(report_type, "RC")){
+      report_data = report_type + "|" + distance_setting_value1 + "|" + distance_setting_value2 + "|" + distance_setting_value3;
+    }
+    else if(Objects.equals(report_type, "W")){
+      report_data = report_type + "|" + alert_value1;
+    }
+    String finalReport_data = report_data;
     StringRequest request = new StringRequest(
             Request.Method.POST,
             url,
@@ -276,7 +289,7 @@ public abstract class ServiceFragment extends Fragment{
         Map<String, String> params = new HashMap<String, String>();
         params.put("anchor_id", "test1");
         params.put("worker_id", "test2");
-        params.put("report_type", "te);
+        params.put("report_type", finalReport_data);
         params.put("measure_dt", "test4");
         return params;
       }

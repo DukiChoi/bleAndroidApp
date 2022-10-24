@@ -115,7 +115,7 @@ public class WarningServiceFragment extends ServiceFragment {
   public Thread triggerService = null;
   Animation anim = null;
 
-  int alert_value1 = 0;
+  public static int alert_value1 = 0;
   int alert_value2 = 0;
   int alert_value3 = 0;
   int alert_value1_temp = 0;
