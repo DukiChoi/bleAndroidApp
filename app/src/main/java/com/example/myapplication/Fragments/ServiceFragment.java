@@ -30,9 +30,18 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
+import com.example.myapplication.Services.AppHelper;
 import com.example.myapplication.WarningActivity;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public abstract class ServiceFragment extends Fragment{
@@ -100,6 +109,8 @@ public abstract class ServiceFragment extends Fragment{
     WarningActivity.alert_mode = 1;
     player_and_anim();
     vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
+
+    //여기서 HTTP POST로 태그 수 보내준다.
 
     //진동은 따로 쓰레드 써서 계속 울리게 해야함
     triggerService = new Thread(new Runnable() {
@@ -198,5 +209,86 @@ public abstract class ServiceFragment extends Fragment{
       triggerService.interrupt();
       Log.v(TAG, "진동 thread interrupt");
     }
+  }
+  public void GETRequest() {
+    String url = "http://127.0.0.1:8080";
+    StringRequest request = new StringRequest(
+            Request.Method.GET,
+            url,
+            new Response.Listener<String>() { //응답을 잘 받았을 때 이 메소드가 자동으로 호출
+              @Override
+              public void onResponse(String response) {
+                println("응답 -> " + response);
+              }
+            },
+            new Response.ErrorListener() { //에러 발생시 호출될 리스너 객체
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                println("에러 -> " + error.getMessage());
+              }
+            }
+    ) {
+
+      @Override
+      public Map<String, String> getHeaders() throws AuthFailureError {
+        Map<String,String> headers = new HashMap<String,String>();
+        headers.put("Client-Type", "my_app");
+        headers.put("system_token", "1234");
+        headers.put("session_key", "5678");
+        return headers;
+      }
+    };
+    request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+    AppHelper.requestQueue = Volley.newRequestQueue(WarningActivity.context); // requestQueue 초기화 필수
+    AppHelper.requestQueue.add(request);
+    println("요청 보냄.");
+
+  }
+
+
+  public void POSTRequest() {
+    String url = "http://127.0.0.1:8080";
+    StringRequest request = new StringRequest(
+            Request.Method.POST,
+            url,
+            new Response.Listener<String>() { //응답을 잘 받았을 때 이 메소드가 자동으로 호출
+              @Override
+              public void onResponse(String response) {
+                println("응답 -> " + response);
+              }
+            },
+            new Response.ErrorListener() { //에러 발생시 호출될 리스너 객체
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                println("에러 -> " + error.getMessage());
+              }
+            }
+    ) {
+      @Override
+      public Map<String, String> getHeaders() throws AuthFailureError {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Client-Type", "my_app");
+        headers.put("system_token", "1234");
+        headers.put("session_key", "5678");
+        return headers;
+      }
+      protected Map<String, String> getParams() throws AuthFailureError {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("anchor_id", "test1");
+        params.put("worker_id", "test2");
+        params.put("report_type", "te);
+        params.put("measure_dt", "test4");
+        return params;
+      }
+
+    };
+    request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+    AppHelper.requestQueue = Volley.newRequestQueue(WarningActivity.context); // requestQueue 초기화 필수
+    AppHelper.requestQueue.add(request);
+    println("요청 보냄.");
+
+  }
+  public void println(String data) {
+    Log.d(TAG, data +"\n");
   }
 }

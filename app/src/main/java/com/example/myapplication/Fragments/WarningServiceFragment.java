@@ -429,7 +429,7 @@ public class WarningServiceFragment extends ServiceFragment {
 //        mTextViewReceiveValue.setText(bytesToString(value));
 //        //로그에서 원래 아스키코드 배열과 / 변환되어 나온 string값을 보여줌
 //        Log.v(TAG, "Received: " + Arrays.toString(value) + " / converted into:" + bytesToString(value));
-        //여기서 이제 Value를 [태그1, 위험정보, 태그2, 위험정보, 태그3, 위험정보, 태그4, 위험정보, 접근, 경고, 위험] 로 받기로 했으므로,
+        //여기서 이제 Value를 [태그1, 위험정보, 태그2, 위험정보, 태그3, 위험정보, 태그4, 위험정보, 위험, 경고, 접근] 로 받기로 했으므로,
         int[] members = classification(value);
         alert_value1 = members[0];
         alert_value2 = members[1];
