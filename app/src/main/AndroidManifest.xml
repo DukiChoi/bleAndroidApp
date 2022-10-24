@@ -51,11 +51,11 @@
             android:exported="true"
             android:label="주변 작업자"
             android:screenOrientation="landscape">
-            <!--intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter!-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".SettingActivity"
@@ -72,11 +72,11 @@
             android:name=".MainActivity"
             android:exported="true">
 
-            <intent-filter>
+            <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter!-->
         </activity>
         <activity android:name=".ExampleActivities.DeviceListActivity" />
         <activity

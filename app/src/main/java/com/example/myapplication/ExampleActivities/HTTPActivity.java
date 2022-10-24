@@ -56,7 +56,7 @@ public class HTTPActivity extends AppCompatActivity {
     }
 
     public void GETRequest() {
-        String url = "http://172.16.162.137:8080";
+        String url = "http://192.168.0.109:8080";
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -92,7 +92,7 @@ public class HTTPActivity extends AppCompatActivity {
 
 
     public void POSTRequest() {
-        String url = "http://172.16.162.137:8080";
+        String url = "http://192.168.0.109:8080";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
