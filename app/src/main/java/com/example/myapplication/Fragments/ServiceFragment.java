@@ -57,7 +57,7 @@ public abstract class ServiceFragment extends Fragment{
   public static Thread triggerService = null;
   public static Animation anim = null;
   public static final String TAG = WarningActivity.TAG;
-
+  public static final String url = "http://192.168.0.9:8080";
   /**
    * Function to communicate to the ServiceFragment that a device wants to write to a
    * characteristic.
@@ -115,8 +115,8 @@ public abstract class ServiceFragment extends Fragment{
     player_and_anim();
     vibrator = (Vibrator) WarningActivity.context.getSystemService(Context.VIBRATOR_SERVICE);
 
-    //여기서 HTTP POST로 태그 수 보내준다.
-
+    //여기서 HTTP POST로 위험반경 태그 수 보내준다.
+    POSTRequest("W");
     //진동은 따로 쓰레드 써서 계속 울리게 해야함
     triggerService = new Thread(new Runnable() {
       @Override
@@ -216,7 +216,6 @@ public abstract class ServiceFragment extends Fragment{
     }
   }
   public void GETRequest() {
-    String url = "http://127.0.0.1:8080";
     StringRequest request = new StringRequest(
             Request.Method.GET,
             url,
@@ -252,7 +251,6 @@ public abstract class ServiceFragment extends Fragment{
 
 
   public void POSTRequest(String report_type) {
-    String url = "http://127.0.0.1:8080";
     String report_data ="";
     if(Objects.equals(report_type, "RC")){
       report_data = report_type + "|" + distance_setting_value1 + "|" + distance_setting_value2 + "|" + distance_setting_value3;

@@ -273,7 +273,8 @@ public class SettingServiceFragment extends ServiceFragment {
 
         //진동 및 알림
         //alert();
-
+        //여기서 HTTP POST로 반경거리 각각 보내준다.
+        POSTRequest("RC");
       }
       else if (WarningActivity.alert_mode == 1){
         alert_stop();
