@@ -13,3 +13,11 @@
 
 
 ![Setting menu](app_menu2.png)
+
+
+## License Information
+
+This project is licensed for **personal use only**. Any academic or commercial use is strictly prohibited without the explicit permission of the author.
+For more details, please refer to the [LICENSE](./LICENSE) file.
+If you wish to use this software for academic or commercial purposes, please contact the author at [cbcc12345@hanyang.ac.kr] or [cbcc1234@gmail.com].
+Unauthorized use may result in legal action.
